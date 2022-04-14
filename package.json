@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -14,7 +14,6 @@
   },
   "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
   "author": {
     "name": "liudichen",
     "email": "liudichen@foxmail.com",
