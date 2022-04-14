@@ -60,3 +60,5 @@ FieldWrapper.propTypes = {
   ...fieldWrapperPropTypes,
   children: PropTypes.node.isRequired,
 };
+
+export default FieldWrapper;

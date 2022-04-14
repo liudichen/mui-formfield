@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-14 14:07:36
+ * @LastEditTime: 2022-04-14 16:10:11
  */
 import PropTypes from 'prop-types';
 
@@ -24,7 +24,7 @@ const fieldWrapperPropTypes = {
   tooltip: PropTypes.node,
   helperText: PropTypes.node,
   showHelperText: PropTypes.bool,
-  helperTextSx: object,
+  helperTextSx: PropTypes.object,
   helperTextProps: PropTypes.object,
   fieldSx: sx,
   fieldProps: PropTypes.object,
