@@ -1,0 +1,92 @@
+{
+  "private": true,
+  "name": "mui-formfield",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "author": {
+    "name": "liudichen",
+    "email": "liudichen@foxmail.com",
+    "url": "https://www.iimm.ink"
+  },
+  "description": "mui form field components with simple wrapper, ready for formily",
+    "repository": {
+    "url": "https://github.com/liudichen/mui-formfield",
+    "type": "https"
+  },
+    "keywords": [
+    "mui",
+    "material-ui",
+    "form",
+    "form field",
+    "fieldWrapper",
+    "iimm",
+    "www.iimm.ink",
+    "liudichen",
+    "Upload",
+    "react",
+    "@mui/material",
+    "layout",
+    "react"
+  ],
+  "license": "MIT",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "files": ["es","lib"],
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "peerDependencies": {
+    "@mui/material": ">=5.0.0",
+    "react":">=16.9.0",
+    "react-dom":">=16.9.0"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.1",
+    "@mui/lab": "^5.0.0-alpha.77",
+    "@mui/material": "^5.6.1",
+    "@mui/styles": "^5.6.1",
+    "@tabler/icons": "^1.64.0",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^18.0.4",
+    "@types/react-dom": "^18.0.0",
+    "@umijs/fabric": "^2.8.1",
+    "@umijs/test": "^3.0.5",
+    "dumi": "^1.1.0",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.1",
+    "react": "^17.0.2",
+    "react-device-detect": "^2.2.2",
+    "react-dom": "^17.0.2",
+    "react-responsive-carousel": "^3.2.23",
+    "yorkie": "^2.0.0",    
+    "ahooks": "^3.3.0",
+    "react-dropzone": "^12.0.5"
+  },
+  "dependencies": {
+  }
+}
