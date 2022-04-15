@@ -4,10 +4,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-04-15 12:07:15
+ * @LastEditTime: 2022-04-15 12:17:31
  */
 import PropTypes from 'prop-types';
-import { Children } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 
 import { sx } from '../common';
@@ -31,10 +31,10 @@ const Space = (props) => {
       flexDirection={direction}
       {...restProps}
     >
-      {Children.map(children, (child, index) => {
+      {React.Children.map(children, (child, index) => {
         let style = {};
         if (direction === 'column') {
-          if (index < Children.count(children) - 1) {
+          if (index < React.Children.count(children) - 1) {
             style = { marginBottom: columnSpace / (split ? 2 : 1) };
           }
         } else {
@@ -47,7 +47,7 @@ const Space = (props) => {
             <div style={style}>
               {child}
             </div>
-            {index < Children.count(children) - 1 && !!split && (
+            {index < React.Children.count(children) - 1 && !!split && (
               <span style={style}>
                 {split}
               </span>
