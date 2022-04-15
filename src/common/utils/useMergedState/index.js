@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: 柳涤尘 https://www.iimm.ink
+ * @LastEditors: 柳涤尘 liudichen@foxmail.com
+ * @Date: 2022-04-14 11:40:42
+ * @LastEditTime: 2022-04-15 10:07:08
+ */
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 /**
@@ -42,7 +49,7 @@ const useControlledState = (defaultStateValue, option) => {
         onChangeRef.current(newValue, mergedValue);
       }
     },
-    [ mergedValue, onChangeRef ]
+    [ mergedValue, onChangeRef ],
   );
 
   // Effect of reset value to `undefined`
