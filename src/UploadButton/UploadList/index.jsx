@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:18
- * @LastEditTime: 2022-04-14 13:32:58
+ * @LastEditTime: 2022-04-15 16:42:13
  */
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMemoizedFn, useUpdate } from 'ahooks';
 import { IconPaperclip, IconPhoto, IconFileInfo } from '@tabler/icons';
 
@@ -25,6 +25,7 @@ const UploadList = (props) => {
     iconRender,
     isImage,
     style,
+    onClickThumb: onClickThumbProp,
     ...restProps
   } = props;
   const forceUpdate = useUpdate();
@@ -90,6 +91,7 @@ const UploadList = (props) => {
       setSelectedItem(index);
       setOpen(true);
     }
+    onClickThumbProp?.(index);
   });
 
   return (
@@ -139,6 +141,15 @@ UploadList.propTypes = {
   onDownload: PropTypes.func,
   onPreview: PropTypes.func,
   items: PropTypes.array.isRequired,
+  listType: PropTypes.oneOf([ 'text', 'picture-card' ]),
+  showPreviewIcon: PropTypes.bool,
+  showRemoveIcon: PropTypes.bool,
+  showDownloadIcon: PropTypes.bool,
+  previewIcon: PropTypes.node,
+  removeIcon: PropTypes.node,
+  downloadIcon: PropTypes.node,
+  onClickThumb: PropTypes.func,
+  style: PropTypes.object,
 };
 
 export default UploadList;

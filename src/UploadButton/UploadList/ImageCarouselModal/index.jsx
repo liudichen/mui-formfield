@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-04-14 13:32:34
+ * @LastEditTime: 2022-04-15 16:32:38
  */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link } from '@mui/material';
 import { isMobile } from 'react-device-detect';
@@ -26,23 +27,27 @@ const ImageCarouselModal = (props) => {
   return (
     <>
       <Link
-        underline='none'
-        sx={{
-          cursor: 'pointer',
-          ...triggerSx,
+        {...{
+          underline: 'none',
+          ...(triggerProps || {}),
+          sx: {
+            cursor: 'pointer',
+            ...(triggerSx || {}),
+          },
         }}
-        {...triggerProps}
       >
         { trigger }
       </Link>
       <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        PaperProps={PaperProps}
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
-        fullScreen={fullScreen}
-        {...(DialogProps || {})}
+        {...{
+          PaperProps,
+          fullWidth,
+          maxWidth,
+          fullScreen,
+          ...(DialogProps || {}),
+          open,
+          onClose: () => setOpen(false),
+        }}
       >
         <DialogTitle variant='h4' component='div'>
           { title }

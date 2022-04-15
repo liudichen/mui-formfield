@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 08:57:36
- * @LastEditTime: 2022-04-14 14:31:18
+ * @LastEditTime: 2022-04-15 17:07:33
  */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useMemoizedFn } from 'ahooks';
 import { Button } from '@mui/material';
@@ -29,6 +30,7 @@ const UploadButton = (props) => {
     value, onChange, defaultValue,
     readOnly, disabled, children,
     accept, transformFile,
+    uploadButtonProps, uploadButtonText,
     isImage,
     maxCount,
     onRemove,
@@ -117,7 +119,17 @@ const UploadButton = (props) => {
         validator={validator}
         {...restProps}
       >
-        {children}
+        {children || (
+          <Button
+            {...{
+              variant: 'outlined',
+              size: 'small',
+              ...(uploadButtonProps),
+            }}
+          >
+            { uploadButtonText || '文件上传'}
+          </Button>
+        )}
       </UploadZone>
       { showUploadList && fileList.length > 0 && (
         <UploadList
@@ -146,14 +158,15 @@ UploadButton.defaultProps = {
 
 UploadButton.propTypes = {
   ...fieldWrapperPropTypes,
-  
+
   value: PropTypes.any,
   onChange: PropTypes.func,
 
   isImage: PropTypes.func,
   previewFile: PropTypes.func, // interface: (file) => void
   transformFile: PropTypes.func,
-  uploadButtonStyle: PropTypes.object,
+  uploadButtonProps: PropTypes.object,
+  uploadButtonText: PropTypes.node,
   disabled: PropTypes.bool,
   readOnly: PropTypes.bool,
   validator: PropTypes.func, // interface: （file) => '' || errorMsg

@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 09:31:31
- * @LastEditTime: 2022-04-14 12:04:02
+ * @LastEditTime: 2022-04-15 15:40:27
  */
 import PropTypes from 'prop-types';
-import { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 const rootDefaultStyle = {
@@ -39,6 +39,8 @@ UploadZone.defaultProps = {
   useFsAccessApi: false,
 };
 UploadZone.propTypes = {
+  style: PropTypes.object,
+  children: PropTypes.node,
   accept: PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string) ]),
   multiple: PropTypes.bool,
   preventDropOnDocument: PropTypes.bool, // If false, allow dropped items to take over the current browser window

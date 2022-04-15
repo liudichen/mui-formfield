@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:47
- * @LastEditTime: 2022-04-11 22:39:16
+ * @LastEditTime: 2022-04-15 16:39:47
  */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -167,8 +168,12 @@ ListItem.propTypes = {
   onRemove: PropTypes.func,
   images: PropTypes.array,
   file: PropTypes.object.isRequired,
+  previewIcon: PropTypes.node,
   removeIcon: PropTypes.node,
   downloadIcon: PropTypes.node,
+  listType: PropTypes.oneOf([ 'text', 'picture-card' ]),
+  iconRender: PropTypes.func,
+  onClickThumb: PropTypes.func,
 };
 
 export default ListItem;
