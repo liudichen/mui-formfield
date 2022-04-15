@@ -1,14 +1,7 @@
 import PropTypes from 'prop-types';
-import * as React from 'react';
 
-interface LabelRenderProps {
-  label?: React.ReactNode;
-  tooltip?: React.ReactNode;
-  labelPosition: 'top' | 'border';
-  required?: boolean;
-  labelSx?: object;
-  labelProps?: object;
-}
+import { LabelRenderProps } from '../../types';
+
 declare const LabelRender: {
   (props: LabelRenderProps): JSX.Element;
   propTypes: {
