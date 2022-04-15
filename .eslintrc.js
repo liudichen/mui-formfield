@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 08:59:51
- * @LastEditTime: 2022-04-15 10:23:46
+ * @LastEditTime: 2022-04-15 12:16:18
  */
 module.exports = {
   extends: 'eslint-config-egg',
@@ -38,6 +38,7 @@ module.exports = {
     },
   ],
   rules: {
+    'react/jsx-uses-react': 2,
     'react/jsx-uses-vars': 'error',
     'generator-star-spacing': 'off',
     'babel/generator-star-spacing': 'off',
