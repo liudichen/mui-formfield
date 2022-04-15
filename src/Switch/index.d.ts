@@ -3,15 +3,15 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 12:33:51
- * @LastEditTime: 2022-04-15 13:06:08
+ * @LastEditTime: 2022-04-15 13:10:05
  */
 import * as React from 'react';
 
-import { sxType, fieldCommonProps, fieldWrapperPropTypesType, colorType } from '../types';
+import { sxType, fieldCommonProps, FieldWrapperRelateProps, colorType } from '../types';
 
 type sizeType = 'medium' | 'small';
 
-interface SwitchProps extends fieldWrapperPropTypesType, fieldCommonProps<boolean> {
+interface SwitchProps extends FieldWrapperRelateProps, fieldCommonProps<boolean> {
   unCheckedChildren?: React.ReactNode,
   checkedChildren
   unCheckedIcon?: React.ReactNode,

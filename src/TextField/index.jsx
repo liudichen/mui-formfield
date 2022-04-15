@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-04-14 14:26:24
+ * @LastEditTime: 2022-04-15 13:38:17
  */
 import PropTypes from 'prop-types';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
@@ -109,9 +109,8 @@ TextField.propTypes = {
   autoFocus: PropTypes.bool,
   classes: PropTypes.bool,
   color: PropTypes.oneOfType([ PropTypes.oneOf([ 'primary', 'secondary', 'error', 'info', 'success', 'warning' ]), PropTypes.string ]),
-  defaultValue: PropTypes.any,
   disabled: PropTypes.bool,
-  errro: PropTypes.bool,
+  error: PropTypes.bool,
   FormHelperTextProps: PropTypes.object,
   id: PropTypes.string,
   InputLabelProps: PropTypes.object,
@@ -128,7 +127,7 @@ TextField.propTypes = {
   SelectProps: PropTypes.object,
   size: PropTypes.oneOfType([ PropTypes.oneOf([ 'medium', 'small' ]), PropTypes.string ]),
   sx,
-  type: PropTypes.string,
+  type: PropTypes.oneOf([ 'text', 'password', 'date', 'color', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week', 'datetime' ]),
   variant: PropTypes.oneOf([ 'outlined', 'filled', 'standard' ]),
   hiddenLabel: PropTypes.bool,
   focused: PropTypes.bool,
