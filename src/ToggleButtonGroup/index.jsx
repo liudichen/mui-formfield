@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 15:11:12
- * @LastEditTime: 2022-04-14 14:28:45
+ * @LastEditTime: 2022-04-15 13:43:04
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn } from 'ahooks';
@@ -122,7 +122,7 @@ ToggleButtonGroup.propTypes = {
   ...fieldWrapperPropTypes,
 
   value: PropTypes.any,
-  defaultValue: PropTypes.any,  
+  defaultValue: PropTypes.any,
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
