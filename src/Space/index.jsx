@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-04-14 11:58:44
+ * @LastEditTime: 2022-04-15 12:02:34
  */
 import PropTypes from 'prop-types';
 import { Children } from 'react';
@@ -22,8 +22,8 @@ const Space = (props) => {
     return null;
   }
   const Size = Array.isArray(size) ? size : [ size, size ];
-  const rowSpace = spaceSize[Size[0] || 'small'];
-  const columnSpace = spaceSize[Size[1] || 'small'];
+  const rowSpace = typeof Size[0] === 'number' ? Size[0] : spaceSize[Size[0] || 'small'];
+  const columnSpace = typeof Size[1] === 'number' ? Size[1] : spaceSize[Size[1] || 'small'];
   return (
     <Box
       flexDirection={direction}
