@@ -1,17 +1,16 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:06
- * @LastEditTime: 2022-04-14 14:07:11
+ * @LastEditTime: 2022-04-15 10:52:53
  */
 import PropTypes from 'prop-types';
 import { FormLabel, Stack, Tooltip } from '@mui/material';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
-import { sx } from '../propTypes';
-
-const LabelRender = ({ label, tooltip, labelPosition, required, labelSx, labelProps }) => {
+const LabelRender = (props) => {
+  const { label, tooltip, labelPosition, required, labelSx, labelProps } = props;
   if (!label) {
     return <></>;
   }

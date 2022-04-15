@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: 通用propTypes
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-14 16:10:11
+ * @LastEditTime: 2022-04-15 10:49:20
  */
 import PropTypes from 'prop-types';
 
@@ -28,7 +28,7 @@ const fieldWrapperPropTypes = {
   helperTextProps: PropTypes.object,
   fieldSx: sx,
   fieldProps: PropTypes.object,
-}
+};
 
 export {
   sx,
