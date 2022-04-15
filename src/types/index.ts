@@ -3,12 +3,33 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-04-15 11:37:48
+ * @LastEditTime: 2022-04-15 11:52:24
  */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type sxType = object | Function | (Function | object | boolean)[];
+
+export interface labelRenderPropTypesType {
+  label: PropTypes.Requireable<PropTypes.ReactNodeLike>;
+  tooltip: PropTypes.Requireable<PropTypes.ReactNodeLike>;
+  required: PropTypes.Requireable<boolean>;
+  labelSx: PropTypes.Requireable<object>;
+  labelProps: PropTypes.Requireable<object>;
+  labelPosition: PropTypes.Requireable<string>;
+}
+
+export interface fieldWrapperPropTypesType extends labelRenderPropTypesType {
+  helperText: PropTypes.Requireable<PropTypes.ReactNodeLike>;
+  showHelperText: PropTypes.Requireable<boolean>;
+  helperTextSx: PropTypes.Requireable<object>;
+  helperTextProps: PropTypes.Requireable<object>;
+  fieldSx: PropTypes.Requireable<object>;
+  fieldProps: PropTypes.Requireable<object>;
+  fullWidth: PropTypes.Requireable<boolean>;
+  error: PropTypes.Requireable<boolean>;
+}
 
 export interface LabelRenderProps {
   label?: React.ReactNode;
@@ -28,4 +49,11 @@ export interface FieldWrapperRelateProps extends LabelRenderProps {
   fieldSx?: sxType,
   fieldProps?: object,
   fullWidth?: boolean,
+}
+
+export interface fieldCommonProps <Type> {
+  value?: Type,
+  onChange?: (value:Type) => void,
+  defaultValue?: Type,
+  readonly?: boolean,
 }

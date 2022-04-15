@@ -1,16 +1,7 @@
-import PropTypes from 'prop-types';
-
-import { LabelRenderProps } from '../../types';
+import { LabelRenderProps, labelRenderPropTypesType } from '../../types';
 
 declare const LabelRender: {
   (props: LabelRenderProps): JSX.Element;
-  propTypes: {
-    label: PropTypes.Requireable<PropTypes.ReactNodeLike>;
-    tooltip: PropTypes.Requireable<PropTypes.ReactNodeLike>;
-    required: PropTypes.Requireable<boolean>;
-    labelSx: PropTypes.Requireable<object>;
-    labelProps: PropTypes.Requireable<object>;
-    labelPosition: PropTypes.Requireable<string>;
-  };
+  propTypes: labelRenderPropTypesType;
 };
 export default LabelRender;

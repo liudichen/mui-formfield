@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 13:19:27
- * @LastEditTime: 2022-04-14 14:25:20
+ * @LastEditTime: 2022-04-15 11:40:30
  */
 import PropTypes from 'prop-types';
 import { Switch as MuiSwith, Stack } from '@mui/material';
@@ -77,7 +77,7 @@ Switch.propTypes = {
   ...fieldWrapperPropTypes,
 
   unCheckedChildren: PropTypes.node,
-  checkedChildren: PropTypes.node,  
+  checkedChildren: PropTypes.node,
   value: PropTypes.any,
   defaultValue: PropTypes.any,
   onChange: PropTypes.func,
