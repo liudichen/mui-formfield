@@ -1,7 +1,3 @@
-import { LabelRenderProps, labelRenderPropTypesType } from '../../types';
+import { LabelRenderProps } from '../../types';
 
-declare const LabelRender: {
-  (props: LabelRenderProps): JSX.Element;
-  propTypes: labelRenderPropTypesType;
-};
-export default LabelRender;
+export default function LabelRender(props: LabelRenderProps): JSX.Element;
