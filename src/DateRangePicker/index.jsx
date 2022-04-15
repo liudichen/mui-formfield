@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-22 20:17:14
- * @LastEditTime: 2022-04-14 14:21:37
+ * @LastEditTime: 2022-04-15 15:09:41
  */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Box } from '@mui/material';
 import MuiDateRangePicker from '@mui/lab/DateRangePicker';
@@ -65,10 +66,14 @@ DateRangePicker.defaultProps = {
 DateRangePicker.propTypes = {
   ...fieldWrapperPropTypes,
 
-  showClear: PropTypes.bool,  
+  showClear: PropTypes.bool,
   defaultValue: PropTypes.array,
   value: PropTypes.array,
   onChange: PropTypes.func,
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf([ 'small', 'medium' ]),
+    PropTypes.string,
+  ]),
 
   renderInput: PropTypes.func,
   acceptRegex: PropTypes.any, // 	/\dap/gi
