@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: 判断是否是图片
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:39:27
- * @LastEditTime: 2022-04-14 11:39:27
+ * @LastEditTime: 2022-04-15 10:29:51
  */
 const isImageFileType = (type) => type.indexOf('image/') === 0;
 const extname = (url = '') => {
