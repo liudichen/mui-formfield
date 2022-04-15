@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 08:59:51
- * @LastEditTime: 2022-04-15 10:01:08
+ * @LastEditTime: 2022-04-15 10:23:46
  */
 module.exports = {
   extends: 'eslint-config-egg',
@@ -22,18 +22,19 @@ module.exports = {
         '@babel/preset-react',
       ],
     },
-    ecmaFeature: {
-      jsx: true,
-    },
   },
   plugins: [
     'react',
+    'eslint-plugin-typescript',
   ],
   overrides: [
     {
-      file: [ '*.ts' ],
+      files: [ '*.ts' ],
       extends: 'eslint-config-egg/typescript',
       parser: '@typescript-eslint/parser',
+      plugins: [
+        '@typescript-eslint',
+      ],
     },
   ],
   rules: {

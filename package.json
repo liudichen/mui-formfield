@@ -69,6 +69,7 @@
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "@umijs/fabric": "^2.8.1",
     "@umijs/test": "^3.0.5",
