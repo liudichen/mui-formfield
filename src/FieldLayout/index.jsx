@@ -3,14 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 15:12:38
- * @LastEditTime: 2022-04-15 14:05:08
+ * @LastEditTime: 2022-04-15 23:47:45
  */
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import { useCreation } from 'ahooks';
 
-import { getItemColsProps } from './utils.js';
+import { getItemColsProps } from './utils';
 
 const FieldLayout = (props) => {
   const {
