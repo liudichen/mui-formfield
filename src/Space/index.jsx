@@ -4,11 +4,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-04-15 12:02:34
+ * @LastEditTime: 2022-04-15 12:07:15
  */
 import PropTypes from 'prop-types';
 import { Children } from 'react';
 import { Box } from '@mui/material';
+
+import { sx } from '../common';
 
 const spaceSize = {
   small: 8,
@@ -73,6 +75,8 @@ Space.propTypes = {
   ]),
   direction: PropTypes.oneOf([ 'row', 'column' ]),
   split: PropTypes.node,
+  display: PropTypes.string,
+  sx,
 };
 
 export default Space;
