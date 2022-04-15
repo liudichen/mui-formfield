@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:40:42
- * @LastEditTime: 2022-04-15 10:07:08
+ * @LastEditTime: 2022-04-15 10:30:26
  */
 import { useState, useRef, useCallback, useEffect } from 'react';
 
@@ -18,7 +18,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
  * }} option ? {defaultValue?: T | (() => T); value?: T;onChange?: (value: T, prevValue: T) => void; postState?: (value: T) => T;}
  * @return {*} []
  */
-const useControlledState = (defaultStateValue, option) => {
+function useControlledState(defaultStateValue, option) {
   const { defaultValue, value, onChange, postState } = option || {};
   const [ innerValue, setInnerValue ] = useState(() => {
     if (value !== undefined) {
@@ -49,7 +49,7 @@ const useControlledState = (defaultStateValue, option) => {
         onChangeRef.current(newValue, mergedValue);
       }
     },
-    [ mergedValue, onChangeRef ],
+    [ mergedValue, onChangeRef ]
   );
 
   // Effect of reset value to `undefined`
@@ -66,6 +66,6 @@ const useControlledState = (defaultStateValue, option) => {
   }, [ value ]);
 
   return [ mergedValue, triggerChange ];
-};
+}
 
 export default useControlledState;
