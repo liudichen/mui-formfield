@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 13:06:58
- * @LastEditTime: 2022-04-15 13:41:10
+ * @LastEditTime: 2022-04-15 18:53:36
  */
 import { sxType, colorType, FieldWrapperRelateProps, fieldCommonProps } from '../types';
 import { InputLabelProps, FormHelperTextProps, SelectProps } from '@mui/material';
@@ -11,7 +11,7 @@ import React from 'react';
 
 type sizeType = 'small' | 'medium';
 
-interface TextFieldProps extends FieldWrapperRelateProps, fieldCommonProps<string> {
+export interface TextFieldProps extends FieldWrapperRelateProps, fieldCommonProps<string> {
   showClear?: boolean,
   autoComplete?: string,
   autoFocus?: boolean,

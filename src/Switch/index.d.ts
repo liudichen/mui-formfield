@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 12:33:51
- * @LastEditTime: 2022-04-15 13:10:05
+ * @LastEditTime: 2022-04-15 18:53:28
  */
 import * as React from 'react';
 
@@ -11,7 +11,7 @@ import { sxType, fieldCommonProps, FieldWrapperRelateProps, colorType } from '..
 
 type sizeType = 'medium' | 'small';
 
-interface SwitchProps extends FieldWrapperRelateProps, fieldCommonProps<boolean> {
+export interface SwitchProps extends FieldWrapperRelateProps, fieldCommonProps<boolean> {
   unCheckedChildren?: React.ReactNode,
   checkedChildren
   unCheckedIcon?: React.ReactNode,

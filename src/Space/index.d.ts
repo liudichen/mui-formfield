@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 13:41:40
- * @LastEditTime: 2022-04-15 17:28:17
+ * @LastEditTime: 2022-04-15 18:53:21
  */
 import React from 'react';
 
@@ -13,7 +13,7 @@ type stringSize = 'small' | 'medium' | 'large';
 type sizeType = stringSize | number;
 type sizeProp = sizeType | [sizeType, sizeType];
 
-interface SpaceProps {
+export interface SpaceProps {
   size?: sizeProp;
   direction?: 'row' | 'column';
   // children: React.ReactNode;

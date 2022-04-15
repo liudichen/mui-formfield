@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 16:47:38
- * @LastEditTime: 2022-04-15 17:05:59
+ * @LastEditTime: 2022-04-15 18:53:54
  */
 import React from 'react';
 import { FieldWrapperRelateProps } from '../types';
@@ -21,7 +21,7 @@ interface showUploadList {
   removeIcon?: React.node | funcCom,
 }
 
-interface UploadButtonProps extends FieldWrapperRelateProps, Omit<UploadZoneProps, 'maxFiles'> {
+export interface UploadButtonProps extends FieldWrapperRelateProps, Omit<UploadZoneProps, 'maxFiles'> {
   value?: File[],
   defaultValue?: any,
   onChange?: (fileList: File[]) => void,
