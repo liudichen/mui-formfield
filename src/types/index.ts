@@ -3,13 +3,15 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-04-15 11:52:24
+ * @LastEditTime: 2022-04-15 12:44:25
  */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type sxType = object | Function | (Function | object | boolean)[];
+
+export type commonColorType = 'primary'| 'default' | 'secondary' | 'error' | 'info' | 'success' |'warning';
 
 export interface labelRenderPropTypesType {
   label: PropTypes.Requireable<PropTypes.ReactNodeLike>;
@@ -56,4 +58,10 @@ export interface fieldCommonProps <Type> {
   onChange?: (value:Type) => void,
   defaultValue?: Type,
   readonly?: boolean,
+  disabled?: boolean,
+}
+
+export interface optionsRelateProps {
+  options?: any[],
+  request?: () => any[],
 }
