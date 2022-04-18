@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:06:50
- * @LastEditTime: 2022-04-18 16:13:19
+ * @LastEditTime: 2022-04-18 17:35:05
  */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -17,7 +17,7 @@ const ListCard = (props) => {
     showSelectAll, disabled, options, showSearch,
     title, items, checked, setChecked,
     handleToggleAll, handleToggle,
-    listSx, listProps, listCardWidth, listCardHeight, cardHeaderSx, cardSx, listItemProps, itemCheckboxProps, listItemTextProps,
+    listSx, listProps, listCardWidth, listCardHeight, cardHeaderSx, cardSx, listItemProps, itemCheckboxProps, listItemTextProps, searchProps,
   } = props;
   const checkedNumber = intersection(checked, items).length;
   const [ keyword, setKeyword ] = useState('');
@@ -58,10 +58,14 @@ const ListCard = (props) => {
       <Divider />
       { showSearch && (
         <TextField
-          fullWidth
-          size='small'
-          value={keyword}
-          onChange={onKeywordChange}
+          {...{
+            sx: { px: 1 },
+            size: 'small',
+            fullWidth: true,
+            ...(searchProps || {}),
+            value: keyword,
+            onChange: onKeywordChange,
+          }}
         />
       )}
       <List
@@ -139,6 +143,7 @@ ListCard.propTypes = {
   listItemProps: PropTypes.object,
   itemCheckboxProps: PropTypes.object,
   listItemTextProps: PropTypes.object,
+  searchProps: PropTypes.object,
 };
 
 export default ListCard;

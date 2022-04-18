@@ -20,7 +20,7 @@ const Transfer = (props) => {
     fieldSx, fieldProps, labelSx, labelProps,
     disabled,
     gridSpacing, rootGridProps, cardGridProps, buttonProps,
-    listSx, listProps, listCardWidth, listCardHeight, cardHeaderSx, cardSx, listItemProps, itemCheckboxProps, listItemTextProps,
+    listSx, listProps, listCardWidth, listCardHeight, cardHeaderSx, cardSx, listItemProps, itemCheckboxProps, listItemTextProps, searchProps,
   } = props;
   const [ checked, setChecked ] = useState([]);
   const [ options, setOptions ] = useState([]);
@@ -152,6 +152,7 @@ const Transfer = (props) => {
               listItemProps={listItemProps}
               itemCheckboxProps={itemCheckboxProps}
               listItemTextProps={listItemTextProps}
+              searchProps={searchProps}
             />
           )}
         </Grid>
@@ -224,6 +225,7 @@ const Transfer = (props) => {
               listItemProps={listItemProps}
               itemCheckboxProps={itemCheckboxProps}
               listItemTextProps={listItemTextProps}
+              searchProps={searchProps}
             />
           )}
         </Grid>
@@ -268,6 +270,7 @@ Transfer.propTypes = {
   rootGridProps: PropTypes.object,
   cardGridProps: PropTypes.object,
   buttonProps: PropTypes.object,
+  searchProps: PropTypes.object,
 };
 
 export default Transfer;

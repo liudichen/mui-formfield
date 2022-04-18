@@ -3,12 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:13:54
- * @LastEditTime: 2022-04-18 16:55:03
+ * @LastEditTime: 2022-04-18 17:33:39
  */
 import React from 'react';
 import { SystemStyleObject } from '@mui/system';
 import { ListProps, ListItemProps, CheckboxProps, ListItemTextProps } from '@Mui/material';
 type Item = number | string;
+
+import { TextFieldProps } from '../../TextField';
 
 export interface ListCardCommonProps {
   showSelectAll?: boolean,
@@ -24,6 +26,7 @@ export interface ListCardCommonProps {
   listItemProps?: ListItemProps,
   itemCheckboxProps?: CheckboxProps,
   listItemTextProps?: ListItemTextProps,
+  searchProps?: Omit<Omit<TextFieldProps, 'value'>, 'onChange'>,
 }
 
 export interface ListCardProps extends ListCardCommonProps {
