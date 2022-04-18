@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-04-15 13:38:17
+ * @LastEditTime: 2022-04-18 17:27:31
  */
 import PropTypes from 'prop-types';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
@@ -18,7 +18,7 @@ const TextField = (props) => {
     fieldSx, fieldProps, labelSx, labelProps,
     value: valueProp, onChange: onChangeProp, defaultValue,
     showClear, readOnly,
-    InputProps, inputProps,
+    InputProps, inputProps, endAdornmentItem,
     ...restProps
   } = props;
 
@@ -79,8 +79,18 @@ const TextField = (props) => {
               >
                 <CloseIcon fontSize='small' />
               </IconButton>
+              { endAdornmentItem }
             </InputAdornment>
-          ) : undefined,
+          ) : endAdornmentItem ? (
+            <InputAdornment
+              position='end'
+              sx={{
+                mr: props.multiline ? 1.5 : undefined,
+              }}
+            >
+              { endAdornmentItem }
+            </InputAdornment>
+          ) : null,
           ...(InputProps || {}),
         }}
         {...restProps}
@@ -132,6 +142,7 @@ TextField.propTypes = {
   hiddenLabel: PropTypes.bool,
   focused: PropTypes.bool,
   component: PropTypes.oneOfType([ PropTypes.element, PropTypes.elementType ]),
+  endAdornmentItem: PropTypes.node,
 };
 
 export default TextField;

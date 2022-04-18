@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 13:06:58
- * @LastEditTime: 2022-04-15 18:53:36
+ * @LastEditTime: 2022-04-18 17:28:58
  */
 import { sxType, colorType, FieldWrapperRelateProps, fieldCommonProps } from '../types';
-import { InputLabelProps, FormHelperTextProps, SelectProps } from '@mui/material';
+import { InputLabelProps, FormHelperTextProps, SelectProps, InputProps } from '@mui/material';
 import React from 'react';
 
 type sizeType = 'small' | 'medium';
@@ -19,7 +19,8 @@ export interface TextFieldProps extends FieldWrapperRelateProps, fieldCommonProp
   color?: colorType,
   FormHelperTextProps?: FormHelperTextProps,
   id?: string,
-  InputLabelProps?: InputLabelProps,
+  InputLabelProps?: Omit<InputLabelProps, 'endAdornment'>,
+  InputProps?: InputProps,
   inputProps?: object,
   inputRef?: object,
   margin?: 'none' | 'dense' | 'normal',
@@ -37,6 +38,7 @@ export interface TextFieldProps extends FieldWrapperRelateProps, fieldCommonProp
   focused?: boolean,
   component?: React.ReactElement | React.ElementType,
   sx?: sxType,
+  endAdornmentItem?: React.ReactNode,
 }
 
 export default function TextField(props: TextFieldProps): JSX.Element;
