@@ -56,14 +56,16 @@ const ActionsColumnItem = (props) => {
       )}
       { showDelete && (
         <Tooltip title='删除该行' arrow placement='top'>
-          <IconButton
-            onClick={() => setOpen(true)}
-            disabled={disabled}
-          >
-            <IconTrash
-              size={'16px'}
-            />
-          </IconButton>
+          <span>
+            <IconButton
+              onClick={() => setOpen(true)}
+              disabled={disabled}
+            >
+              <IconTrash
+                size={'16px'}
+              />
+            </IconButton>
+          </span>
         </Tooltip>
       )}
     </>
