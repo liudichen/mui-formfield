@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-20 12:26:01
+ * @LastEditTime: 2022-04-20 13:48:53
  */
 import PropTypes from 'prop-types';
 
@@ -30,7 +30,7 @@ const fieldWrapperPropTypes = {
   fieldProps: PropTypes.object,
 };
 
-const DataGridPropTypes = {
+const dataGridPropTypes = {
   rows: PropTypes.arrayOf(PropTypes.object),
   columns: PropTypes.arrayOf(PropTypes.shape({
     field: PropTypes.string.isRequired,
@@ -479,9 +479,39 @@ Callback fired when an exception is thrown in the grid
   sx, // The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details
 };
 
+const paginationPropTypes = {
+  boundaryCount: PropTypes.number, // 1
+  classes: PropTypes.object,
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf([ 'standard', 'primary', 'secondary' ]),
+    PropTypes.string,
+  ]), // 'standard'
+  onChange: PropTypes.func, // interface: (value) => void
+  disabled: PropTypes.bool,
+  hideNextButton: PropTypes.bool,
+  hidePrevButton: PropTypes.bool,
+  renderItem: PropTypes.bool, // (item) => <PaginationItem {...item} />
+  shape: PropTypes.oneOf([ 'circular', 'rounded' ]), // 'circular'
+  showFirstButton: PropTypes.bool,
+  showLastButton: PropTypes.bool,
+  siblingCount: PropTypes.number, // 1 当前页码前后总是显示的页码数量
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf([ 'medium', 'small', 'large' ]),
+    PropTypes.string,
+  ]), // 'medium'
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])),
+    PropTypes.func, PropTypes.object,
+  ]),
+  variant: PropTypes.oneOfType([
+    PropTypes.oneOf([ 'text', 'outlined' ]),
+    PropTypes.string,
+  ]), // 'text'
+};
 
 export {
   sx,
   fieldWrapperPropTypes,
-  DataGridPropTypes,
+  dataGridPropTypes,
+  paginationPropTypes,
 };
