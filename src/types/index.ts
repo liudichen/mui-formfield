@@ -3,12 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-04-15 13:05:46
+ * @LastEditTime: 2022-04-20 19:46:41
  */
 import * as React from 'react';
+import { SxProps as sxType } from '@mui/material';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type sxType = object | Function | (Function | object | boolean)[];
+export {
+  sxType,
+};
 
 type commonColorType = 'primary'| 'default' | 'secondary' | 'error' | 'info' | 'success' |'warning';
 export type colorType = commonColorType | string;
@@ -44,4 +46,8 @@ export interface fieldCommonProps <Type> {
 export interface optionsRelateProps {
   options?: any[],
   request?: () => any[],
+  /**
+   *  when  refreshOptionsFlag changed, options will force refresh
+   */
+  refreshOptionsFlag?: string | number,
 }
