@@ -124,7 +124,7 @@ const EditableTable = (props) => {
     ),
   }), [ disabled, readOnly ]);
 
-  const innerDeleteCol = useCreation(() => ({
+  const innerActionsCol = useCreation(() => ({
     field: 'innerActionsCol',
     headerName: (
       <div style={{ alignItems: 'center', display: 'flex' }}>
@@ -133,13 +133,15 @@ const EditableTable = (props) => {
         </div>
         { showAddRow && (
           <Tooltip title='新增一行' arrow placement='top'>
-            <IconButton
-              color='primary'
-              onClick={handleAddRow}
-              disabled={disabled || readOnly}
-            >
-              <IconRowInsertBottom size={16}/>
-            </IconButton>
+            <span>
+              <IconButton
+                color='primary'
+                onClick={handleAddRow}
+                disabled={disabled || readOnly}
+              >
+                <IconRowInsertBottom size={16}/>
+              </IconButton>
+            </span>
           </Tooltip>
         )}
       </div>
@@ -171,8 +173,8 @@ const EditableTable = (props) => {
     if (showDragSort) {
       cols.unshift(innerDragSortCol);
     }
-    if (showDelete || showClickSort) {
-      cols.push(innerDeleteCol);
+    if (showDelete || showClickSort || showAddRow) {
+      cols.push(innerActionsCol);
     }
     return cols;
   }, [ !columnsProp, showDragSort, showDelete, showClickSort, readOnly, disabled ]);
