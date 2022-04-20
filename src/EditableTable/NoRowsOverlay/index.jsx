@@ -8,8 +8,8 @@ const StyledGridOverlay = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  marginTop: 70,
-  marginBottom: -120,
+  // marginTop: 70,
+  // marginBottom: -120,
   height: '100%',
   '& .ant-empty-img-1': {
     fill: theme.palette.mode === 'light' ? '#aeb8c2' : '#262626',
