@@ -45,7 +45,7 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
   idName?: string,
 
   paginationProps?: PaginationProps,
-  initalPageSize?: number,
+  initialPageSize?: number,
 
   /**
    * whether to show dragsort column

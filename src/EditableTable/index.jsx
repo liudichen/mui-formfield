@@ -44,7 +44,7 @@ const EditableTable = (props) => {
     columns: columnsProp, loading: loadingProp, getCellClassName: getCellClassNameProp,
     height, width, autoHeight, editMode,
     idName, paginationProps,
-    onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, initialState, initalPageSize, componentsProps, rowsPerPageOptions, onPageSizeChange, onPageChange, paginationMode,
+    onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, initialState, initialPageSize, componentsProps, rowsPerPageOptions, onPageSizeChange, onPageChange, paginationMode,
     ...restProps
   } = props;
   const classes = useStyles();
@@ -299,7 +299,7 @@ const EditableTable = (props) => {
             ...(componentsProps || {}),
           }}
           initialState={{
-            ...(initalPageSize ? { pagination: { pageSize: initalPageSize } } : {}),
+            ...(initialPageSize ? { pagination: { pageSize: initialPageSize } } : {}),
             ...(initialState || {}),
           }}
           {...restProps}
@@ -327,6 +327,7 @@ EditableTable.defaultProps = {
   rowsPerPageOptions: [ 20, 50, 100 ],
   showEdited: true,
   showDelete: true,
+  autoHeight: true,
 };
 
 EditableTable.propTypes = {
@@ -353,7 +354,7 @@ EditableTable.propTypes = {
   showAddRow: PropTypes.bool,
   maxRows: PropTypes.number,
 
-  initalPageSize: PropTypes.number,
+  initialPageSize: PropTypes.number,
   paginationProps: PropTypes.shape(paginationPropTypes),
 
   ...dataGridPropTypes,
