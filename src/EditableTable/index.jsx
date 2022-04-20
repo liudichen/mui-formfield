@@ -126,7 +126,7 @@ const EditableTable = (props) => {
 
   const innerActionsCol = useCreation(() => ({
     field: 'innerActionsCol',
-    headerName: (
+    renderHeader: () => (
       <div style={{ alignItems: 'center', display: 'flex' }}>
         <div>
           操作
