@@ -44,7 +44,7 @@ const EditableTable = (props) => {
     columns: columnsProp, loading: loadingProp, getCellClassName: getCellClassNameProp,
     height, width, autoHeight, editMode,
     idName, paginationProps,
-    onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, initialState, initalPageSize, componentsProps, rowsPerPageOptions, onPageSizeChange, onPageChange,
+    onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, initialState, initalPageSize, componentsProps, rowsPerPageOptions, onPageSizeChange, onPageChange, paginationMode,
     ...restProps
   } = props;
   const classes = useStyles();
@@ -280,6 +280,7 @@ const EditableTable = (props) => {
           onPageChange={onPageChange}
           onPageSizeChange={onPageSizeChange}
           rowsPerPageOptions={rowsPerPageOptions}
+          paginationMode={typeof props.rowCount === 'undefined' ? paginationMode : 'server'}
           componentsProps={{
             toolbar: {
               csvOptions: {
