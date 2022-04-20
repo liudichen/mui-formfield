@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-04-15 14:26:20
+ * @LastEditTime: 2022-04-20 19:32:46
  */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ import { fetchFieldOptions, FieldWrapper, fieldWrapperPropTypes, LabelRender, sx
 
 const Autocomplete = (props) => {
   const {
-    options: optionsProp, request, error, fullWidth,
+    options: optionsProp, request, error, fullWidth, refreshOptionsFlag,
     label, labelPosition, tooltip, required,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
@@ -36,7 +36,7 @@ const Autocomplete = (props) => {
 
   useEffect(() => {
     fetchOptions();
-  }, []);
+  }, [ optionsProp, refreshOptionsFlag ]);
 
   return (
     <FieldWrapper
@@ -97,6 +97,7 @@ Autocomplete.propTypes = {
   request: PropTypes.func,
   options: PropTypes.array,
   onChange: PropTypes.func,
+  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 
   renderInput: PropTypes.func,
   autoComplete: PropTypes.bool,

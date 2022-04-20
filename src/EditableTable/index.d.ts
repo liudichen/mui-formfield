@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-20 15:42:14
+ * @LastEditTime: 2022-04-20 19:39:48
  */
 import React from 'react';
 import { DataGridProps } from '@mui/x-data-grid';
@@ -22,6 +22,11 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
    * function to get initial value/rows
    */
   request?: () => Promise<rowType[]> | rowType[],
+
+  /**
+   * when refreshRowFlag changed, rows will force refresh
+   */
+  refreshRowsFlag?: string | number,
 
   /**
    * table's height only when autoHeight !== true

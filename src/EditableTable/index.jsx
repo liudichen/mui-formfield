@@ -37,7 +37,7 @@ const EditableTable = (props) => {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
-    value: valueProp, rows, onChange: onChangeProp, request, defaultValue,
+    value: valueProp, rows, onChange: onChangeProp, request, defaultValue, refreshRowsFlag,
     readOnly, disabled,
     showDragSort, showEdited, showDelete, showClickSort, dragHandler,
     ActionsColumnItem, DragSortColumnItem, onNewRow, maxRows, showAddRow,
@@ -196,7 +196,7 @@ const EditableTable = (props) => {
 
   useEffect(() => {
     fetchRows();
-  }, []);
+  }, [ refreshRowsFlag ]);
 
   const onCellEditCommit = useMemoizedFn((params, e, details) => {
     if (readOnly || disabled) { return; }
@@ -337,6 +337,7 @@ EditableTable.propTypes = {
   value: PropTypes.array,
   onChange: PropTypes.func,
   request: PropTypes.func,
+  refreshRowsFlag: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
   width: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   height: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),

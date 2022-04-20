@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-04-15 15:12:38
+ * @LastEditTime: 2022-04-20 19:42:12
  */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
@@ -18,7 +18,7 @@ const RadioGroup = (props) => {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
-    options: optionsProp, request,
+    options: optionsProp, request, refreshOptionsFlag,
     value: valueProp, onChange: onChangeProp, defaultValue,
     layout, sx, size, color, disabled, itemProps,
     readOnly,
@@ -36,7 +36,7 @@ const RadioGroup = (props) => {
 
   useEffect(() => {
     fetchOptions();
-  }, []);
+  }, [ optionsProp, refreshOptionsFlag ]);
 
   const handleChange = useMemoizedFn((e) => {
     if (!readOnly) {
@@ -110,6 +110,7 @@ RadioGroup.propTypes = {
   value: PropTypes.any,
   defaultValue: PropTypes.any,
   onChange: PropTypes.func,
+  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 
   readOnly: PropTypes.bool,
   layout: PropTypes.oneOf([ 'horizontal', 'vertical' ]),

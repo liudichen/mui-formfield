@@ -12,7 +12,7 @@ import { intersection, not, union } from './utils';
 
 const Transfer = (props) => {
   const {
-    value: valueProp, onChange: onChangeProp, defaultValue, options: optionsProp, request,
+    value: valueProp, onChange: onChangeProp, defaultValue, options: optionsProp, request, refreshOptionsFlag,
     titles, showSearch, showSelectAll, keepExtraItems,
     readOnly,
     error, fullWidth, label, labelPosition, tooltip, required,
@@ -54,7 +54,7 @@ const Transfer = (props) => {
   });
   useEffect(() => {
     fetchOptions();
-  }, []);
+  }, [ optionsProp, refreshOptionsFlag ]);
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, value);
@@ -251,6 +251,7 @@ Transfer.propTypes = {
     value: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
     label: PropTypes.node,
   })),
+  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   request: PropTypes.func,
   value: PropTypes.array,
   defaultValue: PropTypes.array,

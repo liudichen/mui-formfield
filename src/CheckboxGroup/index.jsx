@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 14:06:50
- * @LastEditTime: 2022-04-15 14:33:52
+ * @LastEditTime: 2022-04-20 19:35:51
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn } from 'ahooks';
@@ -18,7 +18,7 @@ const CheckboxGroup = (props) => {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
-    options: optionsProp, request, minCount, maxCount,
+    options: optionsProp, request, minCount, maxCount, refreshOptionsFlag,
     value: valueProp, onChange: onChangeProp, defaultValue,
     layout, sx, size, color, disabled, itemProps,
     readOnly,
@@ -38,7 +38,7 @@ const CheckboxGroup = (props) => {
 
   useEffect(() => {
     fetchOptions();
-  }, []);
+  }, [ optionsProp, refreshOptionsFlag ]);
 
   const handleChange = useMemoizedFn((e, optionValue) => {
     if (readOnly) { return; }
@@ -132,6 +132,7 @@ CheckboxGroup.propTypes = {
   options: PropTypes.array,
   request: PropTypes.func,
   onChange: PropTypes.func,
+  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 
   minCount: PropTypes.number,
   maxCount: PropTypes.number,

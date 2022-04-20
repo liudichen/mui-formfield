@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 15:11:12
- * @LastEditTime: 2022-04-15 14:05:23
+ * @LastEditTime: 2022-04-20 19:43:25
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn } from 'ahooks';
@@ -17,7 +17,7 @@ const ToggleButtonGroup = (props) => {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
-    options: optionsProp, request, minCount, maxCount, exclusive, buttonFullWidth,
+    options: optionsProp, request, minCount, maxCount, exclusive, buttonFullWidth, refreshOptionsFlag,
     value: valueProp, onChange: onChangeProp, defaultValue,
     layout, sx, size, color, disabled, itemProps,
     readOnly,
@@ -37,7 +37,7 @@ const ToggleButtonGroup = (props) => {
 
   useEffect(() => {
     fetchOptions();
-  }, []);
+  }, [ optionsProp, refreshOptionsFlag ]);
 
   const handleChange = useMemoizedFn((e, newValue) => {
     if (readOnly) { return; }
@@ -129,6 +129,7 @@ ToggleButtonGroup.propTypes = {
     label: PropTypes.node,
   })),
   request: PropTypes.func,
+  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 
   minCount: PropTypes.number,
   maxCount: PropTypes.number,
