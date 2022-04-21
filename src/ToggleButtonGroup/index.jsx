@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 15:11:12
- * @LastEditTime: 2022-04-20 19:43:25
+ * @LastEditTime: 2022-04-21 11:15:27
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn } from 'ahooks';
@@ -116,6 +116,7 @@ const ToggleButtonGroup = (props) => {
 ToggleButtonGroup.defaultProps = {
   layout: 'horizontal',
   labelPosition: 'top',
+  color: 'primary',
 };
 
 ToggleButtonGroup.propTypes = {
