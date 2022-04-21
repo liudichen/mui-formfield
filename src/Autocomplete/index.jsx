@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-04-20 19:32:46
+ * @LastEditTime: 2022-04-21 15:12:27
  */
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useMemoizedFn } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete as MuiAutocomplete, TextField } from '@mui/material';
 
 import { fetchFieldOptions, FieldWrapper, fieldWrapperPropTypes, LabelRender, sx, useMergedState } from '../common';
@@ -23,8 +23,8 @@ const Autocomplete = (props) => {
     disableCloseOnSelect,
     ...restProps
   } = props;
-  const [ loading, setLoading ] = useState(false);
-  const [ options, setOptions ] = useState([]);
+  const [ loading, setLoading ] = useSafeState(false);
+  const [ options, setOptions ] = useSafeState([]);
   const [ value, onChange ] = useMergedState(defaultValue || (props.multiple ? [] : null), { value: valueProp, onChange: onChangeProp, postState: (s) => s || (props.multiple ? [] : null) });
 
   const fetchOptions = useMemoizedFn(async () => {

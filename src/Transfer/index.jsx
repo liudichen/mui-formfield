@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { useCreation, useLatest, useMemoizedFn } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useCreation, useLatest, useMemoizedFn, useSafeState } from 'ahooks';
 import { Grid, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons';
 
@@ -22,9 +22,9 @@ const Transfer = (props) => {
     gridSpacing, rootGridProps, cardGridProps, buttonProps,
     listSx, listProps, listCardWidth, listCardHeight, cardHeaderSx, cardSx, listItemProps, itemCheckboxProps, listItemTextProps, searchProps,
   } = props;
-  const [ checked, setChecked ] = useState([]);
-  const [ options, setOptions ] = useState([]);
-  const [ optionsValues, setOptionsValues ] = useState([]);
+  const [ checked, setChecked ] = useSafeState([]);
+  const [ options, setOptions ] = useSafeState([]);
+  const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const optionsValuesRef = useLatest(optionsValues);
   const postState = useMemoizedFn((values) => {
     let v = Array.isArray(values) ? [ ...values ] : (values ? [ values ] : []);
@@ -41,7 +41,7 @@ const Transfer = (props) => {
     return v;
   });
   const [ value, setValue ] = useMergedState([], { value: valueProp, onChange: onChangeProp, defaultValue, postState });
-  const [ loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useSafeState(false);
   const left = useCreation(() => {
     return not(optionsValues, value);
   }, [ optionsValues, value ]);

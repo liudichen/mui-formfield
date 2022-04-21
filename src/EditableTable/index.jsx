@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { useCreation, useMemoizedFn } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { DataGrid, zhCN, GridToolbar } from '@mui/x-data-grid';
 import { makeStyles } from '@mui/styles';
 import { IconButton, Tooltip } from '@mui/material';
@@ -48,9 +48,9 @@ const EditableTable = (props) => {
     ...restProps
   } = props;
   const classes = useStyles();
-  const [ loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useMergedState([], { value: valueProp ?? rows, onChange: onChangeProp, defaultValue, postState: (s) => s || [] });
-  const [ rawValue, setRawValue ] = useState([]);
+  const [ rawValue, setRawValue ] = useSafeState([]);
 
   const handleDragSort = useMemoizedFn((dragId, dropId) => {
     if (readOnly || disabled) { return; }

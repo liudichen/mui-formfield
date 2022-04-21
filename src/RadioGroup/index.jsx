@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-04-20 19:42:12
+ * @LastEditTime: 2022-04-21 15:11:17
  */
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { useMemoizedFn } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '@mui/material';
 
 import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx } from '../common';
@@ -23,8 +23,8 @@ const RadioGroup = (props) => {
     layout, sx, size, color, disabled, itemProps,
     readOnly,
   } = props;
-  const [ options, setOptions ] = useState([]);
-  const [ loading, setLoading ] = useState(false);
+  const [ options, setOptions ] = useSafeState([]);
+  const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp });
 
   const fetchOptions = useMemoizedFn(async () => {
