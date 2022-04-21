@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 12:33:51
- * @LastEditTime: 2022-04-15 18:53:28
+ * @LastEditTime: 2022-04-21 15:55:48
  */
 import * as React from 'react';
 
@@ -13,7 +13,8 @@ type sizeType = 'medium' | 'small';
 
 export interface SwitchProps extends FieldWrapperRelateProps, fieldCommonProps<boolean> {
   unCheckedChildren?: React.ReactNode,
-  checkedChildren
+  checkedChildren?: React.ReactNode,
+  switchLabel?: React.ReactNode,
   unCheckedIcon?: React.ReactNode,
   checkedIcon?: React.ReactNode,
   classes?: object,

@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 13:19:27
- * @LastEditTime: 2022-04-21 15:48:44
+ * @LastEditTime: 2022-04-21 15:58:50
  */
 import PropTypes from 'prop-types';
 import { Switch as MuiSwith, Stack } from '@mui/material';
@@ -17,7 +17,7 @@ const Switch = (props) => {
     fieldSx, fieldProps, labelSx, labelProps,
     value: valueProp, onChange: onChangeProp, defaultValue,
     readOnly,
-    unCheckedChildren, checkedChildren, spacing,
+    unCheckedChildren, checkedChildren, spacing, switchLabel,
     edge, unCheckedIcon,
     ...restProps
   } = props;
@@ -45,7 +45,10 @@ const Switch = (props) => {
       >
         { !!unCheckedChildren && (
           <span
-            style={{ color: error ? 'red' : undefined }}
+            style={{
+              color: error ? 'red' : undefined,
+              cursor: 'pointer',
+            }}
             onClick={() => {
               if (!readOnly && !props.disabled) {
                 onChange(false);
@@ -66,16 +69,23 @@ const Switch = (props) => {
           {...(unCheckedIcon ? { icon: unCheckedIcon } : {})}
           {...restProps}
         />
-        { !!checkedChildren && (
+        { (!!checkedChildren || !!switchLabel) && (
           <span
-            style={{ color: error ? 'red' : undefined }}
+            style={{
+              color: error ? 'red' : undefined,
+              cursor: 'pointer',
+            }}
             onClick={() => {
               if (!readOnly && !props.disabled) {
-                onChange(true);
+                if (unCheckedChildren) {
+                  onChange(true);
+                } else {
+                  onChange(!value);
+                }
               }
             }}
           >
-            { checkedChildren }
+            { !unCheckedChildren ? (switchLabel ?? checkedChildren) : checkedChildren }
           </span>
         )}
       </Stack>
@@ -84,7 +94,7 @@ const Switch = (props) => {
 };
 
 Switch.defaultProps = {
-  spacing: 1,
+  spacing: 0.5,
 };
 
 Switch.propTypes = {
@@ -92,6 +102,7 @@ Switch.propTypes = {
 
   unCheckedChildren: PropTypes.node,
   checkedChildren: PropTypes.node,
+  switchLabel: PropTypes.node,
   value: PropTypes.any,
   defaultValue: PropTypes.any,
   onChange: PropTypes.func,
