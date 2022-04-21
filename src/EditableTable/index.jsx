@@ -280,7 +280,7 @@ const EditableTable = (props) => {
           onPageChange={onPageChange}
           onPageSizeChange={onPageSizeChange}
           rowsPerPageOptions={rowsPerPageOptions}
-          paginationMode={typeof props.rowCount === 'undefined' ? paginationMode : 'server'}
+          paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
           componentsProps={{
             toolbar: {
               csvOptions: {
