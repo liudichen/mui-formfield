@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 15:12:29
- * @LastEditTime: 2022-04-20 19:41:32
+ * @LastEditTime: 2022-04-21 16:09:23
  */
 import { RadioProps } from '@mui/material';
 import { colorType, FieldWrapperRelateProps, sxType, optionsRelateProps } from '../types';
@@ -22,6 +22,7 @@ export interface RadioGroupProps extends FieldWrapperRelateProps, optionsRelateP
   size?: sizeString | string,
   sx?: sxType,
   itemProps?: Omit<Omit<Omit<RadioProps, 'size'>, 'disabled'>, 'color'>
+  name?: string,
 }
 
 declare const RadioGroup: {

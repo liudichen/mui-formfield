@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-04-21 15:11:17
+ * @LastEditTime: 2022-04-21 16:05:29
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -12,6 +12,7 @@ import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '
 
 import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx } from '../common';
 import ToggleButtonGroup from '../ToggleButtonGroup';
+import useId from '@mui/material/utils/useId';
 
 const RadioGroup = (props) => {
   const {
@@ -22,6 +23,7 @@ const RadioGroup = (props) => {
     value: valueProp, onChange: onChangeProp, defaultValue,
     layout, sx, size, color, disabled, itemProps,
     readOnly,
+    name: nameProp,
   } = props;
   const [ options, setOptions ] = useSafeState([]);
   const [ loading, setLoading ] = useSafeState(false);
@@ -33,6 +35,8 @@ const RadioGroup = (props) => {
     setOptions(newOptions);
     setLoading(false);
   });
+
+  const name = useId(nameProp);
 
   useEffect(() => {
     fetchOptions();
@@ -74,6 +78,7 @@ const RadioGroup = (props) => {
           row={layout === 'horizontal'}
           value={value}
           onChange={handleChange}
+          name={name}
           sx={sx}
         >
           { options.map((item) => (
