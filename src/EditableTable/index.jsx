@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
-import { DataGrid, zhCN } from '@mui/x-data-grid';
+import { DataGrid, zhCN, GridToolbar } from '@mui/x-data-grid';
 import { makeStyles } from '@mui/styles';
 import { IconButton, Tooltip } from '@mui/material';
 import classNames from 'classnames';
@@ -359,6 +359,16 @@ EditableTable.propTypes = {
 
   ...dataGridPropTypes,
 
+};
+
+const allAlignCenter = {
+  headerAlign: 'center',
+  align: 'center',
+};
+
+export {
+  allAlignCenter,
+  GridToolbar,
 };
 
 export default EditableTable;

@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-20 19:39:48
+ * @LastEditTime: 2022-04-21 11:13:09
  */
 import React from 'react';
-import { DataGridProps } from '@mui/x-data-grid';
+import { DataGridProps, GridToolbarProps } from '@mui/x-data-grid';
 import { PaginationProps } from '@mui/material';
 
 import { fieldCommonProps, FieldWrapperRelateProps } from '../types';
@@ -104,9 +104,17 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
   DragSortColumnItem?: React.FunctionComponent<DragSortColumnItemProps> | React.Component<DragSortColumnItemProps> | React.ReactNode,
 }
 
+declare const GridToolbar: React.FunctionComponent<GridToolbarProps>;
+declare const allAlignCenter : {
+  headerAlign: 'center',
+  align: 'center',
+};
+
 export {
   DragSortColumnItemProps,
   ActionsColumnItemProps,
+  GridToolbar,
+  allAlignCenter,
 };
 
 declare const EditableTable: React.FunctionComponent<EditableTableProps>;
