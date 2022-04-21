@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 13:19:27
- * @LastEditTime: 2022-04-15 11:40:30
+ * @LastEditTime: 2022-04-21 15:48:44
  */
 import PropTypes from 'prop-types';
 import { Switch as MuiSwith, Stack } from '@mui/material';
@@ -44,7 +44,14 @@ const Switch = (props) => {
         spacing={spacing}
       >
         { !!unCheckedChildren && (
-          <span style={{ color: error ? 'red' : undefined }}>
+          <span
+            style={{ color: error ? 'red' : undefined }}
+            onClick={() => {
+              if (!readOnly && !props.disabled) {
+                onChange(false);
+              }
+            }}
+          >
             { unCheckedChildren }
           </span>
         )}
@@ -60,7 +67,14 @@ const Switch = (props) => {
           {...restProps}
         />
         { !!checkedChildren && (
-          <span style={{ color: error ? 'red' : undefined }}>
+          <span
+            style={{ color: error ? 'red' : undefined }}
+            onClick={() => {
+              if (!readOnly && !props.disabled) {
+                onChange(true);
+              }
+            }}
+          >
             { checkedChildren }
           </span>
         )}
