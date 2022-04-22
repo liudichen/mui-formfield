@@ -239,6 +239,7 @@ Transfer.defaultProps = {
   listCardWidth: 200,
   listCardHeight: 230,
   gridSpacing: 1,
+  titles: [ '可选项', '已选项' ],
 };
 
 Transfer.propTypes = {
