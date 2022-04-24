@@ -3,16 +3,16 @@ import React, { useEffect } from 'react';
 import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { DataGrid, zhCN, GridToolbar } from '@mui/x-data-grid';
 import { makeStyles } from '@mui/styles';
-import { IconButton, Tooltip } from '@mui/material';
 import { toJS } from '@formily/reactive';
 import classNames from 'classnames';
-import { IconArrowsUpDown, IconRowInsertBottom } from '@tabler/icons';
+import { IconArrowsUpDown } from '@tabler/icons';
 
 import { FieldWrapper, useMergedState, fieldWrapperPropTypes, dataGridPropTypes, paginationPropTypes } from '../common';
 import DragSortColumnItem from './DragSortColumnItem';
 import ActionsColumnItem from './ActionsColumnItem';
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
+import RenderAddRow from './RenderAddRow';
 
 const useStyles = makeStyles({
   root: {
@@ -46,6 +46,7 @@ const EditableTable = (props) => {
     height, width, autoHeight, editMode,
     idName, paginationProps,
     onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, initialState, initialPageSize, componentsProps, rowsPerPageOptions, onPageSizeChange, onPageChange, paginationMode,
+    RenderAddRow,
     ...restProps
   } = props;
   const classes = useStyles();
@@ -133,17 +134,11 @@ const EditableTable = (props) => {
           操作
         </div>
         { showAddRow && (
-          <Tooltip title='新增一行' arrow placement='top'>
-            <span>
-              <IconButton
-                color='primary'
-                onClick={handleAddRow}
-                disabled={disabled || readOnly}
-              >
-                <IconRowInsertBottom size={16}/>
-              </IconButton>
-            </span>
-          </Tooltip>
+          <RenderAddRow
+            disabled={disabled}
+            readOnly={readOnly}
+            handleAddRow={handleAddRow}
+          />
         )}
       </div>
     ),
@@ -329,10 +324,13 @@ EditableTable.defaultProps = {
   showEdited: true,
   showDelete: true,
   autoHeight: true,
+  RenderAddRow,
 };
 
 EditableTable.propTypes = {
   ...fieldWrapperPropTypes,
+
+  RenderAddRow: PropTypes.node,
 
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,

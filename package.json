@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -95,7 +95,7 @@
     "@mui/system": "^5.6.1",
     "@mui/x-data-grid": "^5.9.0",
     "@tabler/icons": "^1.64.0",
-    "ahooks": "^3.3.0",
+    "ahooks": "^3.3.8",
     "classnames": "^2.3.1",
     "prop-types": "^15.8.1",
     "react": ">=16.9.0",

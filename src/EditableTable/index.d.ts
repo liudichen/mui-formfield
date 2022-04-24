@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-21 11:13:09
+ * @LastEditTime: 2022-04-24 10:38:46
  */
 import React from 'react';
 import { DataGridProps, GridToolbarProps } from '@mui/x-data-grid';
@@ -12,12 +12,16 @@ import { PaginationProps } from '@mui/material';
 import { fieldCommonProps, FieldWrapperRelateProps } from '../types';
 import { DragHandlerParam, DragSortColumnItemProps } from './DragSortColumnItem';
 import { ActionsColumnItemProps } from './ActionsColumnItem';
+import { RenderAddRowProps } from './RenderAddRow';
 
 type rowType = {
   [key: string]: any;
 };
 
 export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, DataGridProps {
+
+  RenderAddRow?: React.FunctionComponent<RenderAddRowProps> | React.Component<RenderAddRowProps>,
+
   /**
    * function to get initial value/rows
    */
@@ -115,6 +119,7 @@ export {
   ActionsColumnItemProps,
   GridToolbar,
   allAlignCenter,
+  RenderAddRowProps,
 };
 
 declare const EditableTable: React.FunctionComponent<EditableTableProps>;
