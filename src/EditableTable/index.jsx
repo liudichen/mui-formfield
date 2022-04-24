@@ -32,6 +32,10 @@ const useStyles = makeStyles({
 
 });
 
+export const allAlignCenter = {
+  headerAlign: 'center',
+  align: 'center',
+};
 
 const EditableTable = (props) => {
   const {
@@ -112,10 +116,10 @@ const EditableTable = (props) => {
   const innerDragSortCol = useCreation(() => ({
     field: 'innerDragSortCol',
     headerName: '排序',
-    headerAlign: 'center',
     width: 60,
     sortable: false,
-    align: 'center',
+    ...allAlignCenter,
+    editable: false,
     renderCell: ({ id }) => (
       <DragSortColumnItem
         id={id}
@@ -330,7 +334,7 @@ EditableTable.defaultProps = {
 EditableTable.propTypes = {
   ...fieldWrapperPropTypes,
 
-  RenderAddRow: PropTypes.node,
+  RenderAddRow: PropTypes.oneOfType([ PropTypes.func, PropTypes.node ]),
 
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -360,13 +364,7 @@ EditableTable.propTypes = {
 
 };
 
-const allAlignCenter = {
-  headerAlign: 'center',
-  align: 'center',
-};
-
 export {
-  allAlignCenter,
   GridToolbar,
 };
 
