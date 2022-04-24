@@ -4,6 +4,7 @@ import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { DataGrid, zhCN, GridToolbar } from '@mui/x-data-grid';
 import { makeStyles } from '@mui/styles';
 import { IconButton, Tooltip } from '@mui/material';
+import { toJS } from '@formily/reactive';
 import classNames from 'classnames';
 import { IconArrowsUpDown, IconRowInsertBottom } from '@tabler/icons';
 
@@ -49,7 +50,7 @@ const EditableTable = (props) => {
   } = props;
   const classes = useStyles();
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useMergedState([], { value: valueProp ?? rows, onChange: onChangeProp, defaultValue, postState: (s) => s || [] });
+  const [ value, onChange ] = useMergedState([], { value: valueProp ?? rows, onChange: onChangeProp, defaultValue, postState: (s) => toJS(s || []) });
   const [ rawValue, setRawValue ] = useSafeState([]);
 
   const handleDragSort = useMemoizedFn((dragId, dropId) => {
