@@ -100,11 +100,11 @@ const EditableTable = (props) => {
     onChange(newValue);
   });
 
-  const handleAddRow = useMemoizedFn(() => {
+  const handleAddRow = useMemoizedFn((inputNewRow) => {
     if (readOnly || disabled) { return; }
     if (maxRows && maxRows <= value.length) { return; }
     const newValue = [ ...(value || []) ];
-    let newRow = onNewRow?.(value);
+    let newRow = inputNewRow ?? onNewRow?.(value);
     if (!newRow || typeof newRow !== 'object') {
       newRow = { [idName]: Date.now() };
     } else if (!newRow[idName]) {
