@@ -267,9 +267,6 @@ const EditableTable = (props) => {
         <DataGrid
           rows={value}
           columns={columns}
-          disableColumnFilter
-          disableColumnMenu
-          disableSelectionOnClick
           loading={loadingProp ?? loading}
           onCellEditCommit={onCellEditCommit}
           onRowEditStop={onRowEditStop}
@@ -329,6 +326,9 @@ EditableTable.defaultProps = {
   showDelete: true,
   autoHeight: true,
   RenderAddRow,
+  disableColumnFilter: true,
+  disableColumnMenu: true,
+  disableSelectionOnClick: true,
 };
 
 EditableTable.propTypes = {
