@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 14:01:07
- * @LastEditTime: 2022-04-15 14:02:26
+ * @LastEditTime: 2022-04-26 14:05:20
  */
+const sz = [ 'xs', 'sm', 'md', 'xl' ];
 const getItemColsProps = (props) => {
   const { xs, sm, md, lg, xl } = props;
   const newProps = {};

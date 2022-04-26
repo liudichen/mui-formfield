@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 15:12:38
- * @LastEditTime: 2022-04-15 23:47:45
+ * @LastEditTime: 2022-04-26 14:08:09
  */
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
@@ -12,6 +12,13 @@ import { useCreation } from 'ahooks';
 
 import { getItemColsProps } from './utils';
 
+const defaultSize = {
+  xs: 6,
+  sm: 4,
+  md: 3,
+  xl: 2,
+};
+
 const FieldLayout = (props) => {
   const {
     xs, sm, md, lg, xl,
@@ -19,7 +26,8 @@ const FieldLayout = (props) => {
     fullWidth,
     ...restProps
   } = props;
-  const itemBaseProps = useCreation(() => getItemColsProps({ xs, sm, md, lg, xl }), [ xs, sm, md, lg, xl ]);
+
+  const itemBaseProps = useCreation(() => getItemColsProps(typeof (xs ?? sm ?? md ?? lg ?? xl) === 'undefined' ? defaultSize : { xs, sm, md, lg, xl }), [ xs, sm, md, lg, xl ]);
   return (
     <Grid container {...restProps}>
       { Children.map(children, (child) => {
@@ -50,10 +58,6 @@ FieldLayout.defaultProps = {
   fullWidth: true,
   columns: 12,
   spacing: 1,
-  xs: 6,
-  sm: 4,
-  md: 3,
-  xl: 2,
   alignItems: 'center',
 };
 
