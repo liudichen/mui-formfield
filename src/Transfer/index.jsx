@@ -248,10 +248,13 @@ Transfer.propTypes = {
   showSelectAll: PropTypes.bool,
   showSearch: PropTypes.bool,
   disabled: PropTypes.bool,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-    label: PropTypes.node,
-  })),
+  options: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+      label: PropTypes.node,
+    })),
+    PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])),
+  ]),
   refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   request: PropTypes.func,
   value: PropTypes.array,
