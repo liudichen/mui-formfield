@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-20 13:48:53
+ * @LastEditTime: 2022-04-27 20:02:54
  */
 import PropTypes from 'prop-types';
 
@@ -48,7 +48,7 @@ const dataGridPropTypes = {
     pinnable: PropTypes.bool, // true
     sortable: PropTypes.bool, // true
     filterable: PropTypes.bool, // true
-    type: PropTypes.oneOf([ 'string', 'number', 'date', 'datetime', 'boolen', 'singleSelect', 'actions' ]), // 'string'
+    type: PropTypes.oneOf([ 'string', 'number', 'date', 'datetime', 'boolean', 'singleSelect', 'actions' ]), // 'string'
     valueOptions: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.string),
       PropTypes.arrayOf(PropTypes.shape({
