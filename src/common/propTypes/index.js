@@ -3,12 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-27 20:02:54
+ * @LastEditTime: 2022-04-29 23:37:44
  */
 import PropTypes from 'prop-types';
 
 const sx = PropTypes.oneOfType([
-  PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])),
+  PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
   PropTypes.func,
   PropTypes.object,
 ]);
@@ -18,7 +18,7 @@ const fieldWrapperPropTypes = {
   error: PropTypes.bool,
   required: PropTypes.bool,
   label: PropTypes.node,
-  labelPosition: PropTypes.oneOf([ 'top', 'border' ]),
+  labelPosition: PropTypes.oneOf(['top', 'border']),
   labelSx: sx,
   labelProps: PropTypes.object,
   tooltip: PropTypes.node,
@@ -32,40 +32,52 @@ const fieldWrapperPropTypes = {
 
 const dataGridPropTypes = {
   rows: PropTypes.arrayOf(PropTypes.object),
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    field: PropTypes.string.isRequired,
-    headerName: PropTypes.node,
-    align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-    headerAlign: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-    description: PropTypes.node,
-    width: PropTypes.number,
-    minWidth: PropTypes.number,
-    maxWidth: PropTypes.number,
-    flex: PropTypes.number,
-    hideable: PropTypes.bool, // 是否可手动隐藏
-    disableReorder: PropTypes.bool, // 是否禁止列排序(Pro功能)
-    editable: PropTypes.bool,
-    pinnable: PropTypes.bool, // true
-    sortable: PropTypes.bool, // true
-    filterable: PropTypes.bool, // true
-    type: PropTypes.oneOf([ 'string', 'number', 'date', 'datetime', 'boolean', 'singleSelect', 'actions' ]), // 'string'
-    valueOptions: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.string),
-      PropTypes.arrayOf(PropTypes.shape({
-        value: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-      })),
-    ]), // only need when type==='singleSelect'
-    getActions: PropTypes.func, //  params:{value,row,..} => ReactNode[], only need when type==='actions'
-    valueGetter: PropTypes.func, // params:{value,row,..} => any
-    valueSetter: PropTypes.func, // params:{value,row,..} => {...parms.row, ...}
-    valueFormatter: PropTypes.func, // params:{value,row,..} => any
-    valueParser: PropTypes.func, // (value)=> any
-    renderCell: PropTypes.func, // params:{value,row,...} => ReactNode
-    renderHeader: PropTypes.func, // params:{value,row,...} => ReactNode
-    headerClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
-    cellClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
-  })).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      field: PropTypes.string.isRequired,
+      headerName: PropTypes.node,
+      align: PropTypes.oneOf(['left', 'center', 'right']),
+      headerAlign: PropTypes.oneOf(['left', 'center', 'right']),
+      description: PropTypes.node,
+      width: PropTypes.number,
+      minWidth: PropTypes.number,
+      maxWidth: PropTypes.number,
+      flex: PropTypes.number,
+      hideable: PropTypes.bool, // 是否可手动隐藏
+      disableReorder: PropTypes.bool, // 是否禁止列排序(Pro功能)
+      editable: PropTypes.bool,
+      pinnable: PropTypes.bool, // true
+      sortable: PropTypes.bool, // true
+      filterable: PropTypes.bool, // true
+      type: PropTypes.oneOf([
+        'string',
+        'number',
+        'date',
+        'dateTime',
+        'boolean',
+        'singleSelect',
+        'actions',
+      ]), // 'string'
+      valueOptions: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.arrayOf(
+          PropTypes.shape({
+            value: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired,
+          }),
+        ),
+      ]), // only need when type==='singleSelect'
+      getActions: PropTypes.func, //  params:{value,row,..} => ReactNode[], only need when type==='actions'
+      valueGetter: PropTypes.func, // params:{value,row,..} => any
+      valueSetter: PropTypes.func, // params:{value,row,..} => {...parms.row, ...}
+      valueFormatter: PropTypes.func, // params:{value,row,..} => any
+      valueParser: PropTypes.func, // (value)=> any
+      renderCell: PropTypes.func, // params:{value,row,...} => ReactNode
+      renderHeader: PropTypes.func, // params:{value,row,...} => ReactNode
+      headerClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+      cellClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    }),
+  ).isRequired,
 
   autoHeight: PropTypes.bool, // <false> If true, the grid height is dynamic and follow the number of rows in the grid.
 
@@ -87,7 +99,7 @@ const dataGridPropTypes = {
 
   componentsProps: PropTypes.object, // Overrideable components props dynamically passed to the component at rendering
 
-  density: PropTypes.oneOf([ 'standard', 'comfortable', 'compact' ]),
+  density: PropTypes.oneOf(['standard', 'comfortable', 'compact']),
 
   disableColumnFilter: PropTypes.bool, // <false> If true, column filters are disabled
 
@@ -103,7 +115,7 @@ const dataGridPropTypes = {
 
   disableVirtualization: PropTypes.bool, // If true, the virtualization is disabled
 
-  editMode: PropTypes.oneOf([ 'cell', 'row' ]), // Controls whether to use the cell or row editing
+  editMode: PropTypes.oneOf(['cell', 'row']), // Controls whether to use the cell or row editing
 
   editRowsModel: PropTypes.object, // editRowsModel
 
@@ -111,16 +123,19 @@ const dataGridPropTypes = {
 
   experimentalFeatures: PropTypes.shape({ preventCommitWhileValidating: PropTypes.bool }), // Features under development. For each feature, if the flag is not explicitly set to true, the feature will be fully disabled and any property / method call will not have any effect
 
-  filterMode: PropTypes.oneOf([ 'client', 'server' ]), // Filtering can be processed on the server or client-side. Set it to 'server' if you would like to handle filtering on the server-side
+  filterMode: PropTypes.oneOf(['client', 'server']), // Filtering can be processed on the server or client-side. Set it to 'server' if you would like to handle filtering on the server-side
 
-  filterModel: PropTypes.shape({ // Set the filter model of the grid.
-    items: PropTypes.arrayOf(PropTypes.shape({
-      columnField: PropTypes.string.isRequired,
-      id: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-      operatorValue: PropTypes.string,
-      value: PropTypes.any,
-    })).isRequired,
-    linkOperator: PropTypes.oneOf([ 'and', 'or' ]),
+  filterModel: PropTypes.shape({
+    // Set the filter model of the grid.
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        columnField: PropTypes.string.isRequired,
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        operatorValue: PropTypes.string,
+        value: PropTypes.any,
+      }),
+    ).isRequired,
+    linkOperator: PropTypes.oneOf(['and', 'or']),
   }),
 
   /**
@@ -189,7 +204,7 @@ const dataGridPropTypes = {
     warn: PropTypes.func,
   }), // <console>  Pass a custom logger in the components that implements the Logger interface
 
-  logLevel: PropTypes.oneOf([ 'debug', 'error', 'info', 'warn', false ]), // Allows to pass the logging level or false to turn off logging.
+  logLevel: PropTypes.oneOf(['debug', 'error', 'info', 'warn', false]), // Allows to pass the logging level or false to turn off logging.
 
   nonce: PropTypes.string, // Nonce of the inline styles for Content Security Policy
 
@@ -447,7 +462,7 @@ Callback fired when an exception is thrown in the grid
 
   pageSize: PropTypes.number, // <100> Set the number of rows in one page. If some of the rows have children (for instance in the tree data), this number represents the amount of top level rows wanted on each page
 
-  paginationMode: PropTypes.oneOf([ 'client', 'server' ]), // Pagination can be processed on the server or client-side. Set it to 'client' if you would like to handle the pagination on the client-side. Set it to 'server' if you would like to handle the pagination on the server-side
+  paginationMode: PropTypes.oneOf(['client', 'server']), // Pagination can be processed on the server or client-side. Set it to 'client' if you would like to handle the pagination on the client-side. Set it to 'server' if you would like to handle the pagination on the server-side
 
   rowBuffer: PropTypes.number, // <3> Number of extra rows to be rendered before/after the visible slice
 
@@ -461,20 +476,22 @@ Callback fired when an exception is thrown in the grid
 
   scrollbarSize: PropTypes.number, // Override the height/width of the grid inner scrollbar
 
-  selectionModel: PropTypes.oneOfType([ PropTypes.number, PropTypes.string, PropTypes.array ]), // Set the selection model of the grid
+  selectionModel: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]), // Set the selection model of the grid
 
   showCellRightBorder: PropTypes.bool, // If true, the right border of the cells are displayed
 
   showColumnRightBorder: PropTypes.bool, // If true, the right border of the column headers are displayed
 
-  sortingMode: PropTypes.oneOf([ 'client', 'server' ]), // Sorting can be processed on the server or client-side. Set it to 'client' if you would like to handle sorting on the client-side. Set it to 'server' if you would like to handle sorting on the server-side
+  sortingMode: PropTypes.oneOf(['client', 'server']), // Sorting can be processed on the server or client-side. Set it to 'client' if you would like to handle sorting on the client-side. Set it to 'server' if you would like to handle sorting on the server-side
 
-  sortingOrder: PropTypes.arrayOf(PropTypes.oneOf([ 'asc', 'desc', null ])), // <['asc', 'desc', null]> The order of the sorting sequence
+  sortingOrder: PropTypes.arrayOf(PropTypes.oneOf(['asc', 'desc', null])), // <['asc', 'desc', null]> The order of the sorting sequence
 
-  sortModel: PropTypes.arrayOf(PropTypes.shape({
-    field: PropTypes.string.isRequired,
-    sort: PropTypes.oneOf([ 'asc', 'desc' ]),
-  })), //	Set the sort model of the grid
+  sortModel: PropTypes.arrayOf(
+    PropTypes.shape({
+      field: PropTypes.string.isRequired,
+      sort: PropTypes.oneOf(['asc', 'desc']),
+    }),
+  ), //	Set the sort model of the grid
 
   sx, // The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details
 };
@@ -483,7 +500,7 @@ const paginationPropTypes = {
   boundaryCount: PropTypes.number, // 1
   classes: PropTypes.object,
   color: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'standard', 'primary', 'secondary' ]),
+    PropTypes.oneOf(['standard', 'primary', 'secondary']),
     PropTypes.string,
   ]), // 'standard'
   onChange: PropTypes.func, // interface: (value) => void
@@ -491,27 +508,17 @@ const paginationPropTypes = {
   hideNextButton: PropTypes.bool,
   hidePrevButton: PropTypes.bool,
   renderItem: PropTypes.bool, // (item) => <PaginationItem {...item} />
-  shape: PropTypes.oneOf([ 'circular', 'rounded' ]), // 'circular'
+  shape: PropTypes.oneOf(['circular', 'rounded']), // 'circular'
   showFirstButton: PropTypes.bool,
   showLastButton: PropTypes.bool,
   siblingCount: PropTypes.number, // 1 当前页码前后总是显示的页码数量
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small', 'large' ]),
-    PropTypes.string,
-  ]), // 'medium'
+  size: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small', 'large']), PropTypes.string]), // 'medium'
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])),
-    PropTypes.func, PropTypes.object,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
-  variant: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'text', 'outlined' ]),
-    PropTypes.string,
-  ]), // 'text'
+  variant: PropTypes.oneOfType([PropTypes.oneOf(['text', 'outlined']), PropTypes.string]), // 'text'
 };
 
-export {
-  sx,
-  fieldWrapperPropTypes,
-  dataGridPropTypes,
-  paginationPropTypes,
-};
+export { sx, fieldWrapperPropTypes, dataGridPropTypes, paginationPropTypes };
