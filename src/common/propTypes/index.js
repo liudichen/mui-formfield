@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-30 13:24:26
+ * @LastEditTime: 2022-04-30 13:28:26
  */
 import PropTypes from 'prop-types';
 
@@ -618,7 +618,7 @@ const dialogPropTypes = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
+  // open: PropTypes.bool.isRequired,
 
   /**
    * The component used to render the body of the dialog.
