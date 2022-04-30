@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-24 10:38:46
+ * @LastEditTime: 2022-04-30 13:21:31
  */
 import React from 'react';
-import { DataGridProps, GridToolbarProps } from '@mui/x-data-grid';
-import { PaginationProps } from '@mui/material';
+import { DataGridProps, GridActionsCellItemProps, GridToolbarProps } from '@mui/x-data-grid';
+import { DialogProps, PaginationProps } from '@mui/material';
 
 import { fieldCommonProps, FieldWrapperRelateProps } from '../types';
 import { DragHandlerParam, DragSortColumnItemProps } from './DragSortColumnItem';
@@ -18,14 +18,35 @@ type rowType = {
   [key: string]: any;
 };
 
+interface rowRefType {
+  current?: rowType[],
+}
+
+interface EditModalProps {
+  disabled: boolean,
+  row: rowType,
+  trigger: React.ReactNode,
+  rowsRef: rowRefType,
+  handleUpdateRow: (row:rowType) => void,
+}
+
+interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
+  /**
+   * title of dialog
+   * @default '确认删除该行数据吗?'
+   */
+  title?: React.ReactNode,
+  /**
+   * title of dialog
+   * @default '点击“Yes”以删除该行'
+   */
+  content?: React.ReactNode,
+  disabled?: boolean,
+}
+
 export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, DataGridProps {
 
   RenderAddRow?: React.FunctionComponent<RenderAddRowProps> | React.Component<RenderAddRowProps>,
-
-  /**
-   * function to get initial value/rows
-   */
-  request?: () => Promise<rowType[]> | rowType[],
 
   /**
    * when refreshRowFlag changed, rows will force refresh
@@ -42,52 +63,156 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
    */
   width?: number | string,
 
-  /**
-   * field name of row's id
-   * @default 'id'
-   */
-  idName?: string,
-
   paginationProps?: PaginationProps,
   initialPageSize?: number,
 
   /**
-   * whether to show dragsort column
+   * className applied on table's parrnet
+   */
+  rootClassName?: string,
+
+  /**
+   * field name of row's id
+   * @default 'id'
+   */
+  rowKey?: string,
+
+  /**
+   * whether to show Edit item in actions column
    * @default false
    */
-  showDragSort?: boolean,
+  showEdit?: boolean,
   /**
-   * whether to high light edited cells
-   * @default true
-   */
-  showEdited?: boolean,
-  /**
-   * whether to show delete button
-   * @default true
-   */
-  showDelete?: boolean,
-  /**
-   * whether to show click sort icon button
+   * whether to put Edit item in collapsed menu
    * @default false
    */
-  showClickSort?: boolean,
+  editInMenu?: boolean,
+
   /**
-   * whether to show add new row button on title
+   * icon of the edit item in actions column
+   * @default <EditIcon/>
+   */
+  editIcon?: React.ReactNode,
+  /**
+   * tooltip's title and label of the edit item in actions column
+   * @default '编辑该行'
+   */
+  editLabel?: React.ReactNode,
+
+  /**
+   * Modal to edit the row
+   * @param {EditModalProps} props props
+   */
+  EditModal?: React.FunctionComponent<EditModalProps> | React.Component<EditModalProps>,
+
+  /**
+   * whether to show addRow item in actions column
    * @default false
    */
   showAddRow?: boolean,
+  /**
+   * whether to put addRow item in collapsed menu
+   * @default false
+   */
+  addRowInMenu?: boolean,
 
   /**
-   * max  count of total rows limit when add new row
+   * icon of the addRow item in actions column
+   * @default <PlusOneOutlinedIcon/>
    */
-  maxRows?: number,
+  addRowIcon?: React.ReactNode,
   /**
-   * called when add a new row, return a new row which would be initial value of the new row
-   * @param {rowType[]} currentRows the rows before add the new row
-   * @return {rowType} initial value of new row
-   * @default () =>{id:Date.now()}
+   * tooltip's title and label of the addRow item in actions column
+   * @default '插入一行'
    */
-  onNewRow?: (currentRows: rowType[]) => rowType,
+  addRowLabel?: React.ReactNode,
+
+  /**
+   * function to generate a new row's object info
+   * @param {string | number ?} id rowKey of this row
+   * @param {rowType[]} rows array of all rows
+   * @return {rowType} object of the new row
+   * @default ()=>({[rowKey]:Date.now()})
+   */
+  getNewRow?: (id?: string | number, rows: rowType[]) => rowType,
+
+  /**
+   * whether to show deleteRow item in actions column
+   * @default false
+   */
+  showDelete?: boolean,
+  /**
+   * whether to put deleteRow item in collapsed menu
+   * @default false
+   */
+  deleteInMenu?: boolean,
+
+  /**
+   * icon of the deleteRow item in actions column
+   * @default <DeleteIcon/>
+   */
+  deleteIcon?: React.ReactNode,
+  /**
+   * tooltip's title and label of the deleteRow item in actions column
+   * @default '删除该行'
+   */
+  deleteLabel?: React.ReactNode,
+
+  /**
+   * whether to show sortRow item in actions column
+   * @default false
+   */
+  showSorter?: boolean,
+  /**
+   * whether to put sortRow item in collapsed menu
+   * @default true
+   */
+  sorterInMenu?: boolean,
+
+  /**
+   * icon of the moveRowUp item in actions column
+   * @default <KeyboardDoubleArrowUpOutlinedIcon/>
+   */
+  moveUpIcon?: React.ReactNode,
+  /**
+   * tooltip's title and label of the moveRowUp item in actions column
+   * @default '上移一行''
+   */
+  moveUpLabel?: React.ReactNode,
+  /**
+   * icon of the moveRowDown item in actions column
+   * @default <eyboardDoubleArrowDownOutlinedIcon/>
+   */
+  moveDownIcon?: React.ReactNode,
+  /**
+   * tooltip's title and label of the moveRowDown item in actions column
+   * @default '下移一行''
+   */
+  moveDownLabel?: React.ReactNode,
+
+  /**
+   * width of actions column which will be computed by items count if undefined
+   */
+  actionsColWidth?: number | string,
+
+  /**
+   * title of actions column
+   * @default '操作''
+   */
+  actionsColumnTitle?: React.ReactNode,
+  /**
+   * color of actions column's items
+   * @default 'primary''
+   */
+  actionsIconColor?: string,
+
+  /**
+   * props whick would be applied on GridActionsCellItem   *
+   */
+  actionsItemProps?: Omit<Omit<Omit<Omit<Omit<Omit<GridActionsCellItemProps, 'color'>, 'label'>, 'disabled'>, 'showInMenu'>, 'onClick'>, 'icon'>,
+
+  deleteConfirmDialogProps?: DeleteConfirmDialogProps,
+
   /**
    * function to customize dragHandler
    * @param {{dragging: boolean, isHovering: boolean}} param status that could be passed to the ReactNode

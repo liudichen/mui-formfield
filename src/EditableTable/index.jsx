@@ -1,248 +1,256 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
-import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
-import { DataGrid, zhCN, GridToolbar } from '@mui/x-data-grid';
-import { makeStyles } from '@mui/styles';
-import { toJS } from '@formily/reactive';
-import classNames from 'classnames';
-import { IconArrowsUpDown } from '@tabler/icons';
+import React from 'react';
+import { useControllableValue, useCreation, useMemoizedFn, useLatest } from 'ahooks';
+import { DataGrid, zhCN, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
+import { Tooltip } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
+import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowUpOutlined';
+import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
+import PlusOneOutlinedIcon from '@mui/icons-material/PlusOneOutlined';
 
-import { FieldWrapper, useMergedState, fieldWrapperPropTypes, dataGridPropTypes, paginationPropTypes } from '../common';
-import DragSortColumnItem from './DragSortColumnItem';
-import ActionsColumnItem from './ActionsColumnItem';
+import DeleteConfirmModal from './DeleteConfirmModal';
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
-import RenderAddRow from './RenderAddRow';
-
-const useStyles = makeStyles({
-  root: {
-    '& .super-app-theme-edited': {
-      backgroundColor: '#fff1b8',
-      '&:hover': {
-        backgroundColor: '#fffbe6',
-      },
-    },
-    '& .super-app-theme-new': {
-      backgroundColor: '#b5f5ec',
-      '&:hover': {
-        backgroundColor: '#e6fffb',
-      },
-    },
-  },
-
-});
-
-export const allAlignCenter = {
-  headerAlign: 'center',
-  align: 'center',
-};
+import { dataGridPropTypes, dialogPropTypes, FieldWrapper, fieldWrapperPropTypes, paginationPropTypes } from '../common';
 
 const EditableTable = (props) => {
   const {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
-    value: valueProp, rows, onChange: onChangeProp, request, defaultValue, refreshRowsFlag,
-    readOnly, disabled,
-    showDragSort, showEdited, showDelete, showClickSort, dragHandler,
-    ActionsColumnItem, DragSortColumnItem, onNewRow, maxRows, showAddRow,
-    columns: columnsProp, loading: loadingProp, getCellClassName: getCellClassNameProp,
-    height, width, autoHeight, editMode,
-    idName, paginationProps,
-    onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, initialState, initialPageSize, componentsProps, rowsPerPageOptions, onPageSizeChange, onPageChange, paginationMode,
-    RenderAddRow,
+    // eslint-disable-next-line no-unused-vars
+    value: valueProp, rows: rowsProp, onChange: onChangeProp, defaultValue,
+    readOnly, disabled: disabledProp,
+    columns: columnsProp,
+    height, width,
+    rowKey,
+    showEdit, editInMenu, EditModal, showDelete, deleteInMenu, showSorter, sorterInMenu, showAddRow, addRowInMenu, getNewRow,
+    editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
+    actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
+    editIcon, deleteIcon, addRowIcon, moveUpIcon, moveDownIcon,
+    paginationProps, initialState, initialPageSize, componentsProps, paginationMode,
+    rootClassName,
     ...restProps
   } = props;
-  const classes = useStyles();
-  const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useMergedState([], { value: valueProp ?? rows, onChange: onChangeProp, defaultValue, postState: (s) => toJS(s || []) });
-  const [ rawValue, setRawValue ] = useSafeState([]);
-
-  const handleDragSort = useMemoizedFn((dragId, dropId) => {
-    if (readOnly || disabled) { return; }
-    const index1 = value.findIndex((item) => item[idName] === dragId);
-    const index2 = value.findIndex((item) => item[idName] === dropId);
-    if (index1 === -1 || index2 === -1) {
-      return;
+  const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
+  const rowsRef = useLatest(rows);
+  const disabled = useCreation(() => !!(disabledProp || readOnly), [ disabledProp, readOnly ]);
+  const onChange = useMemoizedFn((v) => {
+    if (!readOnly && !disabledProp) {
+      setRows(v);
     }
-    const v1 = { ...value[index1] };
-    const newValue = [ ...value ];
-    newValue.splice(index1, 1);
-    newValue.splice(index2, 0, v1);
-    onChange(newValue);
   });
-
+  const getIndex = useMemoizedFn((id) => {
+    return (rowsRef.current || []).findIndex((item) => item[rowKey] === id);
+  });
+  const isSorterDisabled = useMemoizedFn((id, up) => {
+    if (disabled) {
+      return true;
+    }
+    const index = getIndex(id);
+    const len = rowsRef.current?.length ?? 0;
+    if (len < 2 || index === -1 || (index === 0 && up) || (!up && index > len - 2)) {
+      return true;
+    }
+    return false;
+  });
   const handleDeleteRow = useMemoizedFn((id) => {
-    if (readOnly || disabled) { return; }
-    const index = value.findIndex((item) => item[idName] === id);
+    const index = getIndex(id);
     if (index !== -1) {
-      const newValue = [ ...value ];
+      const newValue = [ ...rowsRef.current ];
       newValue.splice(index, 1);
       onChange(newValue);
     }
   });
-
-  const getRowIndex = useMemoizedFn((id) => {
-    const index = value?.findIndex((item) => item[idName] === id) ?? -1;
-    const len = value?.length ?? 0;
-    return [ index, len ];
-  });
-  const handleClickSort = useMemoizedFn((index, direction) => {
-    if (readOnly || disabled) { return; }
-    if (index === -1) { return; }
-    const index2 = direction === 'up' ? index - 1 : index + 1;
-    if (index2 < 0 || index2 >= value.length) { return; }
-    const newValue = [ ...value ];
-    const v1 = { ...newValue[index] };
-    const v2 = { ...newValue[index2] };
-    newValue[index] = v2;
-    newValue[index2] = v1;
-    onChange(newValue);
-  });
-
-  const handleAddRow = useMemoizedFn((inputNewRow) => {
-    if (readOnly || disabled) { return; }
-    if (maxRows && maxRows <= value.length) { return; }
-    const newValue = [ ...(value || []) ];
-    let newRow = inputNewRow ?? onNewRow?.(value);
-    if (!newRow || typeof newRow !== 'object') {
-      newRow = { [idName]: Date.now() };
-    } else if (!newRow[idName]) {
-      newRow[idName] = Date.now();
+  const handleUpdateRow = useMemoizedFn((row) => {
+    const id = row[rowKey];
+    const index = getIndex(id);
+    if (index !== -1) {
+      const newValue = [ ...rowsRef.current ];
+      newValue[index] = { ...newValue[index], ...row };
+      onChange(newValue);
     }
-    newValue.push(newRow);
-    onChange(newValue);
   });
-  const innerDragSortCol = useCreation(() => ({
-    field: 'innerDragSortCol',
-    headerName: '排序',
-    width: 60,
-    sortable: false,
-    ...allAlignCenter,
-    editable: false,
-    renderCell: ({ id }) => (
-      <DragSortColumnItem
-        id={id}
-        dragHandler={dragHandler}
-        handleDragSort={handleDragSort}
-        disabled={disabled || readOnly}
-      />
-    ),
-  }), [ disabled, readOnly ]);
+  const handleAddRow = useMemoizedFn((id) => {
+    const row = getNewRow?.(id, rowsRef.current) ?? { [rowKey]: Date.now() };
+    const newRows = [ ...(rowsRef.current || []) ];
+    const index = getIndex(id);
+    if (index !== -1) {
+      newRows.splice(index + 1, 0, row);
+    } else {
+      newRows.push(row);
+    }
+    onChange(newRows);
+  });
+  const handleMove = useMemoizedFn((id, up) => {
+    const index = getIndex(id);
+    const len = rowsRef.current?.length ?? 0;
+    if (index !== -1 && len > 1 && index < len) {
+      const newRows = [ ...rowsRef.current ];
+      const thisRow = { ...newRows[index] };
+      let thatIndex;
+      if (up && index) {
+        thatIndex = index - 1;
+      } else if (!up && index < len - 1) {
+        thatIndex = index + 1;
+      }
+      if (thatIndex !== undefined) {
+        const thatRow = { ...newRows[thatIndex] };
+        newRows[thatIndex] = thisRow;
+        newRows[index] = thatRow;
+        onChange(newRows);
+      }
+    }
+  });
 
-  const innerActionsCol = useCreation(() => ({
-    field: 'innerActionsCol',
-    renderHeader: () => (
-      <div style={{ alignItems: 'center', display: 'flex' }}>
-        <div>
-          操作
-        </div>
-        { showAddRow && (
-          <RenderAddRow
-            disabled={disabled}
-            readOnly={readOnly}
-            handleAddRow={handleAddRow}
-          />
-        )}
-      </div>
-    ),
+  const renderHeader = useCreation(() => () =>
+    <>
+      {actionsColumnTitle}
+      <GridActionsCellItem
+        label=''
+        {...(actionsItemProps || {})}
+        color={actionsIconColor}
+        onClick={() => handleAddRow()}
+        disabled={disabled}
+        icon={
+          <Tooltip title={addRowLabel} placement='top' arrow>
+            {addRowIcon ?? <PlusOneOutlinedIcon color={actionsIconColor} />}
+          </Tooltip>
+        }
+      />
+    </>
+  , [ addRowIcon, addRowLabel, actionsIconColor, actionsItemProps, actionsColumnTitle, disabled ]);
+
+  const getActions = useMemoizedFn(({ row, id }) => {
+    const actions = [];
+    if (showEdit && EditModal) {
+      actions.push(
+        <GridActionsCellItem
+          label={editLabel}
+          showInMenu={editInMenu}
+          disabled={disabled}
+          onClick={(e) => e?.stopPropagation?.()}
+          color={actionsIconColor}
+          {...(actionsItemProps || {})}
+          icon={(
+            <EditModal
+              trigger={editIcon ?? <EditIcon color={actionsIconColor} fontSize='small'/>}
+              disabled={disabled}
+              row={row}
+              rowsRef={rowsRef}
+              handleUpdateRow={handleUpdateRow}
+            />
+          )}
+        />
+      );
+    }
+    if (showDelete) {
+      actions.push(
+        <GridActionsCellItem
+          label={deleteLabel}
+          disabled={disabled}
+          color={actionsIconColor}
+          {...(actionsItemProps || {})}
+          icon={
+            <DeleteConfirmModal disabled={disabled} onYes={() => handleDeleteRow(id)} {...(deleteConfirmDialogProps || {})}>
+              <Tooltip title={deleteInMenu ? '' : deleteLabel} placement='top' arrow>
+                { deleteIcon ?? <DeleteIcon color={actionsIconColor} fontSize='small'/>}
+              </Tooltip>
+            </DeleteConfirmModal>
+          }
+          showInMenu={deleteInMenu}
+        />
+      );
+    }
+    if (showSorter) {
+      actions.push(
+        <GridActionsCellItem
+          showInMenu={sorterInMenu}
+          label={moveUpLabel}
+          color={actionsIconColor}
+          {...(actionsItemProps || {})}
+          icon={
+            <Tooltip title={sorterInMenu ? '' : moveUpLabel} placement='top' arrow>
+              {moveUpIcon ?? <KeyboardDoubleArrowUpOutlinedIcon color={actionsIconColor}/> }
+            </Tooltip>
+          }
+          disabled={isSorterDisabled(id, true)}
+          onClick={() => handleMove(id, true) }
+        />
+      );
+      actions.push(
+        <GridActionsCellItem
+          showInMenu={sorterInMenu}
+          label={moveDownLabel}
+          color={actionsIconColor}
+          {...(actionsItemProps || {})}
+          icon={
+            <Tooltip title={sorterInMenu ? '' : moveDownLabel} placement='top' arrow>
+              {moveDownIcon ?? <KeyboardDoubleArrowDownOutlinedIcon color={actionsIconColor} />}
+            </Tooltip>
+          }
+          disabled={isSorterDisabled(id, false)}
+          onClick={() => handleMove(id, false)}
+        />
+      );
+    }
+    if (showAddRow) {
+      actions.push(
+        <GridActionsCellItem
+          showInMenu={addRowInMenu}
+          label= {addRowLabel}
+          color={actionsIconColor}
+          {...(actionsItemProps || {})}
+          icon={
+            <Tooltip title={addRowInMenu ? '' : addRowLabel} placement='top' arrow>
+              {addRowIcon ?? <PlusOneOutlinedIcon color={actionsIconColor} />}
+            </Tooltip>
+          }
+          disabled={disabled}
+          onClick={() => handleAddRow(id)}
+        />
+      );
+    }
+    return actions;
+  });
+  const actionsColWidth = useCreation(() => {
+    if (actionsColumnWidth) {
+      return actionsColumnWidth;
+    }
+    let outer = 0;
+    let inner = 0;
+    if (showEdit) {
+      if (editInMenu) { inner += 1; } else { outer += 1; }
+    }
+    if (showAddRow) {
+      if (addRowInMenu) { inner += 1; } else { outer += 1; }
+    }
+    if (showDelete) {
+      if (deleteInMenu) { inner += 1; } else { outer += 1; }
+    }
+    if (showSorter) {
+      if (sorterInMenu) { inner += 2; } else { outer += 2; }
+    }
+    const count = outer + (inner ? 1 : 0);
+    const width = count * 38 + 6;
+    return width > 80 ? width : 80;
+  }, [ actionsColumnWidth, showEdit, editInMenu, showDelete, deleteInMenu, showAddRow, addRowInMenu, showSorter, sorterInMenu ]);
+  const actionsCol = useCreation(() => ({
+    field: 'innerActions',
+    renderHeader,
+    type: 'actions',
+    width: actionsColWidth,
     headerAlign: 'center',
-    width: 95,
+    filterable: false,
+    editable: false,
     sortable: false,
     align: 'center',
-    renderCell: ({ id }) => (
-      <ActionsColumnItem
-        id={id}
-        showClickSort={showClickSort}
-        showDelete={showDelete}
-        handleDeleteRow={handleDeleteRow}
-        handleClickSort={handleClickSort}
-        getRowIndex={getRowIndex}
-        disabled={disabled || readOnly}
-      />
-    ),
-  }), [ showDelete, showClickSort, showAddRow, disabled, readOnly ]);
-  const columns = useCreation(() => {
-    const cols = (columnsProp || []).map((item) => {
-      const newItem = { ...item, sortable: false };
-      if (readOnly || disabled) {
-        newItem.editable = false;
-      }
-      return newItem;
-    });
-    if (showDragSort) {
-      cols.unshift(innerDragSortCol);
-    }
-    if (showDelete || showClickSort || showAddRow) {
-      cols.push(innerActionsCol);
-    }
-    return cols;
-  }, [ !columnsProp, showDragSort, showDelete, showClickSort, readOnly, disabled ]);
-  const fetchRows = useMemoizedFn(async () => {
-    if (!valueProp && typeof request === 'function') {
-      setLoading(true);
-      const res = await request();
-      onChange(res);
-      setRawValue(res);
-      setLoading(false);
-    } else {
-      let rs = valueProp ?? rows;
-      if (rs && Array.isArray(rs)) {
-        rs = [ ...rs ];
-        setRawValue(rs);
-      }
-    }
-  });
-
-  useEffect(() => {
-    fetchRows();
-  }, [ refreshRowsFlag ]);
-
-  const onCellEditCommit = useMemoizedFn((params, e, details) => {
-    if (readOnly || disabled) { return; }
-    const { field, id, value: cellValue, row } = params;
-    const index = value.findIndex((item) => item[idName] === id);
-    if (index !== -1) {
-      const newValue = [ ...value ];
-      newValue[index] = { ...row, [field]: cellValue };
-      onChange(newValue);
-    }
-    onCellEditCommitProp?.(params, e, details);
-  });
-
-  const onRowEditStop = useMemoizedFn((params, e) => {
-    if (readOnly || disabled) { return; }
-    const { id, row } = params;
-    const index = value.findIndex((item) => item[idName] === id);
-    if (index !== -1) {
-      const newValue = [ ...value ];
-      newValue[index] = row;
-      onChange(newValue);
-    }
-    onRowEditStopProp?.(params, e);
-  });
-  const getCellClassName = useMemoizedFn((params) => {
-    const propCls = getCellClassNameProp?.(params) || '';
-    if (!showEdited) { return propCls; }
-    const { value, hasFocus, field, id, colDef: { editable } } = params;
-    if (!editable) { return propCls; }
-    const rawIndex = rawValue.findIndex((item) => item[idName] === id);
-    let cls = '';
-    if (rawIndex === -1 && !hasFocus) {
-      cls = 'super-app-theme-new';
-    } else if (rawIndex !== -1) {
-      const rawFieldValue = rawValue[rawIndex]?.[field];
-      if (rawFieldValue !== value) {
-        cls = 'super-app-theme-edited';
-      }
-    }
-    if (propCls && cls) {
-      return classNames(cls, propCls);
-    }
-    return propCls || cls;
-
-  });
-
+    getActions,
+  }), [ disabled, actionsColWidth, actionsColumnTitle, showAddRow, renderHeader ]);
+  const columns = useCreation(() => (
+    (columnsProp || []).map((item) => ({ align: 'center', headerAlign: 'center', ...item, editable: false })).concat(actionsCol)
+  ), [ columnsProp, actionsCol ]);
   return (
     <FieldWrapper
       error={error}
@@ -261,22 +269,13 @@ const EditableTable = (props) => {
       helperTextProps={helperTextProps}
     >
       <div
-        className={classes.root}
-        style={autoHeight ? {} : { height }}
+        className={rootClassName}
+        style={props.autoHeight || !height ? {} : { height } }
       >
         <DataGrid
-          rows={value}
+          rows={rows}
           columns={columns}
-          loading={loadingProp ?? loading}
-          onCellEditCommit={onCellEditCommit}
-          onRowEditStop={onRowEditStop}
-          autoHeight={autoHeight}
-          getRowId={(row) => row[idName]}
-          getCellClassName={getCellClassName}
-          editMode={editMode}
-          onPageChange={onPageChange}
-          onPageSizeChange={onPageSizeChange}
-          rowsPerPageOptions={rowsPerPageOptions}
+          getRowId={(row) => row[rowKey]}
           paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
           componentsProps={{
             toolbar: {
@@ -289,9 +288,9 @@ const EditableTable = (props) => {
             },
             pagination: {
               ...(paginationProps || {}),
-              rowsPerPageOptions,
-              onChange: onPageChange,
-              onPageSizeChange,
+              rowsPerPageOptions: props.rowsPerPageOptions,
+              onChange: props.onPageChange,
+              onPageSizeChange: props.onPageSizeChange,
             },
             ...(componentsProps || {}),
           }}
@@ -300,7 +299,6 @@ const EditableTable = (props) => {
             ...(initialState || {}),
           }}
           {...restProps}
-          experimentalFeatures={{ newEditingApi: true }}
         />
       </div>
     </FieldWrapper>
@@ -309,56 +307,70 @@ const EditableTable = (props) => {
 
 EditableTable.defaultProps = {
   localeText: zhCN.components.MuiDataGrid.defaultProps.localeText,
-  idName: 'id',
-  editMode: 'cell',
-  ActionsColumnItem,
-  DragSortColumnItem,
-  // eslint-disable-next-line no-unused-vars
-  dragHandler: ({ dragging, isHovering }) => {
-    return dragging ? (<IconArrowsUpDown stroke={2} color='#faad14' />) : (<IconArrowsUpDown stroke={2} color='#c41d7f' />);
-  },
+  rowKey: 'id',
+  rowsPerPageOptions: [ 20, 50, 100 ],
+  disableColumnFilter: true,
+  disableColumnMenu: true,
+  disableSelectionOnClick: true,
+  autoHeight: true,
+  editInMenu: false,
+  deleteInMenu: false,
+  actionsColumnTitle: '操作',
+  deleteLabel: '删除该行',
+  addRowLabel: '插入一行',
+  editLabel: '编辑该行',
+  moveUpLabel: '上移一行',
+  moveDownLabel: '下移一行',
+  actionsIconColor: 'primary',
   components: {
     Pagination: DataGridPagination,
     NoRowsOverlay,
   },
-  rowsPerPageOptions: [ 20, 50, 100 ],
-  showEdited: true,
-  showDelete: true,
-  autoHeight: true,
-  RenderAddRow,
-  disableColumnFilter: true,
-  disableColumnMenu: true,
-  disableSelectionOnClick: true,
+  fullWidth: true,
 };
 
 EditableTable.propTypes = {
   ...fieldWrapperPropTypes,
-
-  RenderAddRow: PropTypes.oneOfType([ PropTypes.func, PropTypes.node ]),
 
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,
   defaultValue: PropTypes.array,
   value: PropTypes.array,
   onChange: PropTypes.func,
-  request: PropTypes.func,
   refreshRowsFlag: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
   width: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   height: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  showDragSort: PropTypes.bool,
-  dragHandler: PropTypes.func,
-  showDelete: PropTypes.bool,
-  showClickSort: PropTypes.bool,
-  showEdited: PropTypes.bool,
-  ActionsColumnItem: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-  DragSortColumnItem: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-  onNewRow: PropTypes.func,
-  showAddRow: PropTypes.bool,
-  maxRows: PropTypes.number,
-
   initialPageSize: PropTypes.number,
   paginationProps: PropTypes.shape(paginationPropTypes),
+
+  rootClassName: PropTypes.string,
+  rowKey: PropTypes.string,
+  showEdit: PropTypes.bool,
+  editInMenu: PropTypes.bool,
+  editIcon: PropTypes.node,
+  editLabel: PropTypes.node,
+  EditModal: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]),
+  showAddRow: PropTypes.bool,
+  getNewRow: PropTypes.func,
+  addRowInMenu: PropTypes.bool,
+  addRowIcon: PropTypes.node,
+  addRowLabel: PropTypes.node,
+  showDelete: PropTypes.bool,
+  deleteInMenu: PropTypes.bool,
+  deleteIcon: PropTypes.node,
+  deleteLabel: PropTypes.node,
+  showSorter: PropTypes.bool,
+  sorterInMenu: PropTypes.bool,
+  moveUpIcon: PropTypes.node,
+  moveUpLabel: PropTypes.node,
+  moveDownIcon: PropTypes.node,
+  moveDownLabel: PropTypes.node,
+  actionsColWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  actionsColumnTitle: PropTypes.node,
+  actionsIconColor: PropTypes.string,
+  actionsItemProps: PropTypes.object,
+  deleteConfirmDialogProps: PropTypes.shape(dialogPropTypes),
 
   ...dataGridPropTypes,
 
