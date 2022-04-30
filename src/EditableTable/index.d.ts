@@ -3,16 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-30 13:21:31
+ * @LastEditTime: 2022-04-30 13:39:40
  */
 import React from 'react';
 import { DataGridProps, GridActionsCellItemProps, GridToolbarProps } from '@mui/x-data-grid';
 import { DialogProps, PaginationProps } from '@mui/material';
 
 import { fieldCommonProps, FieldWrapperRelateProps } from '../types';
-import { DragHandlerParam, DragSortColumnItemProps } from './DragSortColumnItem';
-import { ActionsColumnItemProps } from './ActionsColumnItem';
-import { RenderAddRowProps } from './RenderAddRow';
 
 type rowType = {
   [key: string]: any;
@@ -22,7 +19,7 @@ interface rowRefType {
   current?: rowType[],
 }
 
-interface EditModalProps {
+export interface EditModalProps {
   disabled: boolean,
   row: rowType,
   trigger: React.ReactNode,
@@ -30,7 +27,7 @@ interface EditModalProps {
   handleUpdateRow: (row:rowType) => void,
 }
 
-interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
+export interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
   /**
    * title of dialog
    * @default '确认删除该行数据吗?'

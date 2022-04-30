@@ -379,5 +379,9 @@ EditableTable.propTypes = {
 export {
   GridToolbar,
 };
+export const allAlignCenter = {
+  headerAlign: 'center',
+  align: 'center',
+};
 
 export default EditableTable;
