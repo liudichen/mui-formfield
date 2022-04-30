@@ -130,12 +130,16 @@ const EditableTable = (props) => {
           label={editLabel}
           showInMenu={editInMenu}
           disabled={disabled}
-          onClick={(e) => e?.stopPropagation?.()}
+          // onClick={(e) => e?.stopPropagation?.()}
           color={actionsIconColor}
           {...(actionsItemProps || {})}
           icon={(
             <EditModal
-              trigger={editIcon ?? <EditIcon color={actionsIconColor} fontSize='small'/>}
+              trigger={
+                <Tooltip title={editInMenu ? '' : editLabel} placement='top' arrow>
+                  {editIcon ?? <EditIcon color={actionsIconColor} fontSize='small'/>}
+                </Tooltip>
+              }
               disabled={disabled}
               row={row}
               rowsRef={rowsRef}
