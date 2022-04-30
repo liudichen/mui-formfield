@@ -29,7 +29,7 @@ const EditableTable = (props) => {
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
     editIcon, deleteIcon, addRowIcon, moveUpIcon, moveDownIcon,
-    paginationProps, initialState, initialPageSize, componentsProps, paginationMode,
+    paginationProps, initialState, initialPageSize, componentsProps, paginationMode, autoHeight,
     rootClassName,
     ...restProps
   } = props;
@@ -274,13 +274,14 @@ const EditableTable = (props) => {
     >
       <div
         className={rootClassName}
-        style={props.autoHeight || !height ? {} : { height } }
+        style={height ? { height } : {} }
       >
         <DataGrid
           rows={rows}
           columns={columns}
           getRowId={(row) => row[rowKey]}
           paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
+          autoHeight={height ? false : autoHeight}
           componentsProps={{
             toolbar: {
               csvOptions: {
