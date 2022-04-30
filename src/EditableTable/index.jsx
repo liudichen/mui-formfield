@@ -24,7 +24,7 @@ const EditableTable = (props) => {
     readOnly, disabled: disabledProp,
     columns: columnsProp,
     height, width,
-    rowKey,
+    rowKey, editable,
     showEdit, editInMenu, EditModal, showDelete, deleteInMenu, showSorter, sorterInMenu, showAddRow, addRowInMenu, getNewRow,
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
@@ -253,8 +253,8 @@ const EditableTable = (props) => {
     getActions,
   }), [ disabled, actionsColWidth, actionsColumnTitle, showAddRow, renderHeader ]);
   const columns = useCreation(() => (
-    (columnsProp || []).map((item) => ({ align: 'center', headerAlign: 'center', ...item, editable: false })).concat(actionsCol)
-  ), [ columnsProp, actionsCol ]);
+    (columnsProp || []).map((item) => ({ align: 'center', headerAlign: 'center', ...item, editable: false })).concat(editable ? actionsCol : [])
+  ), [ columnsProp, actionsCol, editable ]);
   return (
     <FieldWrapper
       error={error}
@@ -331,10 +331,13 @@ EditableTable.defaultProps = {
     NoRowsOverlay,
   },
   fullWidth: true,
+  editalbe: true,
 };
 
 EditableTable.propTypes = {
   ...fieldWrapperPropTypes,
+
+  editable: PropTypes.bool,
 
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,

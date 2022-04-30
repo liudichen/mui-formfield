@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-30 13:39:40
+ * @LastEditTime: 2022-04-30 15:01:09
  */
 import React from 'react';
 import { DataGridProps, GridActionsCellItemProps, GridToolbarProps } from '@mui/x-data-grid';
@@ -43,7 +43,12 @@ export interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
 
 export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, DataGridProps {
 
-  RenderAddRow?: React.FunctionComponent<RenderAddRowProps> | React.Component<RenderAddRowProps>,
+
+  /**
+   * If false, actions column will not show
+   * @default true
+   */
+  editable?: boolean,
 
   /**
    * when refreshRowFlag changed, rows will force refresh
@@ -210,24 +215,6 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
 
   deleteConfirmDialogProps?: DeleteConfirmDialogProps,
 
-  /**
-   * function to customize dragHandler
-   * @param {{dragging: boolean, isHovering: boolean}} param status that could be passed to the ReactNode
-   * @return {React.ReactNode}
-   */
-  dragHandler?: (param: DragHandlerParam) => React.ReactNode,
-  /**
-   * customized atctions column item render
-   * @param {ActionsColumnItemProps} props props
-   * @return {React.Component}
-   */
-  ActionsColumnItem?: React.FunctionComponent<ActionsColumnItemProps> | React.Component<ActionsColumnItemProps> | React.ReactNode,
-  /**
-   * customized dragsort column item render
-   * @param {DragSortColumnItemProps} props props
-   * @return {React.Component}
-   */
-  DragSortColumnItem?: React.FunctionComponent<DragSortColumnItemProps> | React.Component<DragSortColumnItemProps> | React.ReactNode,
 }
 
 declare const GridToolbar: React.FunctionComponent<GridToolbarProps>;
