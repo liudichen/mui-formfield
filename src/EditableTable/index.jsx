@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useLatest } from 'ahooks';
+import { toJS } from '@formily/reactive';
 import { DataGrid, zhCN, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { Tooltip } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -34,7 +35,7 @@ const EditableTable = (props) => {
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
-  const rowsRef = useLatest(rows);
+  const rowsRef = useLatest(toJS(rows));
   const disabled = useCreation(() => !!(disabledProp || readOnly), [ disabledProp, readOnly ]);
   const onChange = useMemoizedFn((v) => {
     if (!readOnly && !disabledProp) {
@@ -277,7 +278,7 @@ const EditableTable = (props) => {
         style={height ? { height } : {} }
       >
         <DataGrid
-          rows={rows}
+          rows={toJS(rows)}
           columns={columns}
           getRowId={(row) => row[rowKey]}
           paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
@@ -332,7 +333,7 @@ EditableTable.defaultProps = {
     NoRowsOverlay,
   },
   fullWidth: true,
-  editalbe: true,
+  editable: true,
 };
 
 EditableTable.propTypes = {
