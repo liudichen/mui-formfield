@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-04-15 12:17:31
+ * @LastEditTime: 2022-04-30 13:45:52
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -64,6 +64,7 @@ Space.defaultProps = {
   direction: 'row',
   alignItems: 'center',
   display: 'flex',
+  sx: { justifyContent: 'center' },
 };
 
 Space.propTypes = {
