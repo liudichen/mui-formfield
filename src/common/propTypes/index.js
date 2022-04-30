@@ -3,12 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-29 23:37:44
+ * @LastEditTime: 2022-04-30 13:24:26
  */
 import PropTypes from 'prop-types';
 
 const sx = PropTypes.oneOfType([
-  PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+  PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])),
   PropTypes.func,
   PropTypes.object,
 ]);
@@ -18,7 +18,7 @@ const fieldWrapperPropTypes = {
   error: PropTypes.bool,
   required: PropTypes.bool,
   label: PropTypes.node,
-  labelPosition: PropTypes.oneOf(['top', 'border']),
+  labelPosition: PropTypes.oneOf([ 'top', 'border' ]),
   labelSx: sx,
   labelProps: PropTypes.object,
   tooltip: PropTypes.node,
@@ -36,8 +36,8 @@ const dataGridPropTypes = {
     PropTypes.shape({
       field: PropTypes.string.isRequired,
       headerName: PropTypes.node,
-      align: PropTypes.oneOf(['left', 'center', 'right']),
-      headerAlign: PropTypes.oneOf(['left', 'center', 'right']),
+      align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
+      headerAlign: PropTypes.oneOf([ 'left', 'center', 'right' ]),
       description: PropTypes.node,
       width: PropTypes.number,
       minWidth: PropTypes.number,
@@ -64,7 +64,7 @@ const dataGridPropTypes = {
           PropTypes.shape({
             value: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
-          }),
+          })
         ),
       ]), // only need when type==='singleSelect'
       getActions: PropTypes.func, //  params:{value,row,..} => ReactNode[], only need when type==='actions'
@@ -74,9 +74,9 @@ const dataGridPropTypes = {
       valueParser: PropTypes.func, // (value)=> any
       renderCell: PropTypes.func, // params:{value,row,...} => ReactNode
       renderHeader: PropTypes.func, // params:{value,row,...} => ReactNode
-      headerClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-      cellClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    }),
+      headerClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
+      cellClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
+    })
   ).isRequired,
 
   autoHeight: PropTypes.bool, // <false> If true, the grid height is dynamic and follow the number of rows in the grid.
@@ -99,7 +99,7 @@ const dataGridPropTypes = {
 
   componentsProps: PropTypes.object, // Overrideable components props dynamically passed to the component at rendering
 
-  density: PropTypes.oneOf(['standard', 'comfortable', 'compact']),
+  density: PropTypes.oneOf([ 'standard', 'comfortable', 'compact' ]),
 
   disableColumnFilter: PropTypes.bool, // <false> If true, column filters are disabled
 
@@ -115,7 +115,7 @@ const dataGridPropTypes = {
 
   disableVirtualization: PropTypes.bool, // If true, the virtualization is disabled
 
-  editMode: PropTypes.oneOf(['cell', 'row']), // Controls whether to use the cell or row editing
+  editMode: PropTypes.oneOf([ 'cell', 'row' ]), // Controls whether to use the cell or row editing
 
   editRowsModel: PropTypes.object, // editRowsModel
 
@@ -123,19 +123,19 @@ const dataGridPropTypes = {
 
   experimentalFeatures: PropTypes.shape({ preventCommitWhileValidating: PropTypes.bool }), // Features under development. For each feature, if the flag is not explicitly set to true, the feature will be fully disabled and any property / method call will not have any effect
 
-  filterMode: PropTypes.oneOf(['client', 'server']), // Filtering can be processed on the server or client-side. Set it to 'server' if you would like to handle filtering on the server-side
+  filterMode: PropTypes.oneOf([ 'client', 'server' ]), // Filtering can be processed on the server or client-side. Set it to 'server' if you would like to handle filtering on the server-side
 
   filterModel: PropTypes.shape({
     // Set the filter model of the grid.
     items: PropTypes.arrayOf(
       PropTypes.shape({
         columnField: PropTypes.string.isRequired,
-        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        id: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
         operatorValue: PropTypes.string,
         value: PropTypes.any,
-      }),
+      })
     ).isRequired,
-    linkOperator: PropTypes.oneOf(['and', 'or']),
+    linkOperator: PropTypes.oneOf([ 'and', 'or' ]),
   }),
 
   /**
@@ -204,7 +204,7 @@ const dataGridPropTypes = {
     warn: PropTypes.func,
   }), // <console>  Pass a custom logger in the components that implements the Logger interface
 
-  logLevel: PropTypes.oneOf(['debug', 'error', 'info', 'warn', false]), // Allows to pass the logging level or false to turn off logging.
+  logLevel: PropTypes.oneOf([ 'debug', 'error', 'info', 'warn', false ]), // Allows to pass the logging level or false to turn off logging.
 
   nonce: PropTypes.string, // Nonce of the inline styles for Content Security Policy
 
@@ -462,7 +462,7 @@ Callback fired when an exception is thrown in the grid
 
   pageSize: PropTypes.number, // <100> Set the number of rows in one page. If some of the rows have children (for instance in the tree data), this number represents the amount of top level rows wanted on each page
 
-  paginationMode: PropTypes.oneOf(['client', 'server']), // Pagination can be processed on the server or client-side. Set it to 'client' if you would like to handle the pagination on the client-side. Set it to 'server' if you would like to handle the pagination on the server-side
+  paginationMode: PropTypes.oneOf([ 'client', 'server' ]), // Pagination can be processed on the server or client-side. Set it to 'client' if you would like to handle the pagination on the client-side. Set it to 'server' if you would like to handle the pagination on the server-side
 
   rowBuffer: PropTypes.number, // <3> Number of extra rows to be rendered before/after the visible slice
 
@@ -476,21 +476,21 @@ Callback fired when an exception is thrown in the grid
 
   scrollbarSize: PropTypes.number, // Override the height/width of the grid inner scrollbar
 
-  selectionModel: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]), // Set the selection model of the grid
+  selectionModel: PropTypes.oneOfType([ PropTypes.number, PropTypes.string, PropTypes.array ]), // Set the selection model of the grid
 
   showCellRightBorder: PropTypes.bool, // If true, the right border of the cells are displayed
 
   showColumnRightBorder: PropTypes.bool, // If true, the right border of the column headers are displayed
 
-  sortingMode: PropTypes.oneOf(['client', 'server']), // Sorting can be processed on the server or client-side. Set it to 'client' if you would like to handle sorting on the client-side. Set it to 'server' if you would like to handle sorting on the server-side
+  sortingMode: PropTypes.oneOf([ 'client', 'server' ]), // Sorting can be processed on the server or client-side. Set it to 'client' if you would like to handle sorting on the client-side. Set it to 'server' if you would like to handle sorting on the server-side
 
-  sortingOrder: PropTypes.arrayOf(PropTypes.oneOf(['asc', 'desc', null])), // <['asc', 'desc', null]> The order of the sorting sequence
+  sortingOrder: PropTypes.arrayOf(PropTypes.oneOf([ 'asc', 'desc', null ])), // <['asc', 'desc', null]> The order of the sorting sequence
 
   sortModel: PropTypes.arrayOf(
     PropTypes.shape({
       field: PropTypes.string.isRequired,
-      sort: PropTypes.oneOf(['asc', 'desc']),
-    }),
+      sort: PropTypes.oneOf([ 'asc', 'desc' ]),
+    })
   ), //	Set the sort model of the grid
 
   sx, // The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details
@@ -500,7 +500,7 @@ const paginationPropTypes = {
   boundaryCount: PropTypes.number, // 1
   classes: PropTypes.object,
   color: PropTypes.oneOfType([
-    PropTypes.oneOf(['standard', 'primary', 'secondary']),
+    PropTypes.oneOf([ 'standard', 'primary', 'secondary' ]),
     PropTypes.string,
   ]), // 'standard'
   onChange: PropTypes.func, // interface: (value) => void
@@ -508,17 +508,173 @@ const paginationPropTypes = {
   hideNextButton: PropTypes.bool,
   hidePrevButton: PropTypes.bool,
   renderItem: PropTypes.bool, // (item) => <PaginationItem {...item} />
-  shape: PropTypes.oneOf(['circular', 'rounded']), // 'circular'
+  shape: PropTypes.oneOf([ 'circular', 'rounded' ]), // 'circular'
   showFirstButton: PropTypes.bool,
   showLastButton: PropTypes.bool,
   siblingCount: PropTypes.number, // 1 当前页码前后总是显示的页码数量
-  size: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small', 'large']), PropTypes.string]), // 'medium'
+  size: PropTypes.oneOfType([ PropTypes.oneOf([ 'medium', 'small', 'large' ]), PropTypes.string ]), // 'medium'
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])),
     PropTypes.func,
     PropTypes.object,
   ]),
-  variant: PropTypes.oneOfType([PropTypes.oneOf(['text', 'outlined']), PropTypes.string]), // 'text'
+  variant: PropTypes.oneOfType([ PropTypes.oneOf([ 'text', 'outlined' ]), PropTypes.string ]), // 'text'
 };
 
-export { sx, fieldWrapperPropTypes, dataGridPropTypes, paginationPropTypes };
+const dialogPropTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The id(s) of the element(s) that describe the dialog.
+   */
+  'aria-describedby': PropTypes.string,
+
+  /**
+   * The id(s) of the element(s) that label the dialog.
+   */
+  'aria-labelledby': PropTypes.string,
+
+  /**
+   * A backdrop component. This prop enables custom backdrop rendering.
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
+   */
+  BackdropComponent: PropTypes.elementType,
+
+  /**
+   * @ignore
+   */
+  BackdropProps: PropTypes.object,
+
+  /**
+   * Dialog children, usually the included sub-components.
+   */
+  children: PropTypes.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   * @default false
+   */
+  disableEscapeKeyDown: PropTypes.bool,
+
+  /**
+   * If `true`, the dialog is full-screen.
+   * @default false
+   */
+  fullScreen: PropTypes.bool,
+
+  /**
+   * If `true`, the dialog stretches to `maxWidth`.
+   *
+   * Notice that the dialog width grow is limited by the default margin.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+
+  /**
+   * Determine the max-width of the dialog.
+   * The dialog width grows with the size of the screen.
+   * Set to `false` to disable `maxWidth`.
+   * @default 'sm'
+   */
+  maxWidth: PropTypes
+  /* @typescript-to-proptypes-ignore */
+    .oneOfType([ PropTypes.oneOf([ 'xs', 'sm', 'md', 'lg', 'xl', false ]), PropTypes.string ]),
+
+  /**
+   * Callback fired when the backdrop is clicked.
+   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
+   */
+  onBackdropClick: PropTypes.func,
+
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
+   */
+  onClose: PropTypes.func,
+
+  /**
+   * If `true`, the component is shown.
+   */
+  open: PropTypes.bool.isRequired,
+
+  /**
+   * The component used to render the body of the dialog.
+   * @default Paper
+   */
+  PaperComponent: PropTypes.elementType,
+
+  /**
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * @default {}
+   */
+  PaperProps: PropTypes.object,
+
+  /**
+   * Determine the container for scrolling the dialog.
+   * @default 'paper'
+   */
+  scroll: PropTypes.oneOf([ 'body', 'paper' ]),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([ PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])), PropTypes.func, PropTypes.object ]),
+
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
+   */
+  TransitionComponent: PropTypes.elementType,
+
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
+   * }
+   */
+  transitionDuration: PropTypes.oneOfType([ PropTypes.number, PropTypes.shape({
+    appear: PropTypes.number,
+    enter: PropTypes.number,
+    exit: PropTypes.number,
+  }) ]),
+
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   */
+  TransitionProps: PropTypes.object,
+};
+
+export {
+  sx,
+  fieldWrapperPropTypes,
+  dataGridPropTypes,
+  paginationPropTypes,
+  dialogPropTypes,
+};
