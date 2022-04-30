@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 13:41:40
- * @LastEditTime: 2022-04-15 18:53:21
+ * @LastEditTime: 2022-04-30 13:47:04
  */
 import React from 'react';
 
@@ -20,6 +20,10 @@ export interface SpaceProps {
   flexDirection?: any;
   split?: React.ReactNode;
   display?: string,
+  /**
+   * sx add to root Box
+   * @default {justifyContent:'center'}
+   */
   sx?: sxType,
 }
 
