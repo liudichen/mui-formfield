@@ -108,20 +108,22 @@ const EditableTable = (props) => {
   const renderHeader = useCreation(() => () =>
     <>
       {actionsColumnTitle}
-      <GridActionsCellItem
-        label=''
-        {...(actionsItemProps || {})}
-        color={actionsIconColor}
-        onClick={() => handleAddRow()}
-        disabled={disabled}
-        icon={
-          <Tooltip title={addRowLabel} placement='top' arrow>
-            {addRowIcon ?? <PlusOneOutlinedIcon color={actionsIconColor} />}
-          </Tooltip>
-        }
-      />
+      { showAddRow && (
+        <GridActionsCellItem
+          label=''
+          {...(actionsItemProps || {})}
+          color={actionsIconColor}
+          onClick={() => handleAddRow()}
+          disabled={disabled}
+          icon={
+            <Tooltip title={addRowLabel} placement='top' arrow>
+              {addRowIcon ?? <PlusOneOutlinedIcon color={actionsIconColor} />}
+            </Tooltip>
+          }
+        />
+      )}
     </>
-  , [ addRowIcon, addRowLabel, actionsIconColor, actionsItemProps, actionsColumnTitle, disabled ]);
+  , [ showAddRow, addRowIcon, addRowLabel, actionsIconColor, actionsItemProps, actionsColumnTitle, disabled ]);
 
   const getActions = useMemoizedFn(({ row, id }) => {
     const actions = [];
