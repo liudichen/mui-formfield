@@ -256,7 +256,7 @@ const EditableTable = (props) => {
     getActions,
   }), [ disabled, actionsColWidth, actionsColumnTitle, showAddRow, renderHeader ]);
   const columns = useCreation(() => (
-    (columnsProp || []).map((item) => ({ align: 'center', headerAlign: 'center', ...item, editable: false })).concat(editable ? actionsCol : [])
+    (columnsProp || []).map((item) => ({ align: 'center', headerAlign: 'center', headerName: item.title, ...item, editable: false })).concat(editable ? actionsCol : [])
   ), [ columnsProp, actionsCol, editable ]);
   return (
     <FieldWrapper
