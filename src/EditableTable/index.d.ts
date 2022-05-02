@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-04-30 15:01:09
+ * @LastEditTime: 2022-05-02 22:03:46
  */
 import React from 'react';
-import { DataGridProps, GridActionsCellItemProps, GridToolbarProps } from '@mui/x-data-grid';
+import { DataGridProps, GridActionsCellItemProps, GridToolbarProps, GridEnrichedColDef } from '@mui/x-data-grid';
 import { DialogProps, PaginationProps } from '@mui/material';
 
 import { fieldCommonProps, FieldWrapperRelateProps } from '../types';
@@ -40,9 +40,12 @@ export interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
   content?: React.ReactNode,
   disabled?: boolean,
 }
+interface columnType extends GridEnrichedColDef {
+  title?: string,
+}
 
-export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, DataGridProps {
-
+export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, Omit<DataGridProps, 'columns'> {
+  columns: columnType[],
 
   /**
    * If false, actions column will not show

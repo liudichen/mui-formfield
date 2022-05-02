@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-04-30 13:28:26
+ * @LastEditTime: 2022-05-02 22:15:41
  */
 import PropTypes from 'prop-types';
 
@@ -35,20 +35,27 @@ const dataGridPropTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       field: PropTypes.string.isRequired,
-      headerName: PropTypes.node,
+      headerName: PropTypes.string,
+      title: PropTypes.string, // 可以替代headerName，
+      description: PropTypes.string,
       align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
       headerAlign: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-      description: PropTypes.node,
       width: PropTypes.number,
       minWidth: PropTypes.number,
       maxWidth: PropTypes.number,
       flex: PropTypes.number,
       hideable: PropTypes.bool, // 是否可手动隐藏
+      hideSortIcons: PropTypes.bool,
+      sortable: PropTypes.bool, // true
+      sortingOrder: PropTypes.arrayOf(PropTypes.oneOf([ 'asc', 'desc', null, undefined ])),
+      sortComparator: PropTypes.func,
       disableReorder: PropTypes.bool, // 是否禁止列排序(Pro功能)
+      disableColumnMenu: PropTypes.bool,
+      disableExport: PropTypes.bool,
       editable: PropTypes.bool,
       pinnable: PropTypes.bool, // true
-      sortable: PropTypes.bool, // true
       filterable: PropTypes.bool, // true
+      filterOperators: PropTypes.object,
       type: PropTypes.oneOf([
         'string',
         'number',
@@ -59,13 +66,15 @@ const dataGridPropTypes = {
         'actions',
       ]), // 'string'
       valueOptions: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.string),
-        PropTypes.arrayOf(
+        PropTypes.func,
+        PropTypes.arrayOf(PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.string,
           PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            label: PropTypes.string.isRequired,
-          })
-        ),
+            value: PropTypes.any,
+            label: PropTypes.string,
+          }),
+        ])),
       ]), // only need when type==='singleSelect'
       getActions: PropTypes.func, //  params:{value,row,..} => ReactNode[], only need when type==='actions'
       valueGetter: PropTypes.func, // params:{value,row,..} => any
@@ -73,9 +82,14 @@ const dataGridPropTypes = {
       valueFormatter: PropTypes.func, // params:{value,row,..} => any
       valueParser: PropTypes.func, // (value)=> any
       renderCell: PropTypes.func, // params:{value,row,...} => ReactNode
+      renderEditCell: PropTypes.func, // params:{value,row,...} => ReactNode
       renderHeader: PropTypes.func, // params:{value,row,...} => ReactNode
       headerClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
       cellClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
+      colSpan: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.func, // params:{value,row,..} => number | undefined
+      ]),
     })
   ).isRequired,
 
