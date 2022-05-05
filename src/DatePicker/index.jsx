@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-04-15 14:51:39
+ * @LastEditTime: 2022-05-05 14:59:51
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,6 +11,7 @@ import { TextField } from '@mui/material';
 import MuiDatePicker from '@mui/lab/DatePicker';
 
 import { FieldWrapper, LabelRender, useMergedState, fieldWrapperPropTypes } from '../common';
+import dayjs from 'dayjs';
 
 const DatePicker = (props) => {
   const {
@@ -22,7 +23,7 @@ const DatePicker = (props) => {
     inputLabel, size, placeholder, inputProps,
     ...restProps
   } = props;
-  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => s || null });
+  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => (s ? dayjs(s).format('YYYY-MM-DD') : null) });
   return (
     <FieldWrapper
       error={error}
