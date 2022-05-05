@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 14:51:46
- * @LastEditTime: 2022-04-15 18:52:30
+ * @LastEditTime: 2022-05-05 17:27:21
  */
 import { FieldWrapperRelateProps } from '../types';
-import { DatePickerProps as MuiProps } from '@mui/lab';
+import { DatePickerProps as MuiProps } from '@mui/x-date-pickers';
 import React from 'react';
 
 type sizeString = 'medium' | 'small';

@@ -3,12 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-05-05 14:59:51
+ * @LastEditTime: 2022-05-05 17:28:01
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
-import MuiDatePicker from '@mui/lab/DatePicker';
+import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { FieldWrapper, LabelRender, useMergedState, fieldWrapperPropTypes } from '../common';
 import dayjs from 'dayjs';
