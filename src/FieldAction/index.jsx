@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 19:05:13
- * @LastEditTime: 2022-04-15 23:47:34
+ * @LastEditTime: 2022-05-05 10:33:58
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,6 +15,7 @@ import { getItemColsProps } from '../FieldLayout/utils';
 
 const FieldAction = (props) => {
   const {
+    xs, sm, md, lg, xl,
     isFieldAction,
     children,
     ...restProps
@@ -77,6 +78,11 @@ FieldAction.propTypes = {
   ]), // 'row'
   wrap: PropTypes.oneOf([ 'wrap', 'wrap-reverse', 'nowrap' ]), // 'wrap'
   zeroMinWidth: PropTypes.bool, // false
+  xs: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
+  sm: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
+  md: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
+  lg: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
+  xl: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
 };
 
 FieldAction.displayName = 'FieldAction';
