@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-30 10:12:46
- * @LastEditTime: 2022-04-30 13:31:13
+ * @LastEditTime: 2022-05-06 10:04:39
  */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -29,7 +29,10 @@ const DeleteConfirmModal = (props) => {
           <Button onClick={() => setOpen(false)}>
             No
           </Button>
-          <Button onClick={() => !disabled && onYes?.()}>
+          <Button onClick={(e) => {
+            e?.stopPropagation?.();
+            !disabled && onYes?.();
+          }}>
             Yes
           </Button>
         </DialogActions>

@@ -133,7 +133,7 @@ const EditableTable = (props) => {
           label={editLabel}
           showInMenu={editInMenu}
           disabled={disabled}
-          // onClick={(e) => e?.stopPropagation?.()}
+          onClick={(e) => e?.stopPropagation?.()}
           color={actionsIconColor}
           {...(actionsItemProps || {})}
           icon={(
@@ -183,7 +183,10 @@ const EditableTable = (props) => {
             </Tooltip>
           }
           disabled={isSorterDisabled(id, true)}
-          onClick={() => handleMove(id, true) }
+          onClick={(e) => {
+            e?.stopPropagation?.();
+            handleMove(id, true);
+          } }
         />
       );
       actions.push(
@@ -198,7 +201,10 @@ const EditableTable = (props) => {
             </Tooltip>
           }
           disabled={isSorterDisabled(id, false)}
-          onClick={() => handleMove(id, false)}
+          onClick={(e) => {
+            e?.stopPropagation?.();
+            handleMove(id, false);
+          }}
         />
       );
     }
@@ -215,7 +221,10 @@ const EditableTable = (props) => {
             </Tooltip>
           }
           disabled={disabled}
-          onClick={() => handleAddRow(id)}
+          onClick={(e) => {
+            e?.stopPropagation?.();
+            handleAddRow(id);
+          }}
         />
       );
     }
