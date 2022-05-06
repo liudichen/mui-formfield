@@ -30,7 +30,7 @@ const EditableTable = (props) => {
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
     editIcon, deleteIcon, addRowIcon, moveUpIcon, moveDownIcon,
-    paginationProps, initialState, initialPageSize, componentsProps, paginationMode, autoHeight,
+    paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight,
     rootClassName,
     ...restProps
   } = props;
@@ -289,6 +289,11 @@ const EditableTable = (props) => {
           getRowId={(row) => row[rowKey]}
           paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
           autoHeight={height ? false : autoHeight}
+          components={{
+            Pagination: DataGridPagination,
+            NoRowsOverlay,
+            ...(components || {}),
+          }}
           componentsProps={{
             toolbar: {
               csvOptions: {
@@ -336,10 +341,10 @@ EditableTable.defaultProps = {
   moveUpLabel: '上移一行',
   moveDownLabel: '下移一行',
   actionsIconColor: 'primary',
-  components: {
-    Pagination: DataGridPagination,
-    NoRowsOverlay,
-  },
+  // components: {
+  //   Pagination: DataGridPagination,
+  //   NoRowsOverlay,
+  // },
   fullWidth: true,
   editable: true,
 };
