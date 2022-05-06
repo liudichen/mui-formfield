@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.2.8-alpha0.1",
+  "version": "0.2.8",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",

@@ -10,10 +10,10 @@ import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubl
 import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
 import PlusOneOutlinedIcon from '@mui/icons-material/PlusOneOutlined';
 
-import DeleteConfirmModal from './DeleteConfirmModal';
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
 import { dataGridPropTypes, dialogPropTypes, FieldWrapper, fieldWrapperPropTypes, paginationPropTypes } from '../common';
+import DeleteActionItem from './DeleteActionItem';
 
 const EditableTable = (props) => {
   const {
@@ -135,6 +135,7 @@ const EditableTable = (props) => {
           disabled={disabled}
           color={actionsIconColor}
           {...(actionsItemProps || {})}
+
           icon={(
             <EditModal
               trigger={
@@ -151,21 +152,38 @@ const EditableTable = (props) => {
         />
       );
     }
-    if (showDelete) {
+    if (showAddRow) {
       actions.push(
         <GridActionsCellItem
+          showInMenu={addRowInMenu}
+          label= {addRowLabel}
+          color={actionsIconColor}
+          {...(actionsItemProps || {})}
+          icon={
+            <Tooltip title={addRowInMenu ? '' : addRowLabel} placement='top' arrow>
+              {addRowIcon ?? <PlusOneOutlinedIcon color={actionsIconColor} />}
+            </Tooltip>
+          }
+          disabled={disabled}
+          onClick={() => handleAddRow(id)}
+        />
+      );
+    }
+    if (showDelete) {
+      actions.push(
+        <DeleteActionItem
           label={deleteLabel}
           disabled={disabled}
           color={actionsIconColor}
           {...(actionsItemProps || {})}
           icon={
-            <DeleteConfirmModal disabled={disabled} onYes={() => handleDeleteRow(id)} {...(deleteConfirmDialogProps || {})}>
-              <Tooltip title={deleteInMenu ? '' : deleteLabel} placement='top' arrow>
-                { deleteIcon ?? <DeleteIcon color={actionsIconColor} fontSize='small'/>}
-              </Tooltip>
-            </DeleteConfirmModal>
+            <Tooltip title={deleteInMenu ? '' : deleteLabel} placement='top' arrow>
+              { deleteIcon ?? <DeleteIcon color={actionsIconColor} fontSize='small'/>}
+            </Tooltip>
           }
           showInMenu={deleteInMenu}
+          handleDeleteRow={() => handleDeleteRow(id)}
+          deleteConfirmDialogProps={deleteConfirmDialogProps}
         />
       );
     }
@@ -198,23 +216,6 @@ const EditableTable = (props) => {
           }
           disabled={isSorterDisabled(id, false)}
           onClick={() => handleMove(id, false)}
-        />
-      );
-    }
-    if (showAddRow) {
-      actions.push(
-        <GridActionsCellItem
-          showInMenu={addRowInMenu}
-          label= {addRowLabel}
-          color={actionsIconColor}
-          {...(actionsItemProps || {})}
-          icon={
-            <Tooltip title={addRowInMenu ? '' : addRowLabel} placement='top' arrow>
-              {addRowIcon ?? <PlusOneOutlinedIcon color={actionsIconColor} />}
-            </Tooltip>
-          }
-          disabled={disabled}
-          onClick={() => handleAddRow(id)}
         />
       );
     }
