@@ -34,6 +34,9 @@ const EditableTable = (props) => {
     rootClassName,
     ...restProps
   } = props;
+
+  const { toolbar, pagination, ...restComponentsProps } = (componentsProps || {});
+
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
   const rowsRef = useLatest(toJS(rows));
   const disabled = useCreation(() => !!(disabledProp || readOnly), [ disabledProp, readOnly ]);
@@ -294,14 +297,16 @@ const EditableTable = (props) => {
               printOptions: {
                 disableToolbarButton: true, // 不显示打印按钮
               },
+              ...(toolbar || {}),
             },
             pagination: {
               ...(paginationProps || {}),
               rowsPerPageOptions: props.rowsPerPageOptions,
               onChange: props.onPageChange,
               onPageSizeChange: props.onPageSizeChange,
+              ...(pagination || {}),
             },
-            ...(componentsProps || {}),
+            ...restComponentsProps,
           }}
           initialState={{
             ...(initialPageSize ? { pagination: { pageSize: initialPageSize } } : {}),
