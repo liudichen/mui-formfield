@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:06
- * @LastEditTime: 2022-04-15 12:14:03
+ * @LastEditTime: 2022-05-06 08:51:35
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -23,8 +23,8 @@ const LabelRender = (props) => {
       }}
       {...(labelProps || {})}
     >
-      <Stack direction='row' alignItems='center'>
-        <span>
+      <Stack direction='row' alignItems='center' width='100%'>
+        <span title={label} style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {required && (
             <span style={{ color: 'red' }}>
               *&nbsp;
