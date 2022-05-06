@@ -25,7 +25,7 @@ const EditableTable = (props) => {
     readOnly, disabled: disabledProp,
     columns: columnsProp,
     height, width,
-    rowKey, editable, extraData: extraDataProp,
+    rowKey, editable, extraData,
     showEdit, editInMenu, EditModal, showDelete, deleteInMenu, showSorter, sorterInMenu, showAddRow, addRowInMenu, getNewRow,
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
@@ -35,7 +35,6 @@ const EditableTable = (props) => {
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
-  const extraData = useLatest(extraDataProp);
   const rowsRef = useLatest(toJS(rows));
   const disabled = useCreation(() => !!(disabledProp || readOnly), [ disabledProp, readOnly ]);
   const onChange = useMemoizedFn((v) => {
