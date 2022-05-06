@@ -25,7 +25,7 @@ const EditableTable = (props) => {
     readOnly, disabled: disabledProp,
     columns: columnsProp,
     height, width,
-    rowKey, editable,
+    rowKey, editable, extraData,
     showEdit, editInMenu, EditModal, showDelete, deleteInMenu, showSorter, sorterInMenu, showAddRow, addRowInMenu, getNewRow,
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
@@ -147,6 +147,7 @@ const EditableTable = (props) => {
               row={row}
               rowsRef={rowsRef}
               handleUpdateRow={handleUpdateRow}
+              extraData={extraData}
             />
           )}
         />
@@ -340,6 +341,8 @@ EditableTable.defaultProps = {
 
 EditableTable.propTypes = {
   ...fieldWrapperPropTypes,
+
+  extraData: PropTypes.any,
 
   editable: PropTypes.bool,
 
