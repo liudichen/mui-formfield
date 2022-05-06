@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-05-06 15:24:30
+ * @LastEditTime: 2022-05-06 15:37:45
  */
 import React from 'react';
 import { DataGridProps, GridActionsCellItemProps, GridToolbarProps, GridColDef } from '@mui/x-data-grid';
@@ -25,7 +25,9 @@ export interface EditModalProps {
   trigger: React.ReactNode,
   rowsRef: rowRefType,
   handleUpdateRow: (updatedRow:rowType) => void,
-  extraData: any,
+  extraData: {
+    current: any,
+  },
 }
 
 export interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
