@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-05-09 19:56:03
+ * @LastEditTime: 2022-05-09 21:05:22
  */
 import PropTypes from 'prop-types';
 
@@ -71,6 +71,7 @@ const dataGridPropTypes = {
       statusColorConvert: PropTypes.func, // 自定义的用于 type='status'
       statusTypeConvert: PropTypes.func, // 自定义的用于 type='status'
       statusTextConvert: PropTypes.func, // 自定义的用于 type='status'
+      statusConvert: PropTypes.func, // 自定义的用于 type='status'
 
       valueOptions: PropTypes.oneOfType([
         PropTypes.func,
