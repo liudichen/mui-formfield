@@ -27,7 +27,7 @@ const EditableTable = (props) => {
     columns: columnsProp,
     height, width,
     rowKey, editable, extraData,
-    showEdit, editInMenu, EditModal, showDelete, deleteInMenu, showSorter, sorterInMenu, showAddRow, addRowInMenu, getNewRow,
+    showEdit, editInMenu, EditModal, showDelete, deleteInMenu, showSorter, sorterInMenu, showAddRow, addRowInMenu, getNewRow, editMode,
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
     editIcon, deleteIcon, addRowIcon, moveUpIcon, moveDownIcon,
@@ -131,7 +131,7 @@ const EditableTable = (props) => {
 
   const getActions = useMemoizedFn(({ row, id }) => {
     const actions = [];
-    if (showEdit && EditModal) {
+    if (showEdit && EditModal && editMode === 'modal') {
       actions.push(
         <GridActionsCellItem
           label={editLabel}
@@ -232,7 +232,7 @@ const EditableTable = (props) => {
     }
     let outer = 0;
     let inner = 0;
-    if (showEdit) {
+    if (showEdit && editMode === 'modal') {
       if (editInMenu) { inner += 1; } else { outer += 1; }
     }
     if (showAddRow) {
@@ -247,7 +247,7 @@ const EditableTable = (props) => {
     const count = outer + (inner ? 1 : 0);
     const width = count * 38 + 6;
     return width > 80 ? width : 80;
-  }, [ actionsColumnWidth, showEdit, editInMenu, showDelete, deleteInMenu, showAddRow, addRowInMenu, showSorter, sorterInMenu ]);
+  }, [ actionsColumnWidth, showEdit, editInMenu, showDelete, deleteInMenu, showAddRow, addRowInMenu, showSorter, sorterInMenu, editMode ]);
   const actionsCol = useCreation(() => ({
     field: 'innerActions',
     renderHeader,
@@ -295,6 +295,7 @@ const EditableTable = (props) => {
             NoRowsOverlay,
             ...(components || {}),
           }}
+          editMode={editMode === 'modal' ? undefined : editMode}
           componentsProps={{
             toolbar: {
               csvOptions: {
@@ -348,6 +349,7 @@ EditableTable.defaultProps = {
   // },
   fullWidth: true,
   editable: true,
+  editMode: 'modal',
 };
 
 EditableTable.propTypes = {
@@ -397,7 +399,10 @@ EditableTable.propTypes = {
   actionsItemProps: PropTypes.object,
   deleteConfirmDialogProps: PropTypes.shape(dialogPropTypes),
 
-  ...dataGridPropTypes,
+  ...{
+    ...dataGridPropTypes,
+    editMode: PropTypes.oneOf([ 'cell', 'row', 'modal' ]),
+  },
 
 };
 

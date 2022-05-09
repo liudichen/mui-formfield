@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-05-09 21:10:58
+ * @LastEditTime: 2022-05-09 21:20:16
  */
 import React from 'react';
 import { GridActionsCellItemProps } from '@mui/x-data-grid';
@@ -43,7 +43,8 @@ export interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
   disabled?: boolean,
 }
 
-export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, Omit<DataGridTableProps, 'rows'> {
+export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, Omit<Omit<DataGridTableProps, 'rows'>, 'editMode'> {
+  editMode?: 'cell' | 'row' | 'modal', // 增加了1个modal编辑模式
   /**
    * If false, actions column will not show
    * @default true
