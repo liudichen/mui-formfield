@@ -261,8 +261,8 @@ const EditableTable = (props) => {
     getActions,
   }), [ disabled, actionsColWidth, actionsColumnTitle, showAddRow, renderHeader ]);
   const columns = useCreation(() => (
-    (columnsProp || []).map((item) => initColumn(item, { align: 'center', headerAlign: 'center' }, { editable: false })).concat(editable ? actionsCol : [])
-  ), [ columnsProp, actionsCol, editable ]);
+    (columnsProp || []).map((item) => initColumn(item, { align: 'center', headerAlign: 'center' }, editMode === 'modal' ? { editable: false } : {})).concat(editable ? actionsCol : [])
+  ), [ columnsProp, actionsCol, editable, editMode ]);
   return (
     <FieldWrapper
       error={error}
