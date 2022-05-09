@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-04-30 13:48:20
+ * @LastEditTime: 2022-05-09 13:27:52
 -->
 # mui-formfield
 
@@ -30,7 +30,6 @@ export { default as DateRangePicker, DateRangePickerProps } from './DateRangePic
 export { default as FieldAction, FieldActionProps } from './FieldAction';
 export { default as FieldLayout, FieldLayoutProps } from './FieldLayout';
 export { default as RadioGroup, RadioGroupProps } from './RadioGroup';
-export { default as Space, SpaceProps } from './Space';
 export { default as Switch, SwitchProps } from './Switch';
 export { default as TextField, TextFieldProps } from './TextField';
 export { default as ToggleButtonGroup, ToggleButtonGroupProps } from './ToggleButtonGroup';
