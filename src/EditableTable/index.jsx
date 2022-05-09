@@ -31,12 +31,19 @@ const EditableTable = (props) => {
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
     editIcon, deleteIcon, addRowIcon, moveUpIcon, moveDownIcon,
-    paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp,
+    paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp, sx: sxProp, editingRowBorderColor,
     rootClassName,
     ...restProps
   } = props;
 
   const { toolbar, pagination, ...restComponentsProps } = (componentsProps || {});
+  const sx = useCreation(() => (editingRowBorderColor ? {
+    '& .MuiDataGrid-row--editing': {
+      border: `2px solid ${editingRowBorderColor}`,
+      boxShadow: `1px 3px 2px 1px ${editingRowBorderColor}`,
+    },
+    ...(sxProp || {}),
+  } : sxProp), [ sxProp, editingRowBorderColor ]);
 
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
   const rowsRef = useLatest(toJS(rows));
@@ -310,6 +317,7 @@ const EditableTable = (props) => {
         style={height ? { height } : {} }
       >
         <DataGrid
+          sx={sx}
           rows={toJS(rows)}
           columns={columns}
           getRowId={(row) => row[rowKey]}
@@ -377,6 +385,7 @@ EditableTable.defaultProps = {
   fullWidth: true,
   editable: true,
   editMode: 'modal',
+  editingRowBorderColor: '#f759ab',
 };
 
 EditableTable.propTypes = {
@@ -385,6 +394,7 @@ EditableTable.propTypes = {
   extraData: PropTypes.any,
 
   editable: PropTypes.bool,
+  editingRowBorderColor: PropTypes.string, // 正在编辑的行的颜色,仅editMode='row'时有用实际
 
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,
