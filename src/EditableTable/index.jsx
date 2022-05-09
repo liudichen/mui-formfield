@@ -31,7 +31,7 @@ const EditableTable = (props) => {
     editLabel, deleteLabel, moveUpLabel, moveDownLabel, addRowLabel, deleteConfirmDialogProps,
     actionsColumnWidth, actionsColumnTitle, actionsIconColor, actionsItemProps,
     editIcon, deleteIcon, addRowIcon, moveUpIcon, moveDownIcon,
-    paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight,
+    paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, onCellEditCommit: onCellEditCommitProp, onRowEditStop: onRowEditStopProp,
     rootClassName,
     ...restProps
   } = props;
@@ -263,6 +263,31 @@ const EditableTable = (props) => {
   const columns = useCreation(() => (
     (columnsProp || []).map((item) => initColumn(item, { align: 'center', headerAlign: 'center' }, editMode === 'modal' ? { editable: false } : {})).concat(editable ? actionsCol : [])
   ), [ columnsProp, actionsCol, editable, editMode ]);
+
+  const onCellEditCommit = useMemoizedFn((params, e, detail) => {
+    const { id, field, row, value } = params;
+    const newRow = { ...row, [field]: value };
+    setRows((rawRows) => {
+      const index = getIndex(id);
+      if (index === -1) { return rawRows; }
+      const newRows = [ ...(rawRows || []) ];
+      newRows[index] = newRow;
+      return newRows;
+    });
+    onCellEditCommitProp?.(params, e, detail);
+  });
+
+  const onRowEditStop = useMemoizedFn((params, e, detail) => {
+    const { row, id } = params;
+    setRows((rawRows) => {
+      const index = getIndex(id);
+      if (index === -1) { return rawRows; }
+      const newRows = [ ...(rawRows || []) ];
+      newRows[index] = { ...row };
+      return newRows;
+    });
+    onRowEditStopProp?.(params, e, detail);
+  });
   return (
     <FieldWrapper
       error={error}
@@ -296,6 +321,8 @@ const EditableTable = (props) => {
             ...(components || {}),
           }}
           editMode={editMode === 'modal' ? undefined : editMode}
+          onCellEditCommit={editMode === 'cell' ? onCellEditCommit : onCellEditCommitProp}
+          onRowEditStop={editMode === 'row' ? onRowEditStop : onRowEditStopProp}
           componentsProps={{
             toolbar: {
               csvOptions: {
