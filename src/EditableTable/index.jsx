@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useLatest } from 'ahooks';
 import { toJS } from '@formily/reactive';
-import { DataGrid, zhCN, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
+import { DataGrid, zhCN, GridActionsCellItem } from '@mui/x-data-grid';
 import { Tooltip } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
@@ -399,10 +399,6 @@ EditableTable.propTypes = {
 
   ...dataGridPropTypes,
 
-};
-
-export {
-  GridToolbar,
 };
 
 export default EditableTable;

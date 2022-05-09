@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-05-09 17:09:47
+ * @LastEditTime: 2022-05-09 21:12:07
 -->
 # mui-formfield
 
@@ -35,7 +35,7 @@ export { default as TextField, TextFieldProps } from './TextField';
 export { default as ToggleButtonGroup, ToggleButtonGroupProps } from './ToggleButtonGroup';
 export { default as UploadButton, UploadButtonProps } from './UploadButton';
 export { default as Transfer, TransferProps } from './Transfer';
-export { default as EditableTable, EditableTableProps, GridToolbar, EditModalProps, DeleteConfirmDialogProps } from './EditableTable';
+export { default as EditableTable, EditableTableProps, EditModalProps, DeleteConfirmDialogProps } from './EditableTable';
 
 ```
 

@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-05-09 17:08:47
+ * @LastEditTime: 2022-05-09 21:10:58
  */
 import React from 'react';
-import { GridActionsCellItemProps, GridToolbarProps } from '@mui/x-data-grid';
+import { GridActionsCellItemProps } from '@mui/x-data-grid';
 import { DialogProps } from '@mui/material';
 import { DataGridTableProps } from 'mui-component';
 
@@ -208,12 +208,9 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
 
 }
 
-declare const GridToolbar: React.FunctionComponent<GridToolbarProps>;
-
 export {
   DragSortColumnItemProps,
   ActionsColumnItemProps,
-  GridToolbar,
   RenderAddRowProps,
 };
 
