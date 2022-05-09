@@ -3,11 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-05-06 15:46:55
+ * @LastEditTime: 2022-05-09 17:08:47
  */
 import React from 'react';
-import { DataGridProps, GridActionsCellItemProps, GridToolbarProps, GridColDef } from '@mui/x-data-grid';
-import { DialogProps, PaginationProps } from '@mui/material';
+import { GridActionsCellItemProps, GridToolbarProps } from '@mui/x-data-grid';
+import { DialogProps } from '@mui/material';
+import { DataGridTableProps } from 'mui-component';
 
 import { fieldCommonProps, FieldWrapperRelateProps } from '../types';
 
@@ -41,13 +42,8 @@ export interface DeleteConfirmDialogProps extends Omit<DialogProps, 'open'>{
   content?: React.ReactNode,
   disabled?: boolean,
 }
-interface columnType extends GridColDef<any, any, any> {
-  title?: string,
-}
 
-export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, Omit<DataGridProps, 'columns'> {
-  columns: columnType[],
-
+export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommonProps<rowType[]>, Omit<DataGridTableProps, 'rows'> {
   /**
    * If false, actions column will not show
    * @default true
@@ -65,28 +61,14 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
   refreshRowsFlag?: string | number,
 
   /**
-   * table's height only when autoHeight !== true
-   */
-  height?: number | string,
-
-  /**
    * table width, Not recommended. You should define table's parent component's width, and then let fullWidth=true
    */
   width?: number | string,
-
-  paginationProps?: PaginationProps,
-  initialPageSize?: number,
 
   /**
    * className applied on table's parrnet
    */
   rootClassName?: string,
-
-  /**
-   * field name of row's id
-   * @default 'id'
-   */
-  rowKey?: string,
 
   /**
    * whether to show Edit item in actions column
@@ -227,16 +209,11 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
 }
 
 declare const GridToolbar: React.FunctionComponent<GridToolbarProps>;
-declare const allAlignCenter : {
-  headerAlign: 'center',
-  align: 'center',
-};
 
 export {
   DragSortColumnItemProps,
   ActionsColumnItemProps,
   GridToolbar,
-  allAlignCenter,
   RenderAddRowProps,
 };
 

@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowUpOutlined';
 import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
 import PlusOneOutlinedIcon from '@mui/icons-material/PlusOneOutlined';
+import { initColumn } from 'mui-component';
 
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
@@ -260,7 +261,7 @@ const EditableTable = (props) => {
     getActions,
   }), [ disabled, actionsColWidth, actionsColumnTitle, showAddRow, renderHeader ]);
   const columns = useCreation(() => (
-    (columnsProp || []).map((item) => ({ align: 'center', headerAlign: 'center', headerName: item.title, ...item, editable: false })).concat(editable ? actionsCol : [])
+    (columnsProp || []).map((item) => initColumn(item, { align: 'center', headerAlign: 'center' }, { editable: false })).concat(editable ? actionsCol : [])
   ), [ columnsProp, actionsCol, editable ]);
   return (
     <FieldWrapper
@@ -402,10 +403,6 @@ EditableTable.propTypes = {
 
 export {
   GridToolbar,
-};
-export const allAlignCenter = {
-  headerAlign: 'center',
-  align: 'center',
 };
 
 export default EditableTable;
