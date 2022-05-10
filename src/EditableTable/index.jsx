@@ -268,31 +268,28 @@ const EditableTable = (props) => {
     getActions,
   }), [ disabled, actionsColWidth, actionsColumnTitle, showAddRow, renderHeader ]);
   const columns = useCreation(() => (
-    (columnsProp || []).map((item) => initColumn(item, { align: 'center', headerAlign: 'center' }, editMode === 'modal' ? { editable: false } : {})).concat(editable ? actionsCol : [])
+    (columnsProp || []).map((item) => initColumn(item, { align: 'center', headerAlign: 'center' }, editMode === 'modal' ? { editable: false } : {})).concat(editable && (showAddRow || showDelete || showEdit || showSorter) ? actionsCol : [])
   ), [ columnsProp, actionsCol, editable, editMode ]);
 
   const onCellEditCommit = useMemoizedFn((params, e, detail) => {
-    const { id, field, row, value } = params;
-    const newRow = { ...row, [field]: value };
-    setRows((rawRows) => {
-      const index = getIndex(id);
-      if (index === -1) { return rawRows; }
-      const newRows = [ ...(rawRows || []) ];
-      newRows[index] = newRow;
-      return newRows;
-    });
+    const { id, field, value } = params;
+    const index = getIndex(id);
+    if (index !== -1) {
+      const newRows = [ ...(rowsRef.current || []) ];
+      newRows[index] = { ...newRows[index], [field]: value };
+      onChange(newRows);
+    }
     onCellEditCommitProp?.(params, e, detail);
   });
 
   const onRowEditStop = useMemoizedFn((params, e, detail) => {
     const { row, id } = params;
-    setRows((rawRows) => {
-      const index = getIndex(id);
-      if (index === -1) { return rawRows; }
-      const newRows = [ ...(rawRows || []) ];
+    const index = getIndex(id);
+    if (index !== -1) {
+      const newRows = [ ...(rowsRef.current || []) ];
       newRows[index] = { ...row };
-      return newRows;
-    });
+      onChange(newRows);
+    }
     onRowEditStopProp?.(params, e, detail);
   });
   return (
