@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-04-20 19:46:41
+ * @LastEditTime: 2022-05-10 21:26:10
  */
 import * as React from 'react';
 import { SxProps as sxType } from '@mui/material';
@@ -22,6 +22,7 @@ export interface LabelRenderProps {
   required?: boolean;
   labelSx?: object;
   labelProps?: object;
+  error?: boolean,
 }
 
 export interface FieldWrapperRelateProps extends LabelRenderProps {
