@@ -311,6 +311,7 @@ const EditableTable = (props) => {
       showHelperText={showHelperText}
       helperTextSx={helperTextSx}
       helperTextProps={helperTextProps}
+      noFormControl
     >
       <div
         className={rootClassName}
