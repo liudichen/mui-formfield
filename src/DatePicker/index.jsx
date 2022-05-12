@@ -3,12 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-05-12 16:48:36
+ * @LastEditTime: 2022-05-12 16:49:41
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 
 import { FieldWrapper, LabelRender, useMergedState, fieldWrapperPropTypes } from '../common';
 
@@ -22,7 +23,7 @@ const DatePicker = (props) => {
     inputLabel, size, placeholder, inputProps,
     ...restProps
   } = props;
-  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => (s || null) });
+  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => (dayjs(s) || null) });
   return (
     <FieldWrapper
       error={error}
