@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-05-10 12:08:38
+ * @LastEditTime: 2022-05-12 16:48:36
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -74,7 +74,7 @@ DatePicker.defaultProps = {
   mask: '____/__/__',
   size: 'small',
   labelPosition: 'top',
-  placeholder: 'yyyy/mm/dd',
+  placeholder: '',
   showClear: true,
   cancelText: '取消',
   clearText: '清除',
