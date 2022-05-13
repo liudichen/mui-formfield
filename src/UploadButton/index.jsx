@@ -45,7 +45,7 @@ const UploadButton = (props) => {
     validator,
     ...restProps
   } = props;
-  const [ fileList, setFileList ] = useMergedState(defaultValue, { value, onChange, postState: (s) => (s ? (Array.isArray(s) ? s : [ s ]) : undefined) });
+  const [ fileList, setFileList ] = useMergedState(defaultValue, { value, onChange, postState: (s) => (s ? (Array.isArray(s) ? s : [ s ]) : []) });
 
   const onInternalChange = useMemoizedFn(async (changedFileList) => {
     if (disabled || readOnly) { return; }

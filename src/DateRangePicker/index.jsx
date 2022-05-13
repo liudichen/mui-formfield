@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-22 20:17:14
- * @LastEditTime: 2022-05-13 10:55:04
+ * @LastEditTime: 2022-05-13 14:11:04
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -21,7 +21,7 @@ const DateRangePicker = (props) => {
     showClear, size,
     ...restProps
   } = props;
-  const [ value, onChange ] = useMergedState(defaultValue || [ null, null ], { value: valueProp, onChange: onChangeProp, postState: (s) => s || undefined });
+  const [ value, onChange ] = useMergedState(defaultValue || [ null, null ], { value: valueProp, onChange: onChangeProp, postState: (s) => s || [ null, null ] });
 
   return (
     <FieldWrapper

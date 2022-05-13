@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-05-13 11:26:19
+ * @LastEditTime: 2022-05-13 14:09:47
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -25,7 +25,7 @@ const Autocomplete = (props) => {
   } = props;
   const [ loading, setLoading ] = useSafeState(false);
   const [ options, setOptions ] = useSafeState([]);
-  const [ value, onChange ] = useMergedState(defaultValue || (props.multiple ? [] : null), { value: valueProp, onChange: onChangeProp, postState: (s) => s || undefined });
+  const [ value, onChange ] = useMergedState(defaultValue || (props.multiple ? [] : null), { value: valueProp, onChange: onChangeProp, postState: (s) => s || (props.multiple ? [] : null) });
 
   const fetchOptions = useMemoizedFn(async () => {
     setLoading(true);
