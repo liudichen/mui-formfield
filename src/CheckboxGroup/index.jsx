@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 14:06:50
- * @LastEditTime: 2022-05-13 10:54:18
+ * @LastEditTime: 2022-05-13 11:27:54
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn, useSafeState } from 'ahooks';
@@ -129,7 +129,7 @@ CheckboxGroup.propTypes = {
 
   value: PropTypes.array,
   defaultValue: PropTypes.array,
-  options: PropTypes.array,
+  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
   request: PropTypes.func,
   onChange: PropTypes.func,
   refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),

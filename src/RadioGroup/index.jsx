@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-04-21 16:09:49
+ * @LastEditTime: 2022-05-13 11:32:54
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -111,7 +111,7 @@ RadioGroup.propTypes = {
   ...fieldWrapperPropTypes,
 
   name: PropTypes.string,
-  options: PropTypes.array,
+  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
   request: PropTypes.func,
   value: PropTypes.any,
   defaultValue: PropTypes.any,

@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-05-13 10:52:39
+ * @LastEditTime: 2022-05-13 11:26:19
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -95,7 +95,7 @@ Autocomplete.propTypes = {
 
   placeholder: PropTypes.string,
   request: PropTypes.func,
-  options: PropTypes.array,
+  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
   onChange: PropTypes.func,
   refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 

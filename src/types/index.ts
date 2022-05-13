@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-05-10 21:26:10
+ * @LastEditTime: 2022-05-13 11:22:04
  */
 import * as React from 'react';
 import { SxProps as sxType } from '@mui/material';
@@ -44,9 +44,20 @@ export interface fieldCommonProps <Type> {
   disabled?: boolean,
 }
 
+export interface optionType {
+  value: any,
+  label: any,
+}
+
+export type optionsType = optionType[] | (string | number)[];
+
+export type requestType = () => optionsType | Promise<optionsType>;
+
+export type optionsPropType = optionsType | requestType;
+
 export interface optionsRelateProps {
-  options?: any[],
-  request?: () => any[],
+  options?: optionsType | (() => optionsType | Promise<optionsType>),
+  request?: requestType,
   /**
    *  when  refreshOptionsFlag changed, options will force refresh
    */
