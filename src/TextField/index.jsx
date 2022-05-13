@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-04-18 17:27:31
+ * @LastEditTime: 2022-05-13 10:56:37
  */
 import PropTypes from 'prop-types';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
@@ -22,7 +22,7 @@ const TextField = (props) => {
     ...restProps
   } = props;
 
-  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (v) => v || '' });
+  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (v) => v || undefined });
 
   return (
     <FieldWrapper

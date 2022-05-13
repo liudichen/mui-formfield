@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 08:57:36
- * @LastEditTime: 2022-04-15 17:07:33
+ * @LastEditTime: 2022-05-13 11:04:52
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -45,11 +45,11 @@ const UploadButton = (props) => {
     validator,
     ...restProps
   } = props;
-  const [ fileList, setFileList ] = useMergedState(defaultValue, { value, onChange, postState: (s) => (s ? (Array.isArray(s) ? s : [ s ]) : []) });
+  const [ fileList, setFileList ] = useMergedState(defaultValue, { value, onChange, postState: (s) => (s ? (Array.isArray(s) ? s : [ s ]) : undefined) });
 
   const onInternalChange = useMemoizedFn(async (changedFileList) => {
     if (disabled || readOnly) { return; }
-    let cloneList = [ ...changedFileList ];
+    let cloneList = [ ...(changedFileList || []) ];
     if (maxCount === 1) {
       cloneList = cloneList.slice(-1);
     } else if (maxCount) {

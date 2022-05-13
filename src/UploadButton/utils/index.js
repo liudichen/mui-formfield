@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:01:16
- * @LastEditTime: 2022-04-14 16:59:33
+ * @LastEditTime: 2022-05-13 10:59:44
  */
 const isSameFile = (f1, f2) => {
   if (f1.name !== f2.name || f1.size !== f2.size || f1.type !== f2.type || f1.lastModified !== f2.lastModified) {
@@ -21,7 +21,7 @@ const isSameFile = (f1, f2) => {
 const updateFileList = (newfile, fileList) => {
   const newFileList = Array.isArray(newfile) ? newfile : (newfile ? [ newfile ] : []);
   if (!newFileList.length) return null;
-  const nextFileList = [ ...fileList ];
+  const nextFileList = [ ...(fileList || []) ];
   for (let i = 0; i < newFileList.length; i++) {
     const file = newFileList[i];
     const fileIndex = nextFileList.findIndex((item) => isSameFile(item, file));
@@ -41,8 +41,8 @@ const updateFileList = (newfile, fileList) => {
  * @return {File[] | null} 新的文件列表,如果没有变化的返回null
  */
 const removeFileItem = (file, fileList) => {
-  const newFileList = fileList.filter((item) => !isSameFile(item, file));
-  if (newFileList.length === fileList.length) {
+  const newFileList = (fileList || []).filter((item) => !isSameFile(item, file));
+  if (newFileList.length === (fileList || []).length) {
     return null;
   }
   return newFileList;

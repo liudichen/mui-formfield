@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 15:11:12
- * @LastEditTime: 2022-04-21 15:09:34
+ * @LastEditTime: 2022-05-13 10:56:50
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn, useSafeState } from 'ahooks';
@@ -25,7 +25,7 @@ const ToggleButtonGroup = (props) => {
   const [ options, setOptions ] = useSafeState([]);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (s) => s || (exclusive ? null : []) });
+  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (s) => s || undefined });
 
   const fetchOptions = useMemoizedFn(async () => {
     setLoading(true);
