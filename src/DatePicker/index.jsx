@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-05-13 14:04:10
+ * @LastEditTime: 2022-05-13 14:26:47
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -22,7 +22,7 @@ const DatePicker = (props) => {
     inputLabel, size, placeholder, inputProps,
     ...restProps
   } = props;
-  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => (s || undefined) });
+  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => (s || null) });
   return (
     <FieldWrapper
       error={error}
