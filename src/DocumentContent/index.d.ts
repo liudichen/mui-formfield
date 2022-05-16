@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-16 17:12:20
+ * @LastEditTime: 2022-05-16 17:39:36
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps } from '@mui/material';
@@ -34,7 +34,7 @@ interface rowType {
     text?: string,
     number?: number,
     tableCols?: number,
-    tableData?: {[key: string]: number | string | null | undefined}[] | (string | number | null | undefined)[][],
+    tableData?: {[key: string | number]: number | string | null | undefined, rowIndex:number}[] | (string | number | null | undefined)[][],
   }
 }
 
