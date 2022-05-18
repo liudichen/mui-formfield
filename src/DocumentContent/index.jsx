@@ -121,7 +121,7 @@ const DocumentContent = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((item, index) => (
+              {rows?.map((item, index) => (
                 <Row
                   key={`${index}-${item?.id || ''}`}
                   index={index}

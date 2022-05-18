@@ -17,7 +17,7 @@ const getColumnsFromTableData = (tbData, editable = false) => {
       renderCell: ({ value }) => <span title={value}>{value}</span>,
     }));
   }
-  const len = Object.keys(titleRow).length - 1;
+  const len = Object.keys(titleRow || {}).length - 1;
   const cols = [];
   for (let i = 0; i < len; i++) {
     const col = {
