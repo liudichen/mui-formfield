@@ -131,9 +131,29 @@ const excelReaderAsArray = (fileBuffer, failCallback, rowType = 'array', sheetNa
   }
 };
 
+/**
+ * @description 将文件转化为ArrayBuffer格式，异步
+ * @param {File} file  flie 输入文件
+ * @return {Buffer} ArrayBuffer
+ */
+const fileToArrayBuffer = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.onerror = (e) => {
+      reject(reader.error);
+    };
+  });
+
+};
+
 export {
   excelReader,
   excelReaderAsArray,
   colNumberToString,
   colStringToNumber,
+  fileToArrayBuffer,
 };

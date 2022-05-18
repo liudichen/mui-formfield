@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:52:04
- * @LastEditTime: 2022-05-18 23:20:31
+ * @LastEditTime: 2022-05-18 23:36:59
  */
 export {
   PresetFormatOptions,
@@ -26,4 +26,5 @@ export {
   excelReaderAsArray,
   colNumberToString,
   colStringToNumber,
+  fileToArrayBuffer,
 } from './excel';
