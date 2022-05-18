@@ -109,6 +109,7 @@
     "react-device-detect": "^2.2.2",
     "react-dom": ">=17.0.0",
     "react-dropzone": "^12.1.0",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "xlsx": "^0.18.5"
   }
 }
