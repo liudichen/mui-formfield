@@ -5,9 +5,7 @@ import { Alert, Button, Grid } from '@mui/material';
 import { DataGridTable, Modal } from 'mui-component';
 import { Autocomplete, UploadButton } from 'mui-formfield';
 
-import { excelReaderAsArray, fileToArrayBuffer } from '@/utils/file';
-
-import { getColumnsFromTableData } from '../../../../../utils';
+import { getColumnsFromTableData, excelReaderAsArray, fileToArrayBuffer } from '../../../../../utils';
 
 const ExcelImportModal = (props) => {
   const { id, handleChange, table, fullScreen } = props;
@@ -114,7 +112,7 @@ const ExcelImportModal = (props) => {
           <Grid item xs={12} md={12}>
             <DataGridTable
               rows={sheet.data.slice(1)}
-              rowKey='rowIndex'
+              rowKey='id'
               columns={columns}
               initialPageSize={10}
               disableColumnFilter

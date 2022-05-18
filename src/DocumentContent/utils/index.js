@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:52:04
- * @LastEditTime: 2022-05-16 15:53:32
+ * @LastEditTime: 2022-05-18 23:20:31
  */
 export {
   PresetFormatOptions,
@@ -20,3 +20,10 @@ export {
   getColmnsFromTableCols,
   getColumnsFromTableData,
 } from './row';
+
+export {
+  excelReader,
+  excelReaderAsArray,
+  colNumberToString,
+  colStringToNumber,
+} from './excel';

@@ -152,7 +152,7 @@ const TableEditMode = (props) => {
             注意:第1行应为表头
           </Alert>
           <EditableTable
-            rowKey='rowIndex'
+            rowKey='id'
             editMode='row'
             showAddRow
             showSorter
