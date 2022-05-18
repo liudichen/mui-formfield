@@ -3,9 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:28:27
- * @LastEditTime: 2022-05-16 16:28:38
+ * @LastEditTime: 2022-05-18 19:59:54
  */
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Box } from '@mui/material';
 
 const ImageReadMode = (props) => {

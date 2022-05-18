@@ -3,16 +3,17 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-30 10:12:46
- * @LastEditTime: 2022-05-06 12:00:09
+ * @LastEditTime: 2022-05-18 20:04:39
  */
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import React from 'react';
+import { useSafeState } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 
 const DeleteActionItem = (props) => {
   const { deleteConfirmDialogProps, showInMenu, handleDeleteRow, ...restProps } = props;
-  const [ open, setOpen ] = useState(false);
+  const [ open, setOpen ] = useSafeState(false);
   const { title, content, ...restDialogProps } = (deleteConfirmDialogProps || {});
   return (
     <>

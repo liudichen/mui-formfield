@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
 import ImageCrop from 'mui-image-crop';

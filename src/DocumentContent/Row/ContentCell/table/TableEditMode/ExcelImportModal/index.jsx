@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { useCreation, useMemoizedFn } from 'ahooks';
+import React from 'react';
+import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { Alert, Button, Grid } from '@mui/material';
 import { DataGridTable, Modal } from 'mui-component';
 import { Autocomplete, UploadButton } from 'mui-formfield';
@@ -11,10 +11,10 @@ import { getColumnsFromTableData } from '../../../../../utils';
 
 const ExcelImportModal = (props) => {
   const { id, handleChange, table, fullScreen } = props;
-  const [ fileList, setFileList ] = useState([]);
-  const [ error, setError ] = useState('');
-  const [ sheetsName, setSheetsName ] = useState(null);
-  const [ sheet, setSheet ] = useState(null);
+  const [ fileList, setFileList ] = useSafeState([]);
+  const [ error, setError ] = useSafeState('');
+  const [ sheetsName, setSheetsName ] = useSafeState(null);
+  const [ sheet, setSheet ] = useSafeState(null);
   const onFileListChange = useMemoizedFn(async (lists) => {
     setFileList(lists);
     setError('');

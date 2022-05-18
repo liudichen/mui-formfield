@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:18
- * @LastEditTime: 2022-04-15 16:42:13
+ * @LastEditTime: 2022-05-18 20:10:10
  */
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useMemoizedFn, useUpdate } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useMemoizedFn, useSafeState, useUpdate } from 'ahooks';
 import { IconPaperclip, IconPhoto, IconFileInfo } from '@tabler/icons';
 
 import ImageCarouselModal from './ImageCarouselModal';
@@ -29,8 +29,8 @@ const UploadList = (props) => {
     ...restProps
   } = props;
   const forceUpdate = useUpdate();
-  const [ open, setOpen ] = useState(false);
-  const [ selectedItem, setSelectedItem ] = useState(0);
+  const [ open, setOpen ] = useSafeState(false);
+  const [ selectedItem, setSelectedItem ] = useSafeState(0);
   // 更新文件的预览图
   useEffect(() => {
     if (listType !== 'picture' && listType !== 'picture-card') {

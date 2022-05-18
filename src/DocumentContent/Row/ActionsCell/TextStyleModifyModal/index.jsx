@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { onFieldValueChange } from '@formily/core';
 import { Field } from '@formily/react';

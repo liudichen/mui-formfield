@@ -3,9 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:40:42
- * @LastEditTime: 2022-04-15 10:30:26
+ * @LastEditTime: 2022-05-18 19:56:57
  */
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect } from 'react';
+import { useSafeState } from 'ahooks';
 
 /**
  * @description  rc-utils useMergedState
@@ -20,7 +21,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
  */
 function useControlledState(defaultStateValue, option) {
   const { defaultValue, value, onChange, postState } = option || {};
-  const [ innerValue, setInnerValue ] = useState(() => {
+  const [ innerValue, setInnerValue ] = useSafeState(() => {
     if (value !== undefined) {
       return value;
     }

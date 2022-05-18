@@ -3,9 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:35:23
- * @LastEditTime: 2022-05-16 16:35:34
+ * @LastEditTime: 2022-05-18 20:01:51
  */
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Box } from '@mui/material';
 
 import { getShowFontSize } from '../../../../utils';

@@ -3,10 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:06:50
- * @LastEditTime: 2022-04-18 17:35:05
+ * @LastEditTime: 2022-05-18 20:08:29
  */
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
+import { useSafeState } from 'ahooks';
 import { Card, CardHeader, Checkbox, Divider, FormControlLabel, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 
 import { intersection } from '../utils';
@@ -20,7 +21,7 @@ const ListCard = (props) => {
     listSx, listProps, listCardWidth, listCardHeight, cardHeaderSx, cardSx, listItemProps, itemCheckboxProps, listItemTextProps, searchProps,
   } = props;
   const checkedNumber = intersection(checked, items).length;
-  const [ keyword, setKeyword ] = useState('');
+  const [ keyword, setKeyword ] = useSafeState('');
   const onKeywordChange = (v) => {
     setKeyword(v);
     setChecked([]);
