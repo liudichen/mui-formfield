@@ -177,20 +177,26 @@ const DocumentContent = observer((props) => {
           </Table>
         </Box>
         { showAddRow && !readOnly && !disabled && (
-          <Button
-            {...{
-              variant: 'outlined',
-              fullWidth: true,
-              sx: {
-                mt: '4px',
-                borderStyle: 'dashed',
-              },
-              ...(addRowProps || {}),
+          <Box
+            sx={{
+              px: '4px',
             }}
-            onClick={handleAddRow}
           >
-            { addRowText }
-          </Button>
+            <Button
+              {...{
+                variant: 'outlined',
+                fullWidth: true,
+                sx: {
+                  my: '4px',
+                  borderStyle: 'dashed',
+                },
+                ...(addRowProps || {}),
+              }}
+              onClick={handleAddRow}
+            >
+              { addRowText }
+            </Button>
+          </Box>
         )}
       </Box>
     </FieldWrapper>
