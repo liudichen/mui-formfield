@@ -10,19 +10,25 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth } = props;
+  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx } = props;
   const [ editing, setEditing ] = useSafeState(false);
   return (
     <TableRow {...(tableRowProps || {})}>
       <TableCell
         align='center'
-        sx={{ px: 0 }}
+        sx={{
+          px: 0,
+          ...cellBorderSx,
+        }}
       >
         {index + 1}
       </TableCell>
       <TableCell
         align='center'
-        sx={{ px: 0 }}
+        sx={{
+          px: 0,
+          ...cellBorderSx,
+        }}
       >
         <TypeCell
           disabled={disabled || readOnly}
@@ -36,6 +42,7 @@ const Row = (props) => {
         align='center'
         sx={{
           p: 0,
+          ...cellBorderSx,
         }}
       >
         <ContentCell
@@ -52,6 +59,7 @@ const Row = (props) => {
           align='center'
           sx={{
             px: 0,
+            ...cellBorderSx,
           }}
         >
           <ActionsCell
@@ -116,6 +124,7 @@ Row.propTypes = {
   }),
   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  cellBorderSx: PropTypes.object,
 };
 
 export default Row;

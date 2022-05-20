@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useControllableValue, useLatest, useMemoizedFn } from 'ahooks';
+import { useControllableValue, useCreation, useLatest, useMemoizedFn } from 'ahooks';
 import { toJS } from '@formily/reactive';
 import { observer } from '@formily/react';
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
@@ -20,7 +20,7 @@ const DocumentContent = observer((props) => {
     readOnly, disabled,
     showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
     tableRowProps,
-    imageShowMaxHeight, imageShowMaxWidth,
+    imageShowMaxHeight, imageShowMaxWidth, bordered,
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
@@ -67,6 +67,15 @@ const DocumentContent = observer((props) => {
     newRows.push(newRow);
     setRows(newRows);
   });
+  const cellBorderSx = useCreation(() => {
+    if (bordered) {
+      return {
+        borderRight: '1px solid rgba(224,224,224,1)',
+        borderLeft: '1px solid rgba(224,224,224,1)',
+      };
+    }
+    return {};
+  }, [ bordered ]);
   return (
     <FieldWrapper
       error={error}
@@ -97,20 +106,32 @@ const DocumentContent = observer((props) => {
                 <TableCell
                   align='center'
                   width={40}
-                  sx={{ px: 0 }}
+                  sx={{
+                    px: 0,
+                    borderTop: '1px solid rgba(224,224,224,1)',
+                    ...cellBorderSx,
+                  }}
                 >
                 序号
                 </TableCell>
                 <TableCell
                   align='center'
                   width={40}
-                  sx={{ px: 0 }}
+                  sx={{
+                    px: 0,
+                    borderTop: '1px solid rgba(224,224,224,1)',
+                    ...cellBorderSx,
+                  }}
                 >
                 类型
                 </TableCell>
                 <TableCell
                   align='center'
-                  sx={{ minWidth: 200 }}
+                  sx={{
+                    minWidth: 200,
+                    borderTop: '1px solid rgba(224,224,224,1)',
+                    ...cellBorderSx,
+                  }}
                 >
                 内容
                 </TableCell>
@@ -118,6 +139,11 @@ const DocumentContent = observer((props) => {
                   <TableCell
                     align='center'
                     width={160}
+                    sx={{
+                      px: 0,
+                      borderTop: '1px solid rgba(224,224,224,1)',
+                      ...cellBorderSx,
+                    }}
                   >
                   操作
                   </TableCell>
@@ -140,6 +166,7 @@ const DocumentContent = observer((props) => {
                   tableRowProps={tableRowProps}
                   imageShowMaxHeight={imageShowMaxHeight}
                   imageShowMaxWidth={imageShowMaxWidth}
+                  cellBorderSx={cellBorderSx}
                 />
               ))}
             </TableBody>
@@ -189,7 +216,7 @@ DocumentContent.propTypes = {
   modalFullScreen: PropTypes.bool,
   tableBoxSx: sx,
 
-
+  bordered: PropTypes.bool,
   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
