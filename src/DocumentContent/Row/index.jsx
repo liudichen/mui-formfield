@@ -10,7 +10,7 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, modalFullScreen, tableRowProps } = props;
+  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth } = props;
   const [ editing, setEditing ] = useSafeState(false);
   return (
     <TableRow {...(tableRowProps || {})}>
@@ -43,6 +43,8 @@ const Row = (props) => {
           editing={editing}
           handleChange={handleChange}
           modalFullScreen={modalFullScreen}
+          imageShowMaxHeight={imageShowMaxHeight}
+          imageShowMaxWidth={imageShowMaxWidth}
         />
       </TableCell>
       { !disabled && !readOnly && (
@@ -112,6 +114,8 @@ Row.propTypes = {
     selected: PropTypes.bool,
     sx,
   }),
+  imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 
 export default Row;

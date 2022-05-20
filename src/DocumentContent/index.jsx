@@ -20,6 +20,7 @@ const DocumentContent = observer((props) => {
     readOnly, disabled,
     showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
     tableRowProps,
+    imageShowMaxHeight, imageShowMaxWidth,
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
@@ -137,6 +138,8 @@ const DocumentContent = observer((props) => {
                   readOnly={readOnly}
                   modalFullScreen={modalFullScreen}
                   tableRowProps={tableRowProps}
+                  imageShowMaxHeight={imageShowMaxHeight}
+                  imageShowMaxWidth={imageShowMaxWidth}
                 />
               ))}
             </TableBody>
@@ -185,6 +188,10 @@ DocumentContent.propTypes = {
   showAddRow: PropTypes.bool,
   modalFullScreen: PropTypes.bool,
   tableBoxSx: sx,
+
+
+  imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
   onNewRow: PropTypes.func,
   addRowProps: PropTypes.object,

@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 08:32:38
+ * @LastEditTime: 2022-05-20 17:25:12
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps } from '@mui/material';
@@ -50,6 +50,9 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   showAddRow?: boolean,
   modalFullScreen?: boolean,
   tableBoxSx?: SxProps,
+
+  imageShowMaxHeight?: string | number,
+  imageShowMaxWidth?: string | number,
 
   onNewRow?: (rows?: rowType[]) => rowType,
   addRowProps?: Omit<ButtonProps, 'onClick'>,
