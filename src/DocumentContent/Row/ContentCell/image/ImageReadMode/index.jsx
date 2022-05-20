@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:28:27
- * @LastEditTime: 2022-05-20 17:21:14
+ * @LastEditTime: 2022-05-20 17:49:18
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -20,6 +20,7 @@ const ImageReadMode = (props) => {
     if (imageShowMaxWidth) {
       stl.maxWidth = imageShowMaxWidth;
     }
+    return stl;
   }, [ imageShowMaxHeight, imageShowMaxWidth ]);
   return (
     <Box
