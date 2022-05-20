@@ -239,7 +239,6 @@ DocumentContent.defaultProps = {
   tableBoxSx: { overflow: 'auto' },
   addRowText: <><IconPlus />&emsp;添加一行</>,
   allowDragSort: true,
-  showClickSort: true,
   actionColumnWidth: 135,
 };
 
