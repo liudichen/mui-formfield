@@ -68,12 +68,11 @@ const TableEditMode = (props) => {
           InputProps={{
             endAdornment: table.text ? (
               <InputAdornment
-                position='start'
+                position='end'
               >
                 <IconButton
-                  sx={{
-                    mr: -2,
-                  }}
+                  tabIndex={-1}
+                  sx={{ ml: -0.5 }}
                   onClick={() => onTitleChange()}
                 >
                   <IconX

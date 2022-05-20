@@ -79,6 +79,7 @@ const ImageEditMode = (props) => {
                   sx={{
                     mr: -2,
                   }}
+                  tabIndex={-1}
                   onClick={() => onTitleChange()}
                 >
                   <IconX
