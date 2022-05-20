@@ -180,7 +180,7 @@ const DocumentContent = observer((props) => {
                 <Row
                   first={index === 0}
                   last={index + 1 === rowsRef.current?.length}
-                  key={`${index}-${item?.id || ''}`}
+                  key={item.id ?? `${index}-${item?.id || ''}`}
                   index={index}
                   row={item}
                   handleDragSort={handleDragSort}
