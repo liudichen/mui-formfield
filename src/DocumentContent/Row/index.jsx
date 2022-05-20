@@ -59,7 +59,7 @@ const Row = (props) => {
         <TableCell
           align='center'
           sx={{
-            px: 0,
+            p: 0,
             ...cellBorderSx,
           }}
         >
