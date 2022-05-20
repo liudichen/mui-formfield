@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSafeState } from 'ahooks';
-import { Collapse, TableCell, TableRow } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
 
 import { sx } from '../../common/propTypes';
 
@@ -10,7 +10,7 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showContentCollapse, contentCollapseProps, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx } = props;
+  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showHideContent, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx } = props;
   const [ editing, setEditing ] = useSafeState(false);
   const [ open, setOpen ] = useSafeState(true);
   return (
@@ -47,11 +47,8 @@ const Row = (props) => {
           ...cellBorderSx,
         }}
       >
-        { showContentCollapse ? (
-          <Collapse
-            {...(contentCollapseProps || {})}
-            in={open}
-          >
+        { showHideContent && !editing ? (
+          open ? (
             <ContentCell
               row={row}
               editing={editing}
@@ -60,7 +57,7 @@ const Row = (props) => {
               imageShowMaxHeight={imageShowMaxHeight}
               imageShowMaxWidth={imageShowMaxWidth}
             />
-          </Collapse>
+          ) : '内容已隐藏'
         ) : (
           <ContentCell
             row={row}
@@ -93,7 +90,7 @@ const Row = (props) => {
             showSwitchType={showSwitchType}
             showClickSort={showClickSort}
             handleClickSort={handleClickSort}
-            showContentCollapse={showContentCollapse}
+            showHideContent={showHideContent}
             open={open}
             setOpen={setOpen}
             modalFullScreen={modalFullScreen}
@@ -113,8 +110,7 @@ Row.propTypes = {
   showSwitchType: PropTypes.bool,
   showClickSort: PropTypes.bool,
   allowDragSort: PropTypes.bool,
-  showContentCollapse: PropTypes.bool,
-  contentCollapseProps: PropTypes.object,
+  showHideContent: PropTypes.bool,
   modalFullScreen: PropTypes.bool,
   index: PropTypes.number,
   row: PropTypes.shape({

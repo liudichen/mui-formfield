@@ -18,7 +18,7 @@ const DocumentContent = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value, onChange, defaultValue,
     readOnly, disabled,
-    showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, showContentCollapse, contentCollapseProps,
+    showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, showHideContent,
     tableRowProps, actionColumnWidth,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
     ...restProps
@@ -190,8 +190,7 @@ const DocumentContent = observer((props) => {
                   showSwitchType={showSwitchType}
                   showClickSort={showClickSort}
                   handleClickSort={handleClickSort}
-                  showContentCollapse={showContentCollapse}
-                  contentCollapseProps={contentCollapseProps}
+                  showHideContent={showHideContent}
                   disabled={disabled}
                   readOnly={readOnly}
                   modalFullScreen={modalFullScreen}
@@ -238,7 +237,7 @@ DocumentContent.defaultProps = {
   addRowText: <><IconPlus />&emsp;添加一行</>,
   allowDragSort: true,
   actionColumnWidth: 135,
-  showContentCollapse: true,
+  showHideContent: true,
 };
 
 DocumentContent.propTypes = {
@@ -256,11 +255,7 @@ DocumentContent.propTypes = {
    * 显示切换内容显隐的按钮
    * @default true
    */
-  showContentCollapse: PropTypes.bool,
-  /**
-   * 传递给内容单元格显隐Collaspe组件的props
-   */
-  contentCollapseProps: PropTypes.object,
+  showHideContent: PropTypes.bool,
   /**
    * 操作列中那些弹窗是否全屏
    */

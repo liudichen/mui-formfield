@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 22:43:00
+ * @LastEditTime: 2022-05-20 23:15:53
  */
 import React from 'react';
-import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps, CollapseProps } from '@mui/material';
+import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
 
 import { FieldWrapperRelateProps } from '../types';
 
@@ -54,11 +54,7 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
    * 显示切换内容显隐的按钮
    * @default true
    */
-  showContentCollapse?: boolean,
-  /**
-   * 传递给内容单元格显隐Collaspe组件的props
-   */
-  contentCollapseProps?: Omit<Omit<CollapseProps, 'in'>, 'children'>,
+  showHideContent?: boolean,
   /**
    * 操作列中那些弹窗是否全屏
    */

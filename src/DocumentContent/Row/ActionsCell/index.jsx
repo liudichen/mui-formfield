@@ -16,7 +16,7 @@ import TextStyleModifyModal from './TextStyleModifyModal';
 import ContentTypeSwitchModal from './ContentTypeSwitchModal';
 
 const ActionsCell = (props) => {
-  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showContentCollapse, open, setOpen, modalFullScreen } = props;
+  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showHideContent, open, setOpen, modalFullScreen } = props;
   const handelStopEditing = useMemoizedFn(() => {
     if (!open) {
       setOpen(true);
@@ -84,7 +84,7 @@ const ActionsCell = (props) => {
           <IconEdit size='1.25rem' />
         </IconButton>
       </Tooltip>
-      { showContentCollapse && (
+      { showHideContent && (
         <Tooltip title={open ? '隐藏内容' : '显示内容'} arrow placement='top'>
           <IconButton
             color='primary'
@@ -149,7 +149,7 @@ ActionsCell.propTypes = {
   showSwitchType: PropTypes.bool,
   showClickSort: PropTypes.bool,
   handleClickSort: PropTypes.func,
-  showContentCollapse: PropTypes.bool,
+  showHideContent: PropTypes.bool,
   open: PropTypes.bool,
   setOpen: PropTypes.func,
   modalFullScreen: PropTypes.bool,
