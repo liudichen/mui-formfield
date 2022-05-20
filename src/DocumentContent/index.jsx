@@ -145,7 +145,7 @@ const DocumentContent = observer((props) => {
                 { !disabled && !readOnly && (
                   <TableCell
                     align='center'
-                    width={160}
+                    width={155}
                     sx={{
                       px: 0,
                       borderTop: '1px solid rgba(224,224,224,1)',
