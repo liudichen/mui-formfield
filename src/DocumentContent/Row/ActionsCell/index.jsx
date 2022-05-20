@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-20 08:36:17
+ * @LastEditTime: 2022-05-20 19:35:09
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -57,7 +57,12 @@ const ActionsCell = (props) => {
     );
   }
   return (
-    <Container>
+    <Container
+      style={{
+        paddingLeft: 0,
+        paddingRight: 0,
+      }}
+    >
       <Tooltip title='编辑内容' arrow placement='top'>
         <IconButton color='primary' onClick={() => setEditing(true)}>
           <IconEdit
