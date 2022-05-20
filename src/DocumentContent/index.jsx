@@ -235,6 +235,9 @@ DocumentContent.propTypes = {
 
   bordered: PropTypes.bool,
   headerCellSx: PropTypes.object,
+  /**
+   * 内容列表头单元格的sx，可以用来控制列宽等参数（如minWidth等）
+   */
   contentHeaderCellSx: PropTypes.object,
   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),

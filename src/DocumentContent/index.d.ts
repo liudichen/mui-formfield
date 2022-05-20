@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 20:24:06
+ * @LastEditTime: 2022-05-20 20:25:22
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
@@ -53,7 +53,10 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   tableBoxSx?: SxProps,
 
   bordered?: boolean,
-  headerCellSx?: TableCellProps['sx'],
+  headerCellSx?: TableCellProps['sx'], // 表头单元格的sx
+  /**
+   * 内容列表头单元格的sx，可以用来控制列宽等参数（如minWidth等）
+   */
   contentHeaderCellSx?: TableCellProps['sx'],
   imageShowMaxHeight?: string | number,
   imageShowMaxWidth?: string | number,
