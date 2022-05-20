@@ -18,7 +18,7 @@ const DocumentContent = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value, onChange, defaultValue,
     readOnly, disabled,
-    showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
+    showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, showContentCollapse, contentCollapseProps,
     tableRowProps, actionColumnWidth,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
     ...restProps
@@ -190,6 +190,8 @@ const DocumentContent = observer((props) => {
                   showSwitchType={showSwitchType}
                   showClickSort={showClickSort}
                   handleClickSort={handleClickSort}
+                  showContentCollapse={showContentCollapse}
+                  contentCollapseProps={contentCollapseProps}
                   disabled={disabled}
                   readOnly={readOnly}
                   modalFullScreen={modalFullScreen}
@@ -203,11 +205,7 @@ const DocumentContent = observer((props) => {
           </Table>
         </Box>
         { showAddRow && !readOnly && !disabled && (
-          <Box
-            sx={{
-              px: '4px',
-            }}
-          >
+          <Box sx={{ px: '4px' }} >
             <Button
               {...{
                 variant: 'outlined',
@@ -240,6 +238,7 @@ DocumentContent.defaultProps = {
   addRowText: <><IconPlus />&emsp;添加一行</>,
   allowDragSort: true,
   actionColumnWidth: 135,
+  showContentCollapse: true,
 };
 
 DocumentContent.propTypes = {
@@ -253,6 +252,15 @@ DocumentContent.propTypes = {
   allowDragSort: PropTypes.bool,
   showClickSort: PropTypes.bool,
   showAddRow: PropTypes.bool,
+  /**
+   * 显示切换内容显隐的按钮
+   * @default true
+   */
+  showContentCollapse: PropTypes.bool,
+  /**
+   * 传递给内容单元格显隐Collaspe组件的props
+   */
+  contentCollapseProps: PropTypes.object,
   /**
    * 操作列中那些弹窗是否全屏
    */

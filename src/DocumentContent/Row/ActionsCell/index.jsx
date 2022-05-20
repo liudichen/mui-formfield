@@ -3,19 +3,26 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-20 22:14:33
+ * @LastEditTime: 2022-05-20 22:50:15
  */
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useMemoizedFn } from 'ahooks';
 import { Container, IconButton, Tooltip } from '@mui/material';
-import { IconTrash, IconEdit, IconDeviceFloppy, IconChevronsUp, IconChevronsDown } from '@tabler/icons';
+import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown } from '@tabler/icons';
 import { PopConfirm } from 'mui-component';
 
 import TextStyleModifyModal from './TextStyleModifyModal';
 import ContentTypeSwitchModal from './ContentTypeSwitchModal';
 
 const ActionsCell = (props) => {
-  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, modalFullScreen } = props;
+  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showContentCollapse, open, setOpen, modalFullScreen } = props;
+  const handelStopEditing = useMemoizedFn(() => {
+    if (!open) {
+      setOpen(true);
+    }
+    setEditing(false);
+  });
   if (editing) {
     return (
       <Container
@@ -28,7 +35,7 @@ const ActionsCell = (props) => {
           <IconButton
             color='primary'
             tabIndex={-1}
-            onClick={() => setEditing(false)}
+            onClick={handelStopEditing}
           >
             <IconDeviceFloppy
               size='1.25rem'
@@ -53,9 +60,7 @@ const ActionsCell = (props) => {
                 color='primary'
                 tabIndex={-1}
               >
-                <IconTrash
-                  size='1.25rem'
-                />
+                <IconTrash size='1.25rem' />
               </IconButton>
             </Tooltip>
           </PopConfirm>
@@ -76,11 +81,20 @@ const ActionsCell = (props) => {
           tabIndex={-1}
           onClick={() => setEditing(true)}
         >
-          <IconEdit
-            size='1.25rem'
-          />
+          <IconEdit size='1.25rem' />
         </IconButton>
       </Tooltip>
+      { showContentCollapse && (
+        <Tooltip title={open ? '隐藏内容' : '显示内容'} arrow placement='top'>
+          <IconButton
+            color='primary'
+            tabIndex={-1}
+            onClick={() => setOpen((s) => !s)}
+          >
+            {open ? <IconEyeOff size='1.25rem'/> : <IconEye size='1.25rem'/>}
+          </IconButton>
+        </Tooltip>
+      )}
       { showSwitchType && (
         <ContentTypeSwitchModal
           type={type}
@@ -96,9 +110,7 @@ const ActionsCell = (props) => {
             tabIndex={-1}
             onClick={() => handleClickSort(id, true)}
           >
-            <IconChevronsUp
-              size='1.25rem'
-            />
+            <IconChevronsUp size='1.25rem' />
           </IconButton>
         </Tooltip>
       )}
@@ -109,9 +121,7 @@ const ActionsCell = (props) => {
             tabIndex={-1}
             onClick={() => handleClickSort(id, false)}
           >
-            <IconChevronsDown
-              size='1.25rem'
-            />
+            <IconChevronsDown size='1.25rem' />
           </IconButton>
         </Tooltip>
       )}
@@ -139,6 +149,9 @@ ActionsCell.propTypes = {
   showSwitchType: PropTypes.bool,
   showClickSort: PropTypes.bool,
   handleClickSort: PropTypes.func,
+  showContentCollapse: PropTypes.bool,
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
   modalFullScreen: PropTypes.bool,
 };
 

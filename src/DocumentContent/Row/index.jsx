@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSafeState } from 'ahooks';
-import { TableCell, TableRow } from '@mui/material';
+import { Collapse, TableCell, TableRow } from '@mui/material';
 
 import { sx } from '../../common/propTypes';
 
@@ -10,8 +10,9 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx } = props;
+  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showContentCollapse, contentCollapseProps, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx } = props;
   const [ editing, setEditing ] = useSafeState(false);
+  const [ open, setOpen ] = useSafeState(true);
   return (
     <TableRow {...(tableRowProps || {})}>
       <TableCell
@@ -46,14 +47,30 @@ const Row = (props) => {
           ...cellBorderSx,
         }}
       >
-        <ContentCell
-          row={row}
-          editing={editing}
-          handleChange={handleChange}
-          modalFullScreen={modalFullScreen}
-          imageShowMaxHeight={imageShowMaxHeight}
-          imageShowMaxWidth={imageShowMaxWidth}
-        />
+        { showContentCollapse ? (
+          <Collapse
+            {...(contentCollapseProps || {})}
+            in={open}
+          >
+            <ContentCell
+              row={row}
+              editing={editing}
+              handleChange={handleChange}
+              modalFullScreen={modalFullScreen}
+              imageShowMaxHeight={imageShowMaxHeight}
+              imageShowMaxWidth={imageShowMaxWidth}
+            />
+          </Collapse>
+        ) : (
+          <ContentCell
+            row={row}
+            editing={editing}
+            handleChange={handleChange}
+            modalFullScreen={modalFullScreen}
+            imageShowMaxHeight={imageShowMaxHeight}
+            imageShowMaxWidth={imageShowMaxWidth}
+          />
+        )}
       </TableCell>
       { !disabled && !readOnly && (
         <TableCell
@@ -76,6 +93,9 @@ const Row = (props) => {
             showSwitchType={showSwitchType}
             showClickSort={showClickSort}
             handleClickSort={handleClickSort}
+            showContentCollapse={showContentCollapse}
+            open={open}
+            setOpen={setOpen}
             modalFullScreen={modalFullScreen}
           />
         </TableCell>
@@ -93,6 +113,8 @@ Row.propTypes = {
   showSwitchType: PropTypes.bool,
   showClickSort: PropTypes.bool,
   allowDragSort: PropTypes.bool,
+  showContentCollapse: PropTypes.bool,
+  contentCollapseProps: PropTypes.object,
   modalFullScreen: PropTypes.bool,
   index: PropTypes.number,
   row: PropTypes.shape({
