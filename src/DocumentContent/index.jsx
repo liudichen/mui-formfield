@@ -20,7 +20,7 @@ const DocumentContent = observer((props) => {
     readOnly, disabled,
     showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, allowDragSort,
     tableRowProps,
-    imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx,
+    imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
@@ -137,6 +137,7 @@ const DocumentContent = observer((props) => {
                     borderTop: '1px solid rgba(224,224,224,1)',
                     ...cellBorderSx,
                     ...(headerCellSx || {}),
+                    ...(contentHeaderCellSx || {}),
                   }}
                 >
                 内容
@@ -234,6 +235,7 @@ DocumentContent.propTypes = {
 
   bordered: PropTypes.bool,
   headerCellSx: PropTypes.object,
+  contentHeaderCellSx: PropTypes.object,
   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
