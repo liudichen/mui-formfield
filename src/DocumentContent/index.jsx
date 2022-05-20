@@ -18,7 +18,7 @@ const DocumentContent = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value, onChange, defaultValue,
     readOnly, disabled,
-    showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, allowDragSort,
+    showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
     tableRowProps,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
     ...restProps
@@ -65,6 +65,23 @@ const DocumentContent = observer((props) => {
       table: { },
     };
     newRows.push(newRow);
+    setRows(newRows);
+  });
+  const handleClickSort = useMemoizedFn((id, up) => {
+    if (readOnly || disabled || !id) { return; }
+    const index = (rowsRef.current || []).findIndex((item) => item.id === id);
+    if (index === -1 || (index === 0 && up) || (!up && (index + 1 === rowsRef.current.length))) { return; }
+    const newRows = [ ...rowsRef.current ];
+    const thisRow = { ...newRows[index] };
+    let thatIndex;
+    if (up) {
+      thatIndex = index - 1;
+    } else {
+      thatIndex = index + 1;
+    }
+    const thatRow = { ...newRows[thatIndex] };
+    newRows[thatIndex] = thisRow;
+    newRows[index] = thatRow;
     setRows(newRows);
   });
   const cellBorderSx = useCreation(() => {
@@ -161,13 +178,18 @@ const DocumentContent = observer((props) => {
             <TableBody>
               {rowsRef.current?.map((item, index) => (
                 <Row
+                  first={index === 0}
+                  last={index + 1 === rowsRef.current?.length}
                   key={`${index}-${item?.id || ''}`}
                   index={index}
                   row={item}
                   handleDragSort={handleDragSort}
                   handleChange={handleChange}
                   showDelete={showDelete}
+                  allowDragSort={allowDragSort}
                   showSwitchType={showSwitchType}
+                  showClickSort={showClickSort}
+                  handleClickSort={handleClickSort}
                   disabled={disabled}
                   readOnly={readOnly}
                   modalFullScreen={modalFullScreen}
@@ -175,7 +197,6 @@ const DocumentContent = observer((props) => {
                   imageShowMaxHeight={imageShowMaxHeight}
                   imageShowMaxWidth={imageShowMaxWidth}
                   cellBorderSx={cellBorderSx}
-                  allowDragSort={allowDragSort}
                 />
               ))}
             </TableBody>
@@ -218,6 +239,7 @@ DocumentContent.defaultProps = {
   tableBoxSx: { overflow: 'auto' },
   addRowText: <><IconPlus />&emsp;添加一行</>,
   allowDragSort: true,
+  showClickSort: true,
 };
 
 DocumentContent.propTypes = {
@@ -229,11 +251,15 @@ DocumentContent.propTypes = {
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
   allowDragSort: PropTypes.bool,
+  showClickSort: PropTypes.bool,
   showAddRow: PropTypes.bool,
   /**
    * 操作列中那些弹窗是否全屏
    */
   modalFullScreen: PropTypes.bool,
+  /**
+   *  包裹表格的Box的sx
+   */
   tableBoxSx: sx,
 
   /**
@@ -248,7 +274,13 @@ DocumentContent.propTypes = {
   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
+  /**
+   *  新增一行时调用，用来生成新的一行的初始数据，入参是当前的rows数据
+   */
   onNewRow: PropTypes.func,
+  /**
+   *  传递给新增一行按钮props
+   */
   addRowProps: PropTypes.object,
   addRowText: PropTypes.node,
 
@@ -261,6 +293,10 @@ DocumentContent.propTypes = {
     PropTypes.string,
   ]),
   stickyHeader: PropTypes.bool,
+
+  /**
+   *  传递给表格TableRow的props
+   */
   tableRowProps: PropTypes.shape({
     classes: PropTypes.object,
     component: PropTypes.elementType,

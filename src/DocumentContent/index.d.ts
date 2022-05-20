@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 20:27:15
+ * @LastEditTime: 2022-05-20 21:08:17
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
@@ -48,11 +48,15 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   showDelete?: boolean,
   showSwitchType?: boolean,
   showAddRow?: boolean,
+  showClickSort?: boolean,
   allowDragSort?: boolean,
   /**
    * 操作列中那些弹窗是否全屏
    */
   modalFullScreen?: boolean,
+  /**
+   *  包裹表格的Box的sx
+   */
   tableBoxSx?: SxProps,
 
   /**
@@ -67,10 +71,19 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   imageShowMaxHeight?: string | number,
   imageShowMaxWidth?: string | number,
 
+  /**
+   *  新增一行时调用，用来生成新的一行的初始数据，入参是当前的rows数据
+   */
   onNewRow?: (rows?: rowType[]) => rowType,
+  /**
+   *  传递给新增一行按钮props
+   */
   addRowProps?: Omit<ButtonProps, 'onClick'>,
   addRowText?: React.ReactNode,
 
+  /**
+   *  传递给表格TableRow的props
+   */
   tableRowProps?: TableRowProps,
 }
 

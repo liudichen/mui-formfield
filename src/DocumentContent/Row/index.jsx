@@ -10,7 +10,7 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx, allowDragSort } = props;
+  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx } = props;
   const [ editing, setEditing ] = useSafeState(false);
   return (
     <TableRow {...(tableRowProps || {})}>
@@ -34,9 +34,9 @@ const Row = (props) => {
           disabled={disabled || readOnly}
           type={row?.type}
           id={row?.id}
+          allowDragSort={allowDragSort}
           handleDragSort={handleDragSort}
           editing={editing}
-          allowDragSort={allowDragSort}
         />
       </TableCell>
       <TableCell
@@ -64,6 +64,8 @@ const Row = (props) => {
           }}
         >
           <ActionsCell
+            first={first}
+            last={last}
             type={row?.type}
             editing={editing}
             text={row?.text}
@@ -72,6 +74,8 @@ const Row = (props) => {
             handleChange={handleChange}
             showDelete={showDelete}
             showSwitchType={showSwitchType}
+            showClickSort={showClickSort}
+            handleClickSort={handleClickSort}
             modalFullScreen={modalFullScreen}
           />
         </TableCell>
@@ -81,10 +85,13 @@ const Row = (props) => {
 };
 
 Row.propTypes = {
+  first: PropTypes.bool,
+  last: PropTypes.bool,
   disabled: PropTypes.bool,
   readOnly: PropTypes.bool,
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
+  showClickSort: PropTypes.bool,
   allowDragSort: PropTypes.bool,
   modalFullScreen: PropTypes.bool,
   index: PropTypes.number,
@@ -116,6 +123,7 @@ Row.propTypes = {
     }),
   }),
   handleDragSort: PropTypes.func,
+  handleClickSort: PropTypes.func,
   handleChange: PropTypes.func,
   tableRowProps: PropTypes.shape({
     classes: PropTypes.object,

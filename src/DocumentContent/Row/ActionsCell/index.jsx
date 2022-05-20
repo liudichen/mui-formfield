@@ -3,19 +3,19 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-20 20:39:23
+ * @LastEditTime: 2022-05-20 20:53:07
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, IconButton, Tooltip } from '@mui/material';
-import { IconTrash, IconEdit, IconDeviceFloppy } from '@tabler/icons';
+import { IconTrash, IconEdit, IconDeviceFloppy, IconChevronsUp, IconChevronsDown } from '@tabler/icons';
 import { PopConfirm } from 'mui-component';
 
 import TextStyleModifyModal from './TextStyleModifyModal';
 import ContentTypeSwitchModal from './ContentTypeSwitchModal';
 
 const ActionsCell = (props) => {
-  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, modalFullScreen } = props;
+  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, modalFullScreen } = props;
   if (editing) {
     return (
       <Container
@@ -83,11 +83,31 @@ const ActionsCell = (props) => {
           fullScreen={modalFullScreen}
         />
       )}
+      { showClickSort && !first && (
+        <Tooltip title='上移一行' arrow placement='top'>
+          <IconButton color='primary' onClick={() => handleClickSort(id, true)}>
+            <IconChevronsUp
+              size='1.25rem'
+            />
+          </IconButton>
+        </Tooltip>
+      )}
+      { showClickSort && !last && (
+        <Tooltip title='下移一行' arrow placement='top'>
+          <IconButton color='primary' onClick={() => handleClickSort(id, false)}>
+            <IconChevronsDown
+              size='1.25rem'
+            />
+          </IconButton>
+        </Tooltip>
+      )}
     </Container>
   );
 };
 
 ActionsCell.propTypes = {
+  first: PropTypes.bool,
+  last: PropTypes.bool,
   editing: PropTypes.bool,
   setEditing: PropTypes.func,
   type: PropTypes.oneOf([ '文本', '图片', '表格' ]),
@@ -103,6 +123,8 @@ ActionsCell.propTypes = {
   handleChange: PropTypes.func,
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
+  showClickSort: PropTypes.bool,
+  handleClickSort: PropTypes.func,
   modalFullScreen: PropTypes.bool,
 };
 
