@@ -96,7 +96,10 @@ const DocumentContent = observer((props) => {
     >
       <Box >
         <Box
-          sx={tableBoxSx}
+          sx={{
+            px: '2px',
+            ...(tableBoxSx || {}),
+          }}
         >
           <Table
             {...restProps}
