@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-05-13 11:32:54
+ * @LastEditTime: 2022-05-20 17:28:00
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -27,7 +27,7 @@ const RadioGroup = (props) => {
   } = props;
   const [ options, setOptions ] = useSafeState([]);
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp });
+  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (s) => s ?? null });
 
   const fetchOptions = useMemoizedFn(async () => {
     setLoading(true);
