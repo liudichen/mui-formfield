@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-20 22:50:15
+ * @LastEditTime: 2022-05-20 23:34:35
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -99,6 +99,8 @@ const ActionsCell = (props) => {
         <ContentTypeSwitchModal
           type={type}
           id={id}
+          open={open}
+          setOpen={setOpen}
           handleChange={handleChange}
           fullScreen={modalFullScreen}
         />

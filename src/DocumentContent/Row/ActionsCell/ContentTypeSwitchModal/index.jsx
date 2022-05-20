@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:57
- * @LastEditTime: 2022-05-20 22:10:51
+ * @LastEditTime: 2022-05-20 23:35:15
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -20,9 +20,10 @@ const types = [
 ];
 
 const ContentTypeSwitchModal = (props) => {
-  const { type, id, handleChange, fullScreen } = props;
+  const { type, id, handleChange, fullScreen, open, setOpen } = props;
   const onFinish = useMemoizedFn(async (values) => {
     handleChange(id, { type: values.type.value });
+    !open && setOpen(true);
     return true;
   });
   const options = useCreation(() => types.filter((item) => item.value !== type), [ type ]);
@@ -68,6 +69,8 @@ ContentTypeSwitchModal.propTypes = {
   id: PropTypes.number,
   handleChange: PropTypes.func,
   fullScreen: PropTypes.bool,
+  setOpen: PropTypes.func,
+  open: PropTypes.bool,
 };
 
 export default ContentTypeSwitchModal;
