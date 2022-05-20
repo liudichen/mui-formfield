@@ -19,7 +19,7 @@ const DocumentContent = observer((props) => {
     value, onChange, defaultValue,
     readOnly, disabled,
     showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
-    tableRowProps,
+    tableRowProps, actionColumnWidth,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
     ...restProps
   } = props;
@@ -162,7 +162,7 @@ const DocumentContent = observer((props) => {
                 { !disabled && !readOnly && (
                   <TableCell
                     align='center'
-                    width={155}
+                    width={actionColumnWidth}
                     sx={{
                       px: 0,
                       borderTop: '1px solid rgba(224,224,224,1)',
@@ -240,6 +240,7 @@ DocumentContent.defaultProps = {
   addRowText: <><IconPlus />&emsp;添加一行</>,
   allowDragSort: true,
   showClickSort: true,
+  actionColumnWidth: 135,
 };
 
 DocumentContent.propTypes = {
@@ -261,6 +262,10 @@ DocumentContent.propTypes = {
    *  包裹表格的Box的sx
    */
   tableBoxSx: sx,
+  /**
+   * 操作列的宽度
+   */
+  actionColumnWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 
   /**
    * 是否显示表格竖线
