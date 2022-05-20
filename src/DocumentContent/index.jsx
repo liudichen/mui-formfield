@@ -230,9 +230,15 @@ DocumentContent.propTypes = {
   showSwitchType: PropTypes.bool,
   allowDragSort: PropTypes.bool,
   showAddRow: PropTypes.bool,
+  /**
+   * 操作列中那些弹窗是否全屏
+   */
   modalFullScreen: PropTypes.bool,
   tableBoxSx: sx,
 
+  /**
+   * 是否显示表格竖线
+   */
   bordered: PropTypes.bool,
   headerCellSx: PropTypes.object,
   /**

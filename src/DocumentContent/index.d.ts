@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 20:25:22
+ * @LastEditTime: 2022-05-20 20:27:15
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
@@ -49,9 +49,15 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   showSwitchType?: boolean,
   showAddRow?: boolean,
   allowDragSort?: boolean,
+  /**
+   * 操作列中那些弹窗是否全屏
+   */
   modalFullScreen?: boolean,
   tableBoxSx?: SxProps,
 
+  /**
+   * 是否显示表格竖线
+   */
   bordered?: boolean,
   headerCellSx?: TableCellProps['sx'], // 表头单元格的sx
   /**
