@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-20 20:53:07
+ * @LastEditTime: 2022-05-20 22:14:33
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -27,6 +27,7 @@ const ActionsCell = (props) => {
         <Tooltip title='停止编辑' arrow placement='top'>
           <IconButton
             color='primary'
+            tabIndex={-1}
             onClick={() => setEditing(false)}
           >
             <IconDeviceFloppy
@@ -50,6 +51,7 @@ const ActionsCell = (props) => {
             <Tooltip title='删除该区块' arrow placement='top'>
               <IconButton
                 color='primary'
+                tabIndex={-1}
               >
                 <IconTrash
                   size='1.25rem'
@@ -69,7 +71,11 @@ const ActionsCell = (props) => {
       }}
     >
       <Tooltip title='编辑内容' arrow placement='top'>
-        <IconButton color='primary' onClick={() => setEditing(true)}>
+        <IconButton
+          color='primary'
+          tabIndex={-1}
+          onClick={() => setEditing(true)}
+        >
           <IconEdit
             size='1.25rem'
           />
@@ -85,7 +91,11 @@ const ActionsCell = (props) => {
       )}
       { showClickSort && !first && (
         <Tooltip title='上移一行' arrow placement='top'>
-          <IconButton color='primary' onClick={() => handleClickSort(id, true)}>
+          <IconButton
+            color='primary'
+            tabIndex={-1}
+            onClick={() => handleClickSort(id, true)}
+          >
             <IconChevronsUp
               size='1.25rem'
             />
@@ -94,7 +104,11 @@ const ActionsCell = (props) => {
       )}
       { showClickSort && !last && (
         <Tooltip title='下移一行' arrow placement='top'>
-          <IconButton color='primary' onClick={() => handleClickSort(id, false)}>
+          <IconButton
+            color='primary'
+            tabIndex={-1}
+            onClick={() => handleClickSort(id, false)}
+          >
             <IconChevronsDown
               size='1.25rem'
             />

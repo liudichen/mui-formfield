@@ -80,6 +80,7 @@ const TextStyleModifyModal = (props) => {
         <Tooltip title='文本格式编辑' arrow placement='top'>
           <IconButton
             color='primary'
+            tabIndex={-1}
           >
             <IconPalette
               size='1.25rem'

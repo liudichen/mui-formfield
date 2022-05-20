@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:57
- * @LastEditTime: 2022-05-18 20:03:29
+ * @LastEditTime: 2022-05-20 22:10:51
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -34,7 +34,10 @@ const ContentTypeSwitchModal = (props) => {
       title={`切换内容类型:[当前-${type}]`}
       trigger={
         <Tooltip title='更换类型' arrow placement='top'>
-          <IconButton color='primary'>
+          <IconButton
+            color='primary'
+            tabIndex={-1}
+          >
             <IconReplace
               size='1.25rem'
             />
