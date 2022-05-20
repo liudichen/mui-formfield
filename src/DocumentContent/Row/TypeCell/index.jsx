@@ -7,7 +7,7 @@ import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelec
 import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
 
 const TypeCellContent = (props) => {
-  const { type, id, handleDragSort, disabled, editing } = props;
+  const { type, id, handleDragSort, disabled, editing, allowDragSort } = props;
   const dragRef = useRef();
   const dropRef = useRef();
   const [ dragging, setDragging ] = useSafeState(false);
@@ -32,7 +32,7 @@ const TypeCellContent = (props) => {
     // onDragEnter: () => setIsHovering(true),
     // onDragLeave: () => setIsHovering(false),
   });
-  if (!editing && !disabled) {
+  if (!editing && !disabled && allowDragSort) {
     return (
       <Box
         ref={dropRef}
@@ -107,6 +107,7 @@ TypeCellContent.propTypes = {
   type: PropTypes.oneOf([ '文本', '图片', '表格' ]),
   handleDragSort: PropTypes.func,
   editing: PropTypes.bool,
+  allowDragSort: PropTypes.bool,
 };
 
 export default TypeCellContent;

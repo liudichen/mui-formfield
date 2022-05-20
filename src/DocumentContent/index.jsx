@@ -18,7 +18,7 @@ const DocumentContent = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value, onChange, defaultValue,
     readOnly, disabled,
-    showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
+    showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, allowDragSort,
     tableRowProps,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx,
     ...restProps
@@ -174,6 +174,7 @@ const DocumentContent = observer((props) => {
                   imageShowMaxHeight={imageShowMaxHeight}
                   imageShowMaxWidth={imageShowMaxWidth}
                   cellBorderSx={cellBorderSx}
+                  allowDragSort={allowDragSort}
                 />
               ))}
             </TableBody>
@@ -215,6 +216,7 @@ DocumentContent.defaultProps = {
   modalFullScreen: isMobile,
   tableBoxSx: { overflow: 'auto' },
   addRowText: <><IconPlus />&emsp;添加一行</>,
+  allowDragSort: true,
 };
 
 DocumentContent.propTypes = {
@@ -225,6 +227,7 @@ DocumentContent.propTypes = {
   readOnly: PropTypes.bool,
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
+  allowDragSort: PropTypes.bool,
   showAddRow: PropTypes.bool,
   modalFullScreen: PropTypes.bool,
   tableBoxSx: sx,
