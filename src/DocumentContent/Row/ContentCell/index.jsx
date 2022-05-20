@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:18:41
- * @LastEditTime: 2022-05-18 20:02:06
+ * @LastEditTime: 2022-05-20 08:35:28
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,7 +13,7 @@ import { ImageEditMode, ImageReadMode } from './image';
 import { TableEditMode, TableReadMode } from './table';
 
 const ContentCell = (props) => {
-  const { row, editing, handleChange, fullScreen } = props;
+  const { row, editing, handleChange, modalFullScreen } = props;
   const { type, text, image, table, id } = row;
   if (type === '文本') {
     return editing ? (
@@ -48,7 +48,7 @@ const ContentCell = (props) => {
       id={id}
       table={table || {}}
       handleChange={handleChange}
-      fullScreen={fullScreen}
+      fullScreen={modalFullScreen}
     />
   ) : (
     <TableReadMode
@@ -70,7 +70,7 @@ ContentCell.propTypes = {
     table: PropTypes.object,
   }),
   handleChange: PropTypes.func,
-  fullScreen: PropTypes.bool,
+  modalFullScreen: PropTypes.bool,
 };
 
 export default ContentCell;

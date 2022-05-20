@@ -10,7 +10,7 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, fullScreen, tableRowProps } = props;
+  const { index, row, handleDragSort, handleChange, disabled, readOnly, showDelete, showSwitchType, modalFullScreen, tableRowProps } = props;
   const [ editing, setEditing ] = useSafeState(false);
   return (
     <TableRow {...(tableRowProps || {})}>
@@ -42,7 +42,7 @@ const Row = (props) => {
           row={row}
           editing={editing}
           handleChange={handleChange}
-          fullScreen={fullScreen}
+          modalFullScreen={modalFullScreen}
         />
       </TableCell>
       { !disabled && !readOnly && (
@@ -61,7 +61,7 @@ const Row = (props) => {
             handleChange={handleChange}
             showDelete={showDelete}
             showSwitchType={showSwitchType}
-            fullScreen={fullScreen}
+            modalFullScreen={modalFullScreen}
           />
         </TableCell>
       )}
@@ -74,7 +74,7 @@ Row.propTypes = {
   readOnly: PropTypes.bool,
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
-  fullScreen: PropTypes.bool,
+  modalFullScreen: PropTypes.bool,
   index: PropTypes.number,
   row: PropTypes.shape({
     id: PropTypes.number,

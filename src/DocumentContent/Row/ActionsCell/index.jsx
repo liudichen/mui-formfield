@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-18 20:02:43
+ * @LastEditTime: 2022-05-20 08:36:17
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,7 +15,7 @@ import TextStyleModifyModal from './TextStyleModifyModal';
 import ContentTypeSwitchModal from './ContentTypeSwitchModal';
 
 const ActionsCell = (props) => {
-  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, fullScreen } = props;
+  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, modalFullScreen } = props;
   if (editing) {
     return (
       <Container>
@@ -34,7 +34,7 @@ const ActionsCell = (props) => {
             text={text}
             id={id}
             handleChange={handleChange}
-            fullScreen={fullScreen}
+            fullScreen={modalFullScreen}
           />
         )}
         { showDelete && (
@@ -70,7 +70,7 @@ const ActionsCell = (props) => {
           type={type}
           id={id}
           handleChange={handleChange}
-          fullScreen={fullScreen}
+          fullScreen={modalFullScreen}
         />
       )}
     </Container>
@@ -93,7 +93,7 @@ ActionsCell.propTypes = {
   handleChange: PropTypes.func,
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
-  fullScreen: PropTypes.bool,
+  modalFullScreen: PropTypes.bool,
 };
 
 export default ActionsCell;

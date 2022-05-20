@@ -18,7 +18,7 @@ const DocumentContent = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value, onChange, defaultValue,
     readOnly, disabled,
-    showDelete, showSwitchType, showAddRow, fullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
+    showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
     tableRowProps,
     ...restProps
   } = props;
@@ -135,7 +135,7 @@ const DocumentContent = observer((props) => {
                   showSwitchType={showSwitchType}
                   disabled={disabled}
                   readOnly={readOnly}
-                  fullScreen={fullScreen}
+                  modalFullScreen={modalFullScreen}
                   tableRowProps={tableRowProps}
                 />
               ))}
@@ -169,7 +169,7 @@ DocumentContent.defaultProps = {
   showDelete: true,
   showAddRow: true,
   showSwitchType: true,
-  fullScreen: isMobile,
+  modalFullScreen: isMobile,
   tableBoxSx: { overflow: 'auto' },
   addRowText: <><IconPlus />&emsp;添加一行</>,
 };
@@ -183,7 +183,7 @@ DocumentContent.propTypes = {
   showDelete: PropTypes.bool,
   showSwitchType: PropTypes.bool,
   showAddRow: PropTypes.bool,
-  fullScreen: PropTypes.bool,
+  modalFullScreen: PropTypes.bool,
   tableBoxSx: sx,
 
   onNewRow: PropTypes.func,
