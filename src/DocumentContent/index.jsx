@@ -20,7 +20,7 @@ const DocumentContent = observer((props) => {
     readOnly, disabled,
     showDelete, showSwitchType, showAddRow, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText,
     tableRowProps,
-    imageShowMaxHeight, imageShowMaxWidth, bordered,
+    imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx,
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
@@ -110,6 +110,7 @@ const DocumentContent = observer((props) => {
                     px: 0,
                     borderTop: '1px solid rgba(224,224,224,1)',
                     ...cellBorderSx,
+                    ...(headerCellSx || {}),
                   }}
                 >
                 序号
@@ -121,6 +122,7 @@ const DocumentContent = observer((props) => {
                     px: 0,
                     borderTop: '1px solid rgba(224,224,224,1)',
                     ...cellBorderSx,
+                    ...(headerCellSx || {}),
                   }}
                 >
                 类型
@@ -131,6 +133,7 @@ const DocumentContent = observer((props) => {
                     minWidth: 200,
                     borderTop: '1px solid rgba(224,224,224,1)',
                     ...cellBorderSx,
+                    ...(headerCellSx || {}),
                   }}
                 >
                 内容
@@ -143,6 +146,7 @@ const DocumentContent = observer((props) => {
                       px: 0,
                       borderTop: '1px solid rgba(224,224,224,1)',
                       ...cellBorderSx,
+                      ...(headerCellSx || {}),
                     }}
                   >
                   操作
@@ -217,6 +221,7 @@ DocumentContent.propTypes = {
   tableBoxSx: sx,
 
   bordered: PropTypes.bool,
+  headerCellSx: PropTypes.object,
   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 

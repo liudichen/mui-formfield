@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 19:42:52
+ * @LastEditTime: 2022-05-20 19:44:26
  */
 import React from 'react';
-import { TableProps, TableRowProps, SxProps, ButtonProps } from '@mui/material';
+import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
 
 import { FieldWrapperRelateProps } from '../types';
 
@@ -52,6 +52,7 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   tableBoxSx?: SxProps,
 
   bordered?: boolean,
+  headerCellSx?: TableCellProps['sx'],
   imageShowMaxHeight?: string | number,
   imageShowMaxWidth?: string | number,
 
