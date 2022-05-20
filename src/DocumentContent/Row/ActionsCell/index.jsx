@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-05-20 19:35:09
+ * @LastEditTime: 2022-05-20 20:39:23
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,7 +18,12 @@ const ActionsCell = (props) => {
   const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, modalFullScreen } = props;
   if (editing) {
     return (
-      <Container>
+      <Container
+        style={{
+          paddingLeft: 0,
+          paddingRight: 0,
+        }}
+      >
         <Tooltip title='停止编辑' arrow placement='top'>
           <IconButton
             color='primary'
