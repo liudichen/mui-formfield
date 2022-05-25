@@ -238,6 +238,7 @@ DocumentContent.defaultProps = {
   allowDragSort: true,
   actionColumnWidth: 135,
   showHideContent: true,
+  showClickSort: isMobile,
 };
 
 DocumentContent.propTypes = {
