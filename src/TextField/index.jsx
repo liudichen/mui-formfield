@@ -3,28 +3,39 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-05-20 17:29:23
+ * @LastEditTime: 2022-05-26 11:37:50
  */
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useMemoizedFn, useControllableValue } from 'ahooks';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { FieldWrapper, LabelRender, useMergedState, fieldWrapperPropTypes, sx } from '../common';
+import { FieldWrapper, LabelRender, fieldWrapperPropTypes, sx } from '../common';
 
 const TextField = (props) => {
   const {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
+    // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
     showClear, readOnly,
     InputProps, inputProps, endAdornmentItem,
     ...restProps
   } = props;
 
-  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (v) => v ?? '' });
-
+  const [ value, onChange ] = useControllableValue(props);
+  const onTextFieldChange = useMemoizedFn((e) => {
+    if (!readOnly && !props.disabled) {
+      const v = e.target.value;
+      if (props.type === 'number') {
+        onChange(+v);
+      } else {
+        onChange(v);
+      }
+    }
+  });
   return (
     <FieldWrapper
       error={error}
@@ -44,11 +55,7 @@ const TextField = (props) => {
     >
       <MuiTextField
         value={value}
-        onChange={(e) => {
-          if (!readOnly) {
-            onChange(e.target.value || '');
-          }
-        }}
+        onChange={onTextFieldChange}
         label={ labelPosition === 'border' ? (
           <LabelRender
             labelPosition='border'
@@ -75,7 +82,7 @@ const TextField = (props) => {
                 edge='end'
                 tabIndex={-1}
                 onClick={() => {
-                  if (!readOnly)onChange('');
+                  if (!readOnly)onChange(null);
                 }}
               >
                 <CloseIcon fontSize='small' />
