@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-05-26 11:37:50
+ * @LastEditTime: 2022-05-26 12:02:34
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,11 +25,11 @@ const TextField = (props) => {
     ...restProps
   } = props;
 
-  const [ value, onChange ] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(props, { defaultValue: '' });
   const onTextFieldChange = useMemoizedFn((e) => {
     if (!readOnly && !props.disabled) {
       const v = e.target.value;
-      if (props.type === 'number') {
+      if (props.type === 'number' && v !== '') {
         onChange(+v);
       } else {
         onChange(v);
@@ -71,7 +71,7 @@ const TextField = (props) => {
           ...(inputProps || {}),
         }}
         InputProps={{
-          endAdornment: !readOnly && showClear && !!value ? (
+          endAdornment: !readOnly && showClear && (!!value || value === 0) ? (
             <InputAdornment
               position='end'
               sx={{
@@ -82,7 +82,7 @@ const TextField = (props) => {
                 edge='end'
                 tabIndex={-1}
                 onClick={() => {
-                  if (!readOnly)onChange(null);
+                  if (!readOnly)onChange('');
                 }}
               >
                 <CloseIcon fontSize='small' />
