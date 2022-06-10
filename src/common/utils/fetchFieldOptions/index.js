@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:59
- * @LastEditTime: 2022-05-13 11:07:28
+ * @LastEditTime: 2022-06-10 14:39:14
  */
 /**
  * @description 获取formField的options，有options优先使用options
@@ -36,10 +36,10 @@ const fetchFieldOptions = async (optionsProp, request, callback) => {
       }
     }
   }
-  if (typeof result[0] !== 'object') {
-    result = result.map((item) => ({ value: item, label: `${item}` }));
+  result = result.map((item) => (typeof item === 'object' ? item : { value: item, label: `${item}` }));
+  if (callback && typeof callback === 'function') {
+    result = callback(result);
   }
-  callback?.(result);
   return result;
 };
 
