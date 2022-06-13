@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 14:06:50
- * @LastEditTime: 2022-05-13 14:10:13
+ * @LastEditTime: 2022-06-13 11:31:25
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn, useSafeState } from 'ahooks';
@@ -26,7 +26,7 @@ const CheckboxGroup = (props) => {
   const [ options, setOptions ] = useSafeState([]);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (s) => s || [] });
+  const [ value, onChange ] = useMergedState(defaultValue, { value: valueProp, onChange: onChangeProp, postState: (s) => s ?? [] });
 
   const fetchOptions = useMemoizedFn(async () => {
     setLoading(true);

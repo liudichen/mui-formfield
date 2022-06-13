@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.2.34",
+  "version": "0.2.35",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -100,7 +100,7 @@
     "ahooks": "^3.4.0",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.1",
-    "mui-component": "^0.1.13",
+    "mui-component": "^0.1.21",
     "mui-formily": "^0.2.20",
     "mui-image-crop": "^0.1.6",
     "prop-types": "^15.8.1",

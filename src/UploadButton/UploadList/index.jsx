@@ -3,14 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:18
- * @LastEditTime: 2022-05-18 20:10:10
+ * @LastEditTime: 2022-06-13 11:28:38
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState, useUpdate } from 'ahooks';
 import { IconPaperclip, IconPhoto, IconFileInfo } from '@tabler/icons';
+import { ImageCarouselModal } from 'mui-component';
 
-import ImageCarouselModal from './ImageCarouselModal';
 import { generateFileDownload } from '../../common';
 import ListItem from './ListItem';
 
