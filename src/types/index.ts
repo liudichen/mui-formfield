@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-05-13 11:22:04
+ * @LastEditTime: 2022-06-16 10:39:45
  */
 import * as React from 'react';
 import { SxProps as sxType } from '@mui/material';
@@ -40,7 +40,7 @@ export interface fieldCommonProps <Type> {
   value?: Type,
   onChange?: (value:Type) => void,
   defaultValue?: Type,
-  readonly?: boolean,
+  readOnly?: boolean,
   disabled?: boolean,
 }
 
