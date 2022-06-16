@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.2.35",
+  "version": "0.2.36",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -97,10 +97,10 @@
     "@mui/x-data-grid": "^5.10.0",
     "@mui/x-date-pickers": "^5.0.0-alpha.2",
     "@tabler/icons": "^1.68.0",
-    "ahooks": "^3.4.0",
+    "ahooks": "^3.4.1",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.1",
-    "mui-component": "^0.1.22",
+    "mui-component": "^0.1.25",
     "mui-formily": "^0.2.20",
     "mui-image-crop": "^0.1.6",
     "prop-types": "^15.8.1",
