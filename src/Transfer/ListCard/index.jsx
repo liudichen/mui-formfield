@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:06:50
- * @LastEditTime: 2022-06-17 10:43:03
+ * @LastEditTime: 2022-06-17 11:13:56
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -100,7 +100,7 @@ const ListCard = (props) => {
                 disableRipple
                 {...(itemCheckboxProps || {})}
                 checked = { isInArray(item, checked)}
-                tabInde = {-1}
+                tabIndex = {-1}
               />
             </ListItemIcon>
             <ListItemText

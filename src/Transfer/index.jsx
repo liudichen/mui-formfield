@@ -179,8 +179,9 @@ const Transfer = (props) => {
             >
               <IconButton
                 color = 'primary'
+                tabIndex={-1}
                 {...(buttonProps || {})}
-                onClic = {onClickToLeft}
+                onClick = {onClickToLeft}
                 disabled = {disabled || readOnly || !rightChecked?.length}
               >
                 <IconArrowBigLeft />
