@@ -72,10 +72,11 @@ const Transfer = (props) => {
 
   const handleToggleAll = useMemoizedFn((items) => {
     let newChecked = [];
-    if (intersection(checked, items).length === items.length) {
-      newChecked = not(checked, items);
+    const enabledItems = items.filter((item) => !(options.find((ele) => isEqual(item, ele.value))?.disabled));
+    if (intersection(checked, enabledItems).length === enabledItems.length) {
+      newChecked = not(checked, enabledItems);
     } else {
-      newChecked = union(checked, items);
+      newChecked = union(checked, enabledItems);
     }
     newChecked = intersection(newChecked, optionsValues);
     setChecked(newChecked);
@@ -111,19 +112,15 @@ const Transfer = (props) => {
       helperTextProps={helperTextProps}
     >
       <Grid
-        {...{
-          spacing: gridSpacing,
-          justifyContent: 'center',
-          alignItems: 'center',
-          ...(rootGridProps || {}),
-          container: true,
-        }}
+        spacing = {gridSpacing}
+        justifyContent = 'center'
+        alignItems = 'center'
+        {...(rootGridProps || {})}
+        container
       >
         <Grid
-          {...{
-            ...(cardGridProps || {}),
-            item: true,
-          }}
+          {...(cardGridProps || {})}
+          item
         >
           { loading ? (
             <Skeleton
@@ -169,12 +166,10 @@ const Transfer = (props) => {
               item
             >
               <IconButton
-                {...{
-                  color: 'primary',
-                  ...(buttonProps || {}),
-                  onClick: onClickToRight,
-                  disabled: disabled || readOnly || !leftChecked?.length,
-                }}
+                color = 'primary'
+                {...(buttonProps || {})}
+                onClick = {onClickToRight}
+                disabled = {disabled || readOnly || !leftChecked?.length}
               >
                 <IconArrowBigRight />
               </IconButton>
@@ -183,12 +178,10 @@ const Transfer = (props) => {
               item
             >
               <IconButton
-                {...{
-                  color: 'primary',
-                  ...(buttonProps || {}),
-                  onClick: onClickToLeft,
-                  disabled: disabled || readOnly || !rightChecked?.length,
-                }}
+                color = 'primary'
+                {...(buttonProps || {})}
+                onClic = {onClickToLeft}
+                disabled = {disabled || readOnly || !rightChecked?.length}
               >
                 <IconArrowBigLeft />
               </IconButton>
