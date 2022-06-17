@@ -243,11 +243,16 @@ Transfer.propTypes = {
   showSearch: PropTypes.bool,
   disabled: PropTypes.bool,
   options: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape({
-      value: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-      label: PropTypes.node,
-    })),
-    PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])),
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.shape({
+        value: PropTypes.any,
+        label: PropTypes.node,
+        disabled: PropTypes.bool,
+      }),
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+    PropTypes.func,
   ]),
   refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   request: PropTypes.func,
