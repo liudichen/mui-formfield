@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 11:03:52
- * @LastEditTime: 2022-06-17 09:22:55
+ * @LastEditTime: 2022-06-17 09:51:38
  */
 import * as React from 'react';
 import { SxProps as sxType } from '@mui/material';
@@ -47,6 +47,7 @@ export interface fieldCommonProps <Type> {
 export interface optionType {
   value: any,
   label: number | string | React.ReactNode,
+  disabled?: boolean
 }
 
 export type optionsType = optionType[] | (string | number)[];

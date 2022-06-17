@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:06:50
- * @LastEditTime: 2022-06-17 09:46:09
+ * @LastEditTime: 2022-06-17 09:51:02
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -129,6 +129,7 @@ ListCard.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
     label: PropTypes.node,
+    disabled: PropTypes.bool,
   })),
   title: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])),
