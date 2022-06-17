@@ -4,7 +4,7 @@ import { useCreation, useLatest, useMemoizedFn, useSafeState } from 'ahooks';
 import { Grid, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons';
 
-import { FieldWrapper, fetchFieldOptions, fieldWrapperPropTypes, useMergedState, isInArray } from '../common';
+import { FieldWrapper, fetchFieldOptions, fieldWrapperPropTypes, useMergedState, isInArray, isEqual } from '../common';
 
 import ListCard from './ListCard';
 
@@ -60,7 +60,7 @@ const Transfer = (props) => {
   const rightChecked = intersection(checked, value);
 
   const handleToggle = useMemoizedFn((value) => {
-    const currentIndex = checked.indexOf(value);
+    const currentIndex = checked.findIndex((ele) => isEqual(value, ele));
     const newChecked = [ ...checked ];
     if (currentIndex === -1) {
       newChecked.push(value);
@@ -142,7 +142,7 @@ const Transfer = (props) => {
               setChecked={setChecked}
               showSelectAll={showSelectAll}
               showSearch={showSearch}
-              title={titles?.[0] || '可选项'}
+              title={titles?.[0] ?? '可选项'}
               listSx={listSx}
               listProps={listProps}
               listCardWidth={listCardWidth}
@@ -215,7 +215,7 @@ const Transfer = (props) => {
               handleToggleAll={handleToggleAll}
               showSelectAll={showSelectAll}
               showSearch={showSearch}
-              title={titles?.[1] || '已选项'}
+              title={titles?.[1] ?? '已选项'}
               listSx={listSx}
               listProps={listProps}
               listCardWidth={listCardWidth}

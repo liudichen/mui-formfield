@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:06:50
- * @LastEditTime: 2022-05-18 20:08:29
+ * @LastEditTime: 2022-06-17 09:46:09
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -12,6 +12,7 @@ import { Card, CardHeader, Checkbox, Divider, FormControlLabel, List, ListItem, 
 
 import { intersection } from '../utils';
 import TextField from '../../TextField';
+import { isEqual } from '../../common';
 
 const ListCard = (props) => {
   const {
@@ -85,7 +86,7 @@ const ListCard = (props) => {
         }}
       >
         { items.filter((ele) => {
-          const label = options.filter((v) => v.value === ele)?.[0]?.label;
+          const label = options.filter((v) => isEqual(ele, v.value))?.[0]?.label;
           return `${ele}`.includes(keyword) || ((typeof label === 'number' || typeof label === 'string') ? `${label}`.includes(keyword) : false);
         }).map((item) => (
           <ListItem

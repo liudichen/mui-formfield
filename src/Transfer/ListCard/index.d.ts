@@ -3,12 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:13:54
- * @LastEditTime: 2022-04-18 17:33:39
+ * @LastEditTime: 2022-06-17 09:48:28
  */
 import React from 'react';
 import { SystemStyleObject } from '@mui/system';
 import { ListProps, ListItemProps, CheckboxProps, ListItemTextProps } from '@Mui/material';
-type Item = number | string;
+type Item = number | string | object;
 
 import { TextFieldProps } from '../../TextField';
 
