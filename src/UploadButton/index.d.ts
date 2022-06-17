@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 16:47:38
- * @LastEditTime: 2022-04-15 18:53:54
+ * @LastEditTime: 2022-06-17 09:11:26
  */
 import React from 'react';
 import { FieldWrapperRelateProps } from '../types';
@@ -31,7 +31,7 @@ export interface UploadButtonProps extends FieldWrapperRelateProps, Omit<UploadZ
   uploadButtonProps?: ButtonProps,
   uploadButtonText?: React.ReactNode,
   disabled?: boolean,
-  readonly?: boolean,
+  readOnly?: boolean,
   showUploadList?: boolean | showUploadList,
   maxCount?: number,
 }

@@ -3,14 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 15:11:12
- * @LastEditTime: 2022-05-20 17:28:42
+ * @LastEditTime: 2022-06-17 09:16:44
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Checkbox, Skeleton, ToggleButtonGroup as MuiToggleButtonGroup, ToggleButton as MuiToggleButton } from '@mui/material';
 
-import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx } from '../common';
+import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx, isEqual, isInArray } from '../common';
 
 const ToggleButtonGroup = (props) => {
   const {
@@ -49,11 +49,11 @@ const ToggleButtonGroup = (props) => {
       if (!((minCount !== undefined && newValue.length < minCount) || (maxCount !== undefined && newValue.length > maxCount))) {
         let newV = [ ...(newValue || []) ];
         newV.sort((a, b) => {
-          const indexA = options.findIndex((opt) => opt.value === a);
-          const indexB = options.findIndex((opt) => opt.value === b);
+          const indexA = options.findIndex((opt) => isEqual(a, opt.value));
+          const indexB = options.findIndex((opt) => isEqual(b, opt.value));
           return indexA - indexB;
         });
-        newV = newV.filter((item) => optionsValues.includes(item));
+        newV = newV.filter((item) => isInArray(item, optionsValues));
         onChange(newV);
       }
     }
@@ -95,9 +95,9 @@ const ToggleButtonGroup = (props) => {
           onChange={handleChange}
           sx={sx}
         >
-          { options.map((item) => (
+          { options.map((item, index) => (
             <MuiToggleButton
-              key={item.value}
+              key={index}
               size={item?.size ?? size}
               color={item?.color ?? color}
               disabled={item?.disabled ?? disabled}

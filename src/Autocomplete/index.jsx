@@ -3,14 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-06-13 11:31:14
+ * @LastEditTime: 2022-06-17 09:07:35
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete as MuiAutocomplete, TextField } from '@mui/material';
 
-import { fetchFieldOptions, FieldWrapper, fieldWrapperPropTypes, LabelRender, sx, useMergedState } from '../common';
+import { fetchFieldOptions, FieldWrapper, fieldWrapperPropTypes, LabelRender, sx, useMergedState, isEqual } from '../common';
 
 const Autocomplete = (props) => {
   const {
@@ -60,7 +60,7 @@ const Autocomplete = (props) => {
         options={options}
         value={value}
         onChange={(e, v) => onChange?.(v)}
-        isOptionEqualToValue={(op, v) => op.value === v.value}
+        isOptionEqualToValue={(op, v) => isEqual(op.value, v?.value)}
         disableCloseOnSelect={disableCloseOnSelect ?? props.multiple}
         renderInput={(params) => (
           <TextField

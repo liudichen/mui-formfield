@@ -4,7 +4,7 @@ import { useCreation, useLatest, useMemoizedFn, useSafeState } from 'ahooks';
 import { Grid, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons';
 
-import { FieldWrapper, fetchFieldOptions, fieldWrapperPropTypes, useMergedState } from '../common';
+import { FieldWrapper, fetchFieldOptions, fieldWrapperPropTypes, useMergedState, isInArray } from '../common';
 
 import ListCard from './ListCard';
 
@@ -31,12 +31,12 @@ const Transfer = (props) => {
     if (!v.length) {
       return [];
     }
-    if (typeof v === 'object' && v.value !== undefined && v.label) {
+    if (typeof v[0] === 'object' && v[0].value !== undefined) {
       v = v.map((item) => item.value);
     }
     const list = optionsValuesRef.current || [];
     if (!keepExtraItems) {
-      v = v.filter((item) => list.includes(item));
+      v = v.filter((item) => isInArray(item, list));
     }
     return v;
   });

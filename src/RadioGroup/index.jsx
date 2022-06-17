@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-05-20 17:28:00
+ * @LastEditTime: 2022-06-17 09:12:11
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -81,9 +81,9 @@ const RadioGroup = (props) => {
           name={name}
           sx={sx}
         >
-          { options.map((item) => (
+          { options.map((item, index) => (
             <FormControlLabel
-              key={item.value}
+              key={index}
               label={item.label ?? ''}
               value={item.value}
               control={
