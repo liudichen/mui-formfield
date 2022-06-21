@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.2.39",
+  "version": "0.2.40",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -90,7 +90,7 @@
     "@formily/react": "^2.1.2",
     "@formily/reactive": "^2.1.2",
     "@mui/icons-material": "^5.6.2",
-    "@mui/lab": "^5.0.0-alpha.77",
+    "@mui/lab": "5.0.0-alpha.77",
     "@mui/material": "^5.7.0",
     "@mui/styles": "^5.7.0",
     "@mui/system": "^5.7.0",
