@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-05-26 12:02:34
+ * @LastEditTime: 2022-06-24 12:26:28
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,7 +32,7 @@ const TextField = (props) => {
       if (props.type === 'number' && v !== '') {
         onChange(+v);
       } else {
-        onChange(v);
+        onChange(v ?? '');
       }
     }
   });
@@ -54,7 +54,7 @@ const TextField = (props) => {
       helperTextProps={helperTextProps}
     >
       <MuiTextField
-        value={value}
+        value={value ?? ''}
         onChange={onTextFieldChange}
         label={ labelPosition === 'border' ? (
           <LabelRender
