@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.2.41",
+  "version": "0.2.42",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -85,7 +85,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/styled": "^11.9.3",
     "@formily/core": "^2.1.2",
     "@formily/react": "^2.1.2",
     "@formily/reactive": "^2.1.2",
