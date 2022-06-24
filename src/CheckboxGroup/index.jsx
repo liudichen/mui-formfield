@@ -3,14 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 14:06:50
- * @LastEditTime: 2022-06-13 11:31:25
+ * @LastEditTime: 2022-06-24 11:01:21
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import React, { useEffect } from 'react';
 import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
 
-import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx } from '../common';
+import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx, isInArray, isEqual } from '../common';
 import ToggleButtonGroup from '../ToggleButtonGroup';
 
 const CheckboxGroup = (props) => {
@@ -44,7 +44,7 @@ const CheckboxGroup = (props) => {
     if (readOnly) { return; }
     const checked = e.target.checked;
     let newValue = [ ...(value || []) ];
-    const optionIndex = newValue.indexOf(optionValue);
+    const optionIndex = newValue.findIndex((ele) => isEqual(ele, optionValue));
     if (optionIndex === -1) {
       if (checked) {
         newValue.push(optionValue);
@@ -53,11 +53,11 @@ const CheckboxGroup = (props) => {
       newValue.splice(optionIndex, 1);
     }
     newValue.sort((a, b) => {
-      const indexA = options.findIndex((opt) => opt.value === a);
-      const indexB = options.findIndex((opt) => opt.value === b);
+      const indexA = options.findIndex((opt) => isEqual(a, opt.value));
+      const indexB = options.findIndex((opt) => isEqual(b, opt.value));
       return indexA - indexB;
     });
-    newValue = newValue.filter((item) => optionsValues.includes(item));
+    newValue = newValue.filter((item) => isInArray(item, optionsValues));
     let shouldUpdate = true;
     if ((minCount !== undefined && newValue.length < minCount) || (maxCount !== undefined && newValue.length > maxCount)) {
       shouldUpdate = false;
@@ -97,9 +97,9 @@ const CheckboxGroup = (props) => {
           row={layout === 'horizontal'}
           sx={sx}
         >
-          { options.map((item) => (
+          { options.map((item, index) => (
             <FormControlLabel
-              key={item.value}
+              key={index}
               label={item.label ?? ''}
               control={
                 <Checkbox
@@ -107,7 +107,7 @@ const CheckboxGroup = (props) => {
                   color={item?.color ?? color}
                   disabled={item?.disabled ?? disabled}
                   {...(itemProps || {})}
-                  checked={value?.includes(item.value)}
+                  checked={isInArray(item.value, value)}
                   onChange={(e) => handleChange(e, item.value)}
                 />
               }
