@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:47
- * @LastEditTime: 2022-05-18 20:10:32
+ * @LastEditTime: 2022-06-24 16:52:49
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -150,11 +150,6 @@ const ListItem = (props) => {
       </span>
     </span>
   );
-};
-
-ListItem.defaultProps = {
-  showRemoveIcon: true,
-  showPreviewIcon: true,
 };
 
 ListItem.propTypes = {

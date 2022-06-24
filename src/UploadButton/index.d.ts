@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 16:47:38
- * @LastEditTime: 2022-06-17 09:11:26
+ * @LastEditTime: 2022-06-24 16:49:46
  */
 import React from 'react';
 import { FieldWrapperRelateProps } from '../types';
@@ -12,7 +12,7 @@ import { ButtonProps } from '@mui/material';
 
 type funcCom = (props?: object) => React.node;
 
-interface showUploadList {
+interface UploadListRelateProps {
   showPreviewIcon?: boolean,
   showRemoveIcon?: boolean,
   showDownloadIcon?: boolean,
@@ -21,7 +21,7 @@ interface showUploadList {
   removeIcon?: React.node | funcCom,
 }
 
-export interface UploadButtonProps extends FieldWrapperRelateProps, Omit<UploadZoneProps, 'maxFiles'> {
+export interface UploadButtonProps extends FieldWrapperRelateProps, UploadListRelateProps, Omit<UploadZoneProps, 'maxFiles'> {
   value?: File[],
   defaultValue?: any,
   onChange?: (fileList: File[]) => void,
@@ -32,7 +32,7 @@ export interface UploadButtonProps extends FieldWrapperRelateProps, Omit<UploadZ
   uploadButtonText?: React.ReactNode,
   disabled?: boolean,
   readOnly?: boolean,
-  showUploadList?: boolean | showUploadList,
+  showUploadList?: boolean,
   maxCount?: number,
 }
 

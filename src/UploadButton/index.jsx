@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 08:57:36
- * @LastEditTime: 2022-05-18 20:09:09
+ * @LastEditTime: 2022-06-24 16:51:37
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -43,6 +43,12 @@ const UploadButton = (props) => {
     onDropAccepted,
     onDropRejected,
     validator,
+    showPreviewIcon,
+    showRemoveIcon,
+    showDownloadIcon,
+    previewIcon,
+    downloadIcon,
+    removeIcon,
     ...restProps
   } = props;
   const [ fileList, setFileList ] = useMergedState(defaultValue, { value, onChange, postState: (s) => (s ? (Array.isArray(s) ? s : [ s ]) : []) });
@@ -141,7 +147,12 @@ const UploadButton = (props) => {
           onPreview={onPreview}
           onDownload={onDownload}
           style={uploadListStyle ?? {}}
-          {...(showUploadList ? (showUploadList === true ? { showPreviewIcon: true, showRemoveIcon: true } : showUploadList) : {})}
+          showDownloadIcon={showDownloadIcon}
+          showPreviewIcon={showPreviewIcon}
+          showRemoveIcon={showRemoveIcon}
+          previewIcon={previewIcon}
+          downloadIcon={downloadIcon}
+          removeIcon={removeIcon}
         />
       )}
     </FieldWrapper>
@@ -150,10 +161,13 @@ const UploadButton = (props) => {
 
 UploadButton.defaultProps = {
   showUploadList: true,
-  listType: 'text',
+  listType: 'picture-card',
   children: <Button variant='outlined' size='small'>文件上传</Button>,
   isImage,
   previewFile: defaultPreviewFile,
+  showDownloadIcon: false,
+  showPreviewIcon: true,
+  showRemoveIcon: true,
 };
 
 UploadButton.propTypes = {
@@ -170,16 +184,13 @@ UploadButton.propTypes = {
   disabled: PropTypes.bool,
   readOnly: PropTypes.bool,
   validator: PropTypes.func, // interface: （file) => '' || errorMsg
-  showUploadList: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.shape({
-      showPreviewIcon: PropTypes.bool,
-      showRemoveIcon: PropTypes.bool,
-      showDownloadIcon: PropTypes.bool,
-      previewIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-      downloadIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-      removeIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-    }) ]),
+  showUploadList: PropTypes.bool,
+  showPreviewIcon: PropTypes.bool,
+  showRemoveIcon: PropTypes.bool,
+  showDownloadIcon: PropTypes.bool,
+  previewIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
+  downloadIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
+  removeIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
   listType: PropTypes.oneOf([ 'text', 'picture-card' ]),
   maxCount: PropTypes.number,
   onRemove: PropTypes.func,
