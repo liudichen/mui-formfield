@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 14:26:56
- * @LastEditTime: 2022-06-17 09:11:20
+ * @LastEditTime: 2022-07-01 17:16:52
  */
+import React from 'react';
 import { AutocompleteProps as MuiProps } from '@mui/material';
 import { FieldWrapperRelateProps, optionsRelateProps } from '../types';
 
@@ -18,4 +19,6 @@ export interface AutocompleteProps extends Omit<Omit<MuiProps, 'onChange'>, 'opt
   refreshOptionsFlag?: string | number
 }
 
-export default function Autocomplete(props: AutocompleteProps): JSX.Element;
+declare const Autocomplete:React.FunctionComponent<AutocompleteProps>;
+
+export default Autocomplete;
