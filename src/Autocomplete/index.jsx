@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-06-17 09:07:35
+ * @LastEditTime: 2022-07-01 17:20:12
  */
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -19,7 +19,7 @@ const Autocomplete = (props) => {
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
     value: valueProp, onChange: onChangeProp, defaultValue,
-    placeholder,
+    placeholder, variant,
     disableCloseOnSelect,
     ...restProps
   } = props;
@@ -67,6 +67,7 @@ const Autocomplete = (props) => {
             placeholder={placeholder}
             {...params}
             error={error}
+            variant={variant}
             label={labelPosition === 'border' ? (
               <LabelRender
                 labelPosition='border'
@@ -88,6 +89,7 @@ const Autocomplete = (props) => {
 Autocomplete.defaultProps = {
   size: 'small',
   labelPosition: 'top',
+  variant: 'outlined',
 };
 
 Autocomplete.propTypes = {
@@ -98,6 +100,7 @@ Autocomplete.propTypes = {
   options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
   onChange: PropTypes.func,
   refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+  variant: PropTypes.oneOf([ 'outlined', 'filled', 'standard' ]),
 
   renderInput: PropTypes.func,
   autoComplete: PropTypes.bool,
