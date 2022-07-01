@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 16:47:38
- * @LastEditTime: 2022-06-24 16:49:46
+ * @LastEditTime: 2022-06-24 17:39:06
  */
 import React from 'react';
 import { FieldWrapperRelateProps } from '../types';
@@ -34,6 +34,7 @@ export interface UploadButtonProps extends FieldWrapperRelateProps, UploadListRe
   readOnly?: boolean,
   showUploadList?: boolean,
   maxCount?: number,
+  onDownload?: (file: File) => void
 }
 
 declare const UploadButton: React.FunctionComponent<UploadButtonProps>;
