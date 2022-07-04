@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-06-24 12:26:28
+ * @LastEditTime: 2022-07-04 11:47:31
  */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useMemoizedFn, useControllableValue } from 'ahooks';
+import { useMemoizedFn, useControllableValue, useCreation } from 'ahooks';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -20,7 +20,7 @@ const TextField = (props) => {
     fieldSx, fieldProps, labelSx, labelProps,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    showClear, readOnly,
+    showClear: showClearProp, readOnly,
     InputProps, inputProps, endAdornmentItem,
     ...restProps
   } = props;
@@ -36,6 +36,12 @@ const TextField = (props) => {
       }
     }
   });
+  const showClear = useCreation(() => {
+    if (!props?.type || props.type === 'text') {
+      return showClearProp ?? true;
+    }
+    return showClearProp ?? false;
+  }, [ showClearProp, props?.type ]);
   return (
     <FieldWrapper
       error={error}
@@ -111,7 +117,6 @@ const TextField = (props) => {
 TextField.defaultProps = {
   size: 'small',
   labelPosition: 'top',
-  showClear: true,
 };
 
 TextField.propTypes = {
