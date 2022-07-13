@@ -79,11 +79,7 @@ const TableEditMode = (props) => {
       <Divider sx={{ my: '4px' }} />
       <Box>
         <FormControl>
-          <FormLabel>
-            {
-              '选择表格编辑模式(大表格建议通过文件附件而非直接写入正文,如果行数不多也可以通过图片插入正文)'
-            }
-          </FormLabel>
+          <FormLabel>{'选择表格编辑模式(大表格建议通过文件附件而非直接写入正文)'}</FormLabel>
           <RadioGroup row value={inputType} onChange={(e) => setInputType(e.target.value)}>
             <FormControlLabel
               value="input"
