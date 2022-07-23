@@ -100,7 +100,7 @@
     "ahooks": "^3.4.1",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.1",
-    "mui-component": "^0.1.26",
+    "mui-component": "^0.1.32",
     "mui-formily": "^0.2.21",
     "mui-image-crop": "^0.1.6",
     "prop-types": "^15.8.1",
