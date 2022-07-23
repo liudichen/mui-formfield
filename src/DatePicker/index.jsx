@@ -3,26 +3,46 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-05-13 14:26:47
+ * @LastEditTime: 2022-07-23 13:39:46
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
-import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker as MuiDatePicker } from '@mui/lab';
 
 import { FieldWrapper, LabelRender, useMergedState, fieldWrapperPropTypes } from '../common';
 
 const DatePicker = (props) => {
   const {
-    label, labelPosition, tooltip, required, error, fullWidth,
-    helperText, showHelperText, helperTextSx, helperTextProps,
-    fieldSx, fieldProps, labelSx, labelProps,
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    label,
+    labelPosition,
+    tooltip,
+    required,
+    error,
+    fullWidth,
+    helperText,
+    showHelperText,
+    helperTextSx,
+    helperTextProps,
+    fieldSx,
+    fieldProps,
+    labelSx,
+    labelProps,
+    value: valueProp,
+    onChange: onChangeProp,
+    defaultValue,
     showClear,
-    inputLabel, size, placeholder, inputProps,
+    inputLabel,
+    size,
+    placeholder,
+    inputProps,
     ...restProps
   } = props;
-  const [ value, onChange ] = useMergedState(defaultValue || null, { value: valueProp, onChange: onChangeProp, postState: (s) => (s || null) });
+  const [value, onChange] = useMergedState(defaultValue || null, {
+    value: valueProp,
+    onChange: onChangeProp,
+    postState: (s) => s || null,
+  });
   return (
     <FieldWrapper
       error={error}
@@ -42,28 +62,26 @@ const DatePicker = (props) => {
     >
       <MuiDatePicker
         value={value}
-        label={inputLabel ?? (labelPosition === 'border' && !!label ? (
-          <LabelRender
-            labelPosition='border'
-            tooltip={tooltip}
-            required={required}
-            label={label}
-            labelSx={labelSx}
-            labelProps={labelProps}
-          />
-        ) : undefined)}
+        label={
+          inputLabel ??
+          (labelPosition === 'border' && !!label ? (
+            <LabelRender
+              labelPosition="border"
+              tooltip={tooltip}
+              required={required}
+              label={label}
+              labelSx={labelSx}
+              labelProps={labelProps}
+            />
+          ) : undefined)
+        }
         onChange={onChange}
         clearable={showClear}
         inputProps={{
           placeholder,
           ...(inputProps || {}),
         }}
-        renderInput={(params) => (
-          <TextField
-            size={size}
-            {...params}
-          />
-        )}
+        renderInput={(params) => <TextField size={size} {...params} />}
         {...restProps}
       />
     </FieldWrapper>
@@ -88,7 +106,7 @@ DatePicker.propTypes = {
 
   showClear: PropTypes.bool,
   inputLabel: PropTypes.node,
-  size: PropTypes.oneOfType([ PropTypes.oneOf([ 'medium', 'small' ]), PropTypes.string ]),
+  size: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
   placeholder: PropTypes.string,
   value: PropTypes.any,
   defaultValue: PropTypes.any,
@@ -125,7 +143,7 @@ DatePicker.propTypes = {
   InputAdornmentProps: PropTypes.object,
   inputProps: PropTypes.object,
   inputFormat: PropTypes.string,
-  inputRef: PropTypes.oneOfType([ PropTypes.func, PropTypes.shape({ current: PropTypes.object }) ]),
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.object })]),
   leftArrowText: PropTypes.string,
   loading: PropTypes.bool,
   mask: PropTypes.string, //	'____/__/__'
@@ -141,8 +159,8 @@ DatePicker.propTypes = {
   onYearChange: PropTypes.func,
   open: PropTypes.bool,
   OpenPickerButtonProps: PropTypes.object,
-  openTo: PropTypes.oneOf([ 'day', 'month', 'year' ]),
-  orientation: PropTypes.oneOf([ 'landscape', 'portrait' ]),
+  openTo: PropTypes.oneOf(['day', 'month', 'year']),
+  orientation: PropTypes.oneOf(['landscape', 'portrait']),
   PaperProps: PropTypes.object,
   PopperProps: PropTypes.object,
   readOnly: PropTypes.bool,
@@ -162,7 +180,7 @@ DatePicker.propTypes = {
   toolbarPlaceholder: PropTypes.node, // '-'
   toolbarTitle: PropTypes.node, // 'Select date range'
   TransitionComponent: PropTypes.elementType,
-  views: PropTypes.arrayOf(PropTypes.oneOf([ 'day', 'month', 'year' ])),
+  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year'])),
 };
 
 export default DatePicker;
