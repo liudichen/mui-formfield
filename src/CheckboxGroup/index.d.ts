@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 14:33:43
- * @LastEditTime: 2022-04-15 18:51:46
+ * @LastEditTime: 2022-08-05 21:04:08
  */
 import React from 'react';
 import { CheckboxProps } from '@mui/material';
@@ -18,7 +18,7 @@ export interface CheckboxGroupProps extends FieldWrapperRelateProps, optionsRela
   maxCount?: number,
   color?: colorType,
   size?: sizeString | string,
-  itemProps?: Omit<Omit<Omit<Omit<Omit<CheckboxProps, 'size'>, 'checked'>, 'color'>, 'onChange'>, 'disabled'>,
+  itemProps?: Omit<CheckboxProps, 'size'|'checked'|'color'| 'onChange'|'disabled'>,
 }
 
 function CheckboxGroup(props: CheckboxGroupProps): JSX.Element;
