@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-08-05 18:58:15
- * @LastEditTime: 2022-08-05 20:08:54
+ * @LastEditTime: 2022-08-07 09:11:05
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -31,15 +31,15 @@ const KeyWords = (props) => {
   const [ text, setText ] = useSafeState('');
   const [ value, onChange ] = useControllableValue(props, { defaultValue: [] });
   const onTextChange = useMemoizedFn((e) => {
-    let v = (e.target.value || '').trim();
-    if (typeof textConvert === 'function') { v = textConvert(v); }
+    const v = (e.target.value || '').trim();
     setText(v);
   });
   const handleAddKeyWord = useMemoizedFn(() => {
-    if (!text) { return; }
-    if (!value?.includes(text)) {
+    const txt = typeof textConvert === 'function' ? textConvert(text) : text;
+    if (!txt) { return; }
+    if (!value?.includes(txt)) {
       const newValue = [ ...(value || []) ];
-      newValue.push(text);
+      newValue.push(txt);
       onChange(newValue);
     }
     if (autoClear) { setText(''); }
