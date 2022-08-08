@@ -3,15 +3,17 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:57
- * @LastEditTime: 2022-05-20 23:35:15
+ * @LastEditTime: 2022-08-08 16:49:40
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
 import { Field } from '@formily/react';
 import { Alert, IconButton, Tooltip, Grid } from '@mui/material';
-import { ModalForm, Select } from 'mui-formily';
 import { IconReplace } from '@tabler/icons';
+
+import ModalForm from '../../../../../Formily/ModalForm';
+import Select from '../../../../../Formily/Select';
 
 const types = [
   { value: '文本', label: '文本' },

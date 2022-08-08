@@ -4,9 +4,10 @@ import { useMemoizedFn } from 'ahooks';
 import { onFieldValueChange } from '@formily/core';
 import { Field } from '@formily/react';
 import { IconButton, Tooltip, Grid } from '@mui/material';
-import { ModalForm, Select } from 'mui-formily';
 import { IconPalette } from '@tabler/icons';
 
+import ModalForm from '../../../../../Formily/ModalForm';
+import Select from '../../../../../Formily/Select';
 import { AlignOptions, PresetFormatOptions, FontOptions, FontSizeOptions, IndentOptions } from '../../../utils';
 
 const TextStyleModifyModal = (props) => {
