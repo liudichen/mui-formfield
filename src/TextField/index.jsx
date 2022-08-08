@@ -3,17 +3,17 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-07-04 11:47:31
+ * @LastEditTime: 2022-08-08 09:33:54
  */
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useMemoizedFn, useControllableValue, useCreation } from 'ahooks';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { FieldWrapper, LabelRender, fieldWrapperPropTypes, sx } from '../common';
 
-const TextField = (props) => {
+const TextField = forwardRef((props, ref) => {
   const {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
@@ -60,6 +60,7 @@ const TextField = (props) => {
       helperTextProps={helperTextProps}
     >
       <MuiTextField
+        ref={ref}
         value={value ?? ''}
         onChange={onTextFieldChange}
         label={ labelPosition === 'border' ? (
@@ -111,7 +112,7 @@ const TextField = (props) => {
       />
     </FieldWrapper>
   );
-};
+});
 
 
 TextField.defaultProps = {
@@ -122,6 +123,7 @@ TextField.defaultProps = {
 TextField.propTypes = {
   ...fieldWrapperPropTypes,
 
+  ref: PropTypes.object,
   showClear: PropTypes.bool,
   readOnly: PropTypes.bool,
   value: PropTypes.any,
