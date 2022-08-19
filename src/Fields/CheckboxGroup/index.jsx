@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 14:06:50
- * @LastEditTime: 2022-06-24 11:01:21
+ * @LastEditTime: 2022-08-19 17:46:26
  */
 import PropTypes from 'prop-types';
 import { useMemoizedFn, useSafeState } from 'ahooks';
@@ -105,7 +105,7 @@ const CheckboxGroup = (props) => {
                 <Checkbox
                   size={item?.size ?? size}
                   color={item?.color ?? color}
-                  disabled={item?.disabled ?? disabled}
+                  disabled={item?.disabled || disabled}
                   {...(itemProps || {})}
                   checked={isInArray(item.value, value)}
                   onChange={(e) => handleChange(e, item.value)}
