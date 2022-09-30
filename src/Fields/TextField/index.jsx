@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-08-08 09:33:54
+ * @LastEditTime: 2022-09-29 22:50:22
  */
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
@@ -78,7 +78,7 @@ const TextField = forwardRef((props, ref) => {
           ...(inputProps || {}),
         }}
         InputProps={{
-          endAdornment: !readOnly && showClear && (!!value || value === 0) ? (
+          endAdornment: !readOnly && !props.disabled && showClear && (!!value || value === 0) ? (
             <InputAdornment
               position='end'
               sx={{
@@ -89,7 +89,7 @@ const TextField = forwardRef((props, ref) => {
                 edge='end'
                 tabIndex={-1}
                 onClick={() => {
-                  if (!readOnly)onChange('');
+                  if (!readOnly && !props.disabled)onChange('');
                 }}
               >
                 <CloseIcon fontSize='small' />
