@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 19:36:59
- * @LastEditTime: 2022-05-18 15:32:40
+ * @LastEditTime: 2022-10-11 16:17:47
  */
 import React from 'react';
 import { DialogActionsProps, DialogContentProps, DialogProps, DialogTitleProps, LinkProps } from '@mui/material';
@@ -14,6 +14,8 @@ import { SubmitProps } from '../Submit';
 
 type variant = 'contained' | 'outlined' | 'text';
 type maxWidth = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+
+type IReason = 'escapeKeyDown' | 'backdropClick';
 
 export interface ModalFormProps {
   memo?: boolean,
@@ -31,7 +33,7 @@ export interface ModalFormProps {
   contentProps?: DialogContentProps,
   actionsProps?: DialogActionsProps,
   dialogProps?: DialogProps,
-  onClose?: () => void,
+  onClose?: (e?: object, reason?: IReason) => void,
   fullScreen?: boolean,
   fullWidth?: boolean,
   maxWidth?: maxWidth | string,
