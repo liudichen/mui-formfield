@@ -29,9 +29,9 @@ const ModalForm = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => form, [ form ]);
 
-  const onClose = useMemoizedFn(() => {
-    onCloseProp?.();
-    if (trigger) {
+  const onClose = useMemoizedFn(async (e, reason) => {
+    const res = await onCloseProp?.(e, reason);
+    if (trigger && res !== false) {
       setOpen(false);
     }
   });
