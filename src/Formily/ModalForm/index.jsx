@@ -13,7 +13,7 @@ import { sx, dialog, createFormOptions } from '../propTypes';
 const ModalForm = forwardRef((props, ref) => {
   const {
     trigger, title, titleProps, contentProps, actionsProps, triggerProps,
-    dialongProps, sx, maxWidth, fullWidth, fullScreen,
+    dialogProps, sx, maxWidth, fullWidth, fullScreen,
     children,
     showClose, showReset, showSubmit,
     submitText, resetText, submitProps, resetProps, createFormOptions, memo,
@@ -62,7 +62,7 @@ const ModalForm = forwardRef((props, ref) => {
         </Link>
         <Dialog
           {...{
-            ...(dialongProps || {}),
+            ...(dialogProps || {}),
             open,
             onClose,
             fullScreen,
@@ -123,7 +123,7 @@ const ModalForm = forwardRef((props, ref) => {
   return (
     <Dialog
       {...{
-        ...(dialongProps || {}),
+        ...(dialogProps || {}),
         open: !!openProp,
         onClose,
         fullScreen,
