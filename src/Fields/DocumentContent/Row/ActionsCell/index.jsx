@@ -2,7 +2,10 @@ import ButtonsMode from './ButtonsMode';
 import SpeedDialMode from './SpeedDialMode';
 
 const ActionsCell = (props) => {
-  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showHideContent, open, setOpen, modalFullScreen, controllMode } = props;
+  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showHideContent,
+    showDetail, setShowDetail,
+    modalFullScreen, controllMode,
+  } = props;
   if (controllMode === 'speedDial') {
     return (
       <SpeedDialMode
@@ -23,8 +26,8 @@ const ActionsCell = (props) => {
       handleClickSort={handleClickSort}
       first={first}
       last={last}
-      open={open}
-      setOpen={setOpen}
+      showDetail={showDetail}
+      setShowDetail={setShowDetail}
       showHideContent={showHideContent}
       modalFullScreen={modalFullScreen}
     />

@@ -6,8 +6,8 @@
  * @LastEditTime: 2022-10-14 14:02:46
  */
 import React from 'react';
-import { IHandleChangeFn } from '../../..';
-import { ModalFormProps } from '../../../../../Formily/ModalForm';
+import { IHandleChangeFn } from '../../../..';
+import { ModalFormProps } from '../../../../../../Formily/ModalForm';
 
 interface TextStyleModifyModalProps extends ModalFormProps {
   text: string,

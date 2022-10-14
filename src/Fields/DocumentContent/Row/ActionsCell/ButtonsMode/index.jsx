@@ -3,26 +3,21 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-10-14 14:03:59
+ * @LastEditTime: 2022-10-14 14:26:53
  */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useMemoizedFn } from 'ahooks';
 import { Container, IconButton, Tooltip } from '@mui/material';
-import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown, IconPalette } from '@tabler/icons';
+import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown, IconPalette, IconReplace } from '@tabler/icons';
 import { PopConfirm } from 'mui-component';
 
-import TextStyleModifyModal from '../TextStyleModifyModal';
-import ContentTypeSwitchModal from '../ContentTypeSwitchModal';
+import TextStyleModifyModal from '../Actions/TextStyleModifyModal';
+import ContentTypeSwitchModal from '../Actions/ContentTypeSwitchModal';
 
 const ButtonsMode = (props) => {
-  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showHideContent, open, setOpen, modalFullScreen } = props;
-  const handelStopEditing = useMemoizedFn(() => {
-    if (!open) {
-      setOpen(true);
-    }
-    setEditing(false);
-  });
+  const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showHideContent,
+    showDetail, setShowDetail,
+    modalFullScreen } = props;
   if (editing) {
     return (
       <Container
@@ -35,7 +30,7 @@ const ButtonsMode = (props) => {
           <IconButton
             color='primary'
             tabIndex={-1}
-            onClick={handelStopEditing}
+            onClick={() => setEditing(false)}
           >
             <IconDeviceFloppy
               size='1.25rem'
@@ -97,13 +92,13 @@ const ButtonsMode = (props) => {
         </IconButton>
       </Tooltip>
       { showHideContent && (
-        <Tooltip title={open ? '隐藏内容' : '显示内容'} arrow placement='top'>
+        <Tooltip title={showDetail ? '隐藏内容' : '显示内容'} arrow placement='top'>
           <IconButton
             color='primary'
             tabIndex={-1}
-            onClick={() => setOpen((s) => !s)}
+            onClick={() => setShowDetail((s) => !s)}
           >
-            {open ? <IconEyeOff size='1.25rem'/> : <IconEye size='1.25rem'/>}
+            {showDetail ? <IconEyeOff size='1.25rem'/> : <IconEye size='1.25rem'/>}
           </IconButton>
         </Tooltip>
       )}
@@ -111,10 +106,22 @@ const ButtonsMode = (props) => {
         <ContentTypeSwitchModal
           type={type}
           id={id}
-          open={open}
-          setOpen={setOpen}
+          showDetail={showDetail}
+          setShowDetail={setShowDetail}
           handleChange={handleChange}
           fullScreen={modalFullScreen}
+          trigger={
+            <Tooltip title='更换类型' arrow placement='top'>
+              <IconButton
+                color='primary'
+                tabIndex={-1}
+              >
+                <IconReplace
+                  size='1.25rem'
+                />
+              </IconButton>
+            </Tooltip>
+          }
         />
       )}
       { showClickSort && !first && (

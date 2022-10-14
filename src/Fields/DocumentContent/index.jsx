@@ -197,8 +197,7 @@ const DocumentContent = observer((props) => {
                   showClickSort={showClickSort}
                   handleClickSort={handleClickSort}
                   showHideContent={showHideContent}
-                  disabled={disabled}
-                  readOnly={readOnly}
+                  readOnly={readOnly || disabled}
                   modalFullScreen={modalFullScreen}
                   tableRowProps={tableRowProps}
                   imageShowMaxHeight={imageShowMaxHeight}

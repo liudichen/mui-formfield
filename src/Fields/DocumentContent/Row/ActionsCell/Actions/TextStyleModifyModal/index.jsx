@@ -5,9 +5,9 @@ import { onFieldValueChange } from '@formily/core';
 import { Field } from '@formily/react';
 import { Grid } from '@mui/material';
 
-import ModalForm from '../../../../../Formily/ModalForm';
-import Select from '../../../../../Formily/Select';
-import { AlignOptions, PresetFormatOptions, FontOptions, FontSizeOptions, IndentOptions } from '../../../utils';
+import ModalForm from '../../../../../../Formily/ModalForm';
+import Select from '../../../../../../Formily/Select';
+import { AlignOptions, PresetFormatOptions, FontOptions, FontSizeOptions, IndentOptions } from '../../../../utils';
 
 const TextStyleModifyModal = (props) => {
   const { text, id, handleChange, fullScreen, ...restProps } = props;

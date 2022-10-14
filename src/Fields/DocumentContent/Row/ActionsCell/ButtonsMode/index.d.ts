@@ -2,13 +2,14 @@
  * @Description:
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-10-14 13:50:13
- * @LastEditTime: 2022-10-14 14:13:51
+ * @Date: 2022-10-14 14:14:54
+ * @LastEditTime: 2022-10-14 14:17:39
  */
 import React from 'react';
-import { IHandleChangeFn, IType } from '../..';
+import { IHandleChangeFn, IType, IHandleClickSortFn } from '../../..';
 
-interface ActionsCellProps {
+
+interface ButtonsModeProps {
   editing?: boolean,
   setEditing: (editing: boolean) => void,
   type: IType,
@@ -25,9 +26,8 @@ interface ActionsCellProps {
   setShowDetail?: (showDetail: boolean) => void,
   showHideContent?: boolean,
   modalFullScreen?: boolean,
-  controllMode?: IControlMode
 }
 
-declare const ActionsCell: React.FC<ActionsCellProps>;
+declare const ButtonsMode: React.FC<ButtonsModeProps>;
 
-export default ActionsCell;
+export default ButtonsMode;
