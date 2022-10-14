@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 15:22:22
- * @LastEditTime: 2022-08-05 20:27:41
+ * @LastEditTime: 2022-10-14 20:56:51
  */
 import { connect, mapProps } from '@formily/react';
 import { isVoidField } from '@formily/core';
-import { Autocomplete } from 'mui-formfield';
+import Autocomplete from '../../Fields/Autocomplete';
 
 const FormilySelect = connect(
   Autocomplete,
