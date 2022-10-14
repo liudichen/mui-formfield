@@ -3,16 +3,16 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-10-14 14:26:53
+ * @LastEditTime: 2022-10-14 14:55:56
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, IconButton, Tooltip } from '@mui/material';
 import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown, IconPalette, IconReplace } from '@tabler/icons';
-import { PopConfirm } from 'mui-component';
 
 import TextStyleModifyModal from '../Actions/TextStyleModifyModal';
 import ContentTypeSwitchModal from '../Actions/ContentTypeSwitchModal';
+import RowRemove from '../Actions/RowRemove';
 
 const ButtonsMode = (props) => {
   const { editing, setEditing, type, text, id, handleChange, showDelete, showSwitchType, showClickSort, handleClickSort, first, last, showHideContent,
@@ -58,19 +58,21 @@ const ButtonsMode = (props) => {
           />
         )}
         { showDelete && (
-          <PopConfirm
-            title='确认删除该内容区块(该操作不可逆)?'
-            onConfirm={() => handleChange(id)}
-          >
-            <Tooltip title='删除该区块' arrow placement='top'>
-              <IconButton
-                color='primary'
-                tabIndex={-1}
-              >
-                <IconTrash size='1.25rem' />
-              </IconButton>
-            </Tooltip>
-          </PopConfirm>
+          <RowRemove
+            id={id}
+            type={type}
+            handleChange={handleChange}
+            trigger={
+              <Tooltip title='删除该区块' arrow placement='top'>
+                <IconButton
+                  color='primary'
+                  tabIndex={-1}
+                >
+                  <IconTrash size='1.25rem' />
+                </IconButton>
+              </Tooltip>
+            }
+          />
         )}
       </Container>
     );

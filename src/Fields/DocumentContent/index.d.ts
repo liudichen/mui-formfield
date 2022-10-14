@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-10-14 13:51:52
+ * @LastEditTime: 2022-10-14 14:54:26
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
@@ -41,7 +41,7 @@ export interface IRowItem {
 }
 export type IControlMode = 'buttons' | 'speedDial';
 export type IHandleDragSortFn = ((dragId: string | number, dropId: string | number) => void);
-export type IHandleChangeFn = ((id: number, newRow:IRowItem) => void);
+export type IHandleChangeFn = ((id: number, newRow?: IRowItem) => void);
 export type IHandleAddRowFn = (() => void);
 export type IHandleClickSortFn = ((id: number, up?: boolean) => void);
 
