@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types'
 import React from 'react';
 import { useControllableValue, useCreation, useLatest, useMemoizedFn } from 'ahooks';
 import { toJS } from '@formily/reactive';
@@ -7,7 +7,9 @@ import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@
 import { IconPlus } from '@tabler/icons';
 import { isMobile } from 'react-device-detect';
 
-import { sx, FieldWrapper, fieldWrapperPropTypes } from '../common';
+import { FieldWrapper,
+  // , sx, fieldWrapperPropTypes,
+} from '../common';
 import Row from './Row';
 
 const DocumentContent = observer((props) => {
@@ -241,78 +243,78 @@ DocumentContent.defaultProps = {
   showClickSort: isMobile,
 };
 
-DocumentContent.propTypes = {
-  value: PropTypes.array,
-  onChange: PropTypes.func,
-  defaultValue: PropTypes.array,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  showDelete: PropTypes.bool,
-  showSwitchType: PropTypes.bool,
-  allowDragSort: PropTypes.bool,
-  showClickSort: PropTypes.bool,
-  showAddRow: PropTypes.bool,
-  /**
-   * 显示切换内容显隐的按钮
-   * @default true
-   */
-  showHideContent: PropTypes.bool,
-  /**
-   * 操作列中那些弹窗是否全屏
-   */
-  modalFullScreen: PropTypes.bool,
-  /**
-   *  包裹表格的Box的sx
-   */
-  tableBoxSx: sx,
-  /**
-   * 操作列的宽度
-   */
-  actionColumnWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+// DocumentContent.propTypes = {
+//   value: PropTypes.array,
+//   onChange: PropTypes.func,
+//   defaultValue: PropTypes.array,
+//   disabled: PropTypes.bool,
+//   readOnly: PropTypes.bool,
+//   showDelete: PropTypes.bool,
+//   showSwitchType: PropTypes.bool,
+//   allowDragSort: PropTypes.bool,
+//   showClickSort: PropTypes.bool,
+//   showAddRow: PropTypes.bool,
+//   /**
+//    * 显示切换内容显隐的按钮
+//    * @default true
+//    */
+//   showHideContent: PropTypes.bool,
+//   /**
+//    * 操作列中那些弹窗是否全屏
+//    */
+//   modalFullScreen: PropTypes.bool,
+//   /**
+//    *  包裹表格的Box的sx
+//    */
+//   tableBoxSx: sx,
+//   /**
+//    * 操作列的宽度
+//    */
+//   actionColumnWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 
-  /**
-   * 是否显示表格竖线
-   */
-  bordered: PropTypes.bool,
-  headerCellSx: PropTypes.object,
-  /**
-   * 内容列表头单元格的sx，可以用来控制列宽等参数（如minWidth等）
-   */
-  contentHeaderCellSx: PropTypes.object,
-  imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+//   /**
+//    * 是否显示表格竖线
+//    */
+//   bordered: PropTypes.bool,
+//   headerCellSx: PropTypes.object,
+//   /**
+//    * 内容列表头单元格的sx，可以用来控制列宽等参数（如minWidth等）
+//    */
+//   contentHeaderCellSx: PropTypes.object,
+//   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+//   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
-  /**
-   *  新增一行时调用，用来生成新的一行的初始数据，入参是当前的rows数据
-   */
-  onNewRow: PropTypes.func,
-  /**
-   *  传递给新增一行按钮props
-   */
-  addRowProps: PropTypes.object,
-  addRowText: PropTypes.node,
+//   /**
+//    *  新增一行时调用，用来生成新的一行的初始数据，入参是当前的rows数据
+//    */
+//   onNewRow: PropTypes.func,
+//   /**
+//    *  传递给新增一行按钮props
+//    */
+//   addRowProps: PropTypes.object,
+//   addRowText: PropTypes.node,
 
-  ...fieldWrapperPropTypes,
+//   ...fieldWrapperPropTypes,
 
-  component: PropTypes.elementType,
-  classes: PropTypes.object,
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small' ]),
-    PropTypes.string,
-  ]),
-  stickyHeader: PropTypes.bool,
+//   component: PropTypes.elementType,
+//   classes: PropTypes.object,
+//   size: PropTypes.oneOfType([
+//     PropTypes.oneOf([ 'medium', 'small' ]),
+//     PropTypes.string,
+//   ]),
+//   stickyHeader: PropTypes.bool,
 
-  /**
-   *  传递给表格TableRow的props
-   */
-  tableRowProps: PropTypes.shape({
-    classes: PropTypes.object,
-    component: PropTypes.elementType,
-    hover: PropTypes.bool,
-    selected: PropTypes.bool,
-    sx,
-  }),
-  sx,
-};
+//   /**
+//    *  传递给表格TableRow的props
+//    */
+//   tableRowProps: PropTypes.shape({
+//     classes: PropTypes.object,
+//     component: PropTypes.elementType,
+//     hover: PropTypes.bool,
+//     selected: PropTypes.bool,
+//     sx,
+//   }),
+//   sx,
+// };
 
 export default DocumentContent;
