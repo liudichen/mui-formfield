@@ -1,6 +1,5 @@
 import React from 'react';
-import { useControllableValue, useCreation, useMemoizedFn, useLatest } from 'ahooks';
-import { toJS } from '@formily/reactive';
+import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
 import { DataGrid, zhCN, GridActionsCellItem } from '@mui/x-data-grid';
 import { Tooltip } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -45,7 +44,6 @@ const EditableTable = (props) => {
   } : sxProp), [ sxProp, editingRowBorderColor ]);
 
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
-  const rowsRef = useLatest(toJS(rows));
   const disabled = useCreation(() => !!(disabledProp || readOnly), [ disabledProp, readOnly ]);
   const onChange = useMemoizedFn((v) => {
     if (!readOnly && !disabledProp) {
@@ -53,14 +51,14 @@ const EditableTable = (props) => {
     }
   });
   const getIndex = useMemoizedFn((id) => {
-    return (rowsRef.current || []).findIndex((item) => item[rowKey] === id);
+    return (rows || [])?.findIndex((item) => item[rowKey] === id) ?? -1;
   });
   const isSorterDisabled = useMemoizedFn((id, up) => {
     if (disabled) {
       return true;
     }
     const index = getIndex(id);
-    const len = rowsRef.current?.length ?? 0;
+    const len = rows?.length ?? 0;
     if (len < 2 || index === -1 || (index === 0 && up) || (!up && index > len - 2)) {
       return true;
     }
@@ -69,7 +67,7 @@ const EditableTable = (props) => {
   const handleDeleteRow = useMemoizedFn((id) => {
     const index = getIndex(id);
     if (index !== -1) {
-      const newValue = [ ...rowsRef.current ];
+      const newValue = [ ...(rows || []) ];
       newValue.splice(index, 1);
       onChange(newValue);
     }
@@ -78,14 +76,18 @@ const EditableTable = (props) => {
     const id = row[rowKey];
     const index = getIndex(id);
     if (index !== -1) {
-      const newValue = [ ...rowsRef.current ];
+      const newValue = [ ...(rows || []) ];
       newValue[index] = { ...newValue[index], ...row };
       onChange(newValue);
     }
   });
   const handleAddRow = useMemoizedFn((id) => {
-    const row = getNewRow?.(id, rowsRef.current) ?? { [rowKey]: Date.now() };
-    const newRows = [ ...(rowsRef.current || []) ];
+    const row = getNewRow?.(id, rows) ?? { };
+    if (typeof row[rowKey] === 'undefined') {
+      const newId = (rows?.length ? Math.max(...rows.map((ele) => +ele[rowKey] || 0)) : 0) + 1;
+      row[rowKey] = newId;
+    }
+    const newRows = [ ...(rows || []) ];
     const index = getIndex(id);
     if (index !== -1) {
       newRows.splice(index + 1, 0, row);
@@ -96,9 +98,9 @@ const EditableTable = (props) => {
   });
   const handleMove = useMemoizedFn((id, up) => {
     const index = getIndex(id);
-    const len = rowsRef.current?.length ?? 0;
+    const len = rows?.length ?? 0;
     if (index !== -1 && len > 1 && index < len) {
-      const newRows = [ ...rowsRef.current ];
+      const newRows = [ ...(rows || []) ];
       const thisRow = { ...newRows[index] };
       let thatIndex;
       if (up && index) {
@@ -155,7 +157,6 @@ const EditableTable = (props) => {
               }
               disabled={disabled}
               row={row}
-              rowsRef={rowsRef}
               handleUpdateRow={handleUpdateRow}
               extraData={extraData}
             />
@@ -274,7 +275,7 @@ const EditableTable = (props) => {
     const { id, field, value } = params;
     const index = getIndex(id);
     if (index !== -1) {
-      const newRows = [ ...(rowsRef.current || []) ];
+      const newRows = [ ...(rows || []) ];
       newRows[index] = { ...newRows[index], [field]: value };
       onChange(newRows);
     }
@@ -285,7 +286,7 @@ const EditableTable = (props) => {
     const { row, id } = params;
     const index = getIndex(id);
     if (index !== -1) {
-      const newRows = [ ...(rowsRef.current || []) ];
+      const newRows = [ ...(rows || []) ];
       newRows[index] = { ...row };
       onChange(newRows);
     }
@@ -315,7 +316,7 @@ const EditableTable = (props) => {
       >
         <DataGrid
           sx={sx}
-          rows={toJS(rows)}
+          rows={rows || []}
           columns={columns}
           getRowId={(row) => row[rowKey]}
           paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}

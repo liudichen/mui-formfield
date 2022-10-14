@@ -7,6 +7,7 @@
  */
 import { connect, mapProps } from '@formily/react';
 import { isVoidField } from '@formily/core';
+
 import Autocomplete from '../../Fields/Autocomplete';
 
 const FormilySelect = connect(

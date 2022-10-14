@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-08-05 21:05:02
+ * @LastEditTime: 2022-10-14 21:31:24
  */
 import React from 'react';
 import { GridActionsCellItemProps } from '@mui/x-data-grid';
@@ -24,7 +24,6 @@ export interface EditModalProps {
   disabled: boolean,
   row: rowType,
   trigger: React.ReactNode,
-  rowsRef: rowRefType,
   handleUpdateRow: (updatedRow:rowType) => void,
   extraData: any,
 }

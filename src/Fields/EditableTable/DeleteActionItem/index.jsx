@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-30 10:12:46
- * @LastEditTime: 2022-05-18 20:04:39
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useSafeState } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
@@ -51,10 +43,6 @@ const DeleteActionItem = (props) => {
       )}
     </>
   );
-};
-
-DeleteActionItem.propTypes = {
-  handleDeleteRow: PropTypes.func,
 };
 
 export default DeleteActionItem;
