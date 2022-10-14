@@ -3,14 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 08:57:32
- * @LastEditTime: 2022-07-23 13:39:46
+ * @LastEditTime: 2022-10-14 20:02:26
  */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
 import { DatePicker as MuiDatePicker } from '@mui/lab';
 
-import { FieldWrapper, LabelRender, useMergedState, fieldWrapperPropTypes } from '../common';
+import { FieldWrapper, LabelRender, useMergedState } from '../common';
 
 const DatePicker = (props) => {
   const {
@@ -38,7 +37,7 @@ const DatePicker = (props) => {
     inputProps,
     ...restProps
   } = props;
-  const [value, onChange] = useMergedState(defaultValue || null, {
+  const [ value, onChange ] = useMergedState(defaultValue || null, {
     value: valueProp,
     onChange: onChangeProp,
     postState: (s) => s || null,
@@ -99,88 +98,6 @@ DatePicker.defaultProps = {
   okText: '确定',
   todayText: '今天',
   toolbarTitle: '选择日期',
-};
-
-DatePicker.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  showClear: PropTypes.bool,
-  inputLabel: PropTypes.node,
-  size: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
-  placeholder: PropTypes.string,
-  value: PropTypes.any,
-  defaultValue: PropTypes.any,
-  onChange: PropTypes.func,
-
-  renderInput: PropTypes.func,
-  acceptRegex: PropTypes.any, //	/\dap/gi
-  allowSameDateSelection: PropTypes.bool,
-  cancelText: PropTypes.node,
-  className: PropTypes.string,
-  clearText: PropTypes.node,
-  components: PropTypes.shape({
-    LeftArrowButton: PropTypes.elementType,
-    LeftArrowIcon: PropTypes.elementType,
-    OpenPickerIcon: PropTypes.elementType,
-    RightArrowButton: PropTypes.elementType,
-    RightArrowIcon: PropTypes.elementType,
-    SwitchViewButton: PropTypes.elementType,
-    SwitchViewIcon: PropTypes.elementType,
-  }), // {}
-  componentsProps: PropTypes.shape({
-    leftArrowButton: PropTypes.object,
-    rightArrowButton: PropTypes.object,
-    switchViewButton: PropTypes.object,
-  }), // {}
-  defaultCalendarMonth: PropTypes.any,
-  desktopModeMediaQuery: PropTypes.string, //	'@media (pointer: fine)'
-  DialogProps: PropTypes.object,
-  disableCloseOnSelect: PropTypes.bool,
-  disabled: PropTypes.bool,
-  disableHighlightToday: PropTypes.bool,
-  disableMaskedInput: PropTypes.bool,
-  disableOpenPicker: PropTypes.bool,
-  InputAdornmentProps: PropTypes.object,
-  inputProps: PropTypes.object,
-  inputFormat: PropTypes.string,
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.object })]),
-  leftArrowText: PropTypes.string,
-  loading: PropTypes.bool,
-  mask: PropTypes.string, //	'____/__/__'
-  maxDate: PropTypes.any,
-  minDate: PropTypes.any,
-  okText: PropTypes.node, // 'OK'
-  onAccept: PropTypes.func,
-  onClose: PropTypes.func,
-  onError: PropTypes.func,
-  onMonthChange: PropTypes.func,
-  onOpen: PropTypes.func,
-  onViewChange: PropTypes.func,
-  onYearChange: PropTypes.func,
-  open: PropTypes.bool,
-  OpenPickerButtonProps: PropTypes.object,
-  openTo: PropTypes.oneOf(['day', 'month', 'year']),
-  orientation: PropTypes.oneOf(['landscape', 'portrait']),
-  PaperProps: PropTypes.object,
-  PopperProps: PropTypes.object,
-  readOnly: PropTypes.bool,
-  reduceAnimations: PropTypes.bool,
-  renderDay: PropTypes.func,
-  renderLoading: PropTypes.func,
-  rifmFormatter: PropTypes.func,
-  rightArrowButtonText: PropTypes.string,
-  shouldDisableDate: PropTypes.func,
-  shouldDisableYear: PropTypes.func,
-  showDaysOutsideCurrentMonth: PropTypes.bool,
-  showTodayButton: PropTypes.bool,
-  showToolbar: PropTypes.bool,
-  todayText: PropTypes.node,
-  ToolbarComponent: PropTypes.elementType,
-  toolbarFormat: PropTypes.string,
-  toolbarPlaceholder: PropTypes.node, // '-'
-  toolbarTitle: PropTypes.node, // 'Select date range'
-  TransitionComponent: PropTypes.elementType,
-  views: PropTypes.arrayOf(PropTypes.oneOf(['day', 'month', 'year'])),
 };
 
 export default DatePicker;

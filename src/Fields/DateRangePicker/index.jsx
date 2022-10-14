@@ -3,14 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-22 20:17:14
- * @LastEditTime: 2022-05-13 14:11:04
+ * @LastEditTime: 2022-10-14 20:02:59
  */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TextField, Box } from '@mui/material';
 import MuiDateRangePicker from '@mui/lab/DateRangePicker';
 
-import { FieldWrapper, useMergedState, fieldWrapperPropTypes } from '../common';
+import { FieldWrapper, useMergedState } from '../common';
 
 const DateRangePicker = (props) => {
   const {
@@ -61,89 +60,6 @@ DateRangePicker.defaultProps = {
   size: 'small',
   labelPosition: 'top',
   showClear: true,
-};
-
-DateRangePicker.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  showClear: PropTypes.bool,
-  defaultValue: PropTypes.array,
-  value: PropTypes.array,
-  onChange: PropTypes.func,
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'small', 'medium' ]),
-    PropTypes.string,
-  ]),
-
-  renderInput: PropTypes.func,
-  acceptRegex: PropTypes.any, // 	/\dap/gi
-  allowSameDateSelection: PropTypes.bool,
-  calendars: PropTypes.oneOf([ 1, 2, 3 ]), // 2
-  cancelText: PropTypes.node, // 'Cancel'
-  className: PropTypes.string,
-  clearText: PropTypes.node, // 'Clear'
-  components: PropTypes.shape({
-    LeftArrowButton: PropTypes.elementType,
-    LeftArrowIcon: PropTypes.elementType,
-    OpenPickerIcon: PropTypes.elementType,
-    RightArrowButton: PropTypes.elementType,
-    RightArrowIcon: PropTypes.elementType,
-    SwitchViewButton: PropTypes.elementType,
-    SwitchViewIcon: PropTypes.elementType,
-  }), // {}
-  componentsProps: PropTypes.shape({
-    leftArrowButton: PropTypes.object,
-    rightArrowButton: PropTypes.object,
-    switchViewButton: PropTypes.object,
-  }), // {}
-  defaultCalendarMonth: PropTypes.any,
-  desktopModeMediaQuery: PropTypes.string, //	'@media (pointer: fine)'
-  DialogProps: PropTypes.object,
-  disableAutoMonthSwitching: PropTypes.bool,
-  disableCloseOnSelect: PropTypes.bool,
-  disabled: PropTypes.bool,
-  disableHighlightToday: PropTypes.bool,
-  disableMaskedInput: PropTypes.bool,
-  disableOpenPicker: PropTypes.bool,
-  endText: PropTypes.node,
-  InputAdornmentProps: PropTypes.object,
-  inputFormat: PropTypes.string,
-  inputRef: PropTypes.oneOfType([ PropTypes.func, PropTypes.shape({ current: PropTypes.object }) ]),
-  leftArrowText: PropTypes.string,
-  loading: PropTypes.bool,
-  mask: PropTypes.string, //	'____/__/__'
-  maxDate: PropTypes.any,
-  minDate: PropTypes.any,
-  okText: PropTypes.node, // 'OK'
-  onAccept: PropTypes.func,
-  onClose: PropTypes.func,
-  onError: PropTypes.func,
-  onMonthChange: PropTypes.func,
-  onOpen: PropTypes.func,
-  onViewChange: PropTypes.func,
-  open: PropTypes.bool,
-  OpenPickerButtonProps: PropTypes.object,
-  orientation: PropTypes.oneOf([ 'landscape', 'portrait' ]),
-  PaperProps: PropTypes.object,
-  PopperProps: PropTypes.object,
-  readOnly: PropTypes.bool,
-  reduceAnimations: PropTypes.bool,
-  renderDay: PropTypes.func,
-  renderLoading: PropTypes.func,
-  rifmFormatter: PropTypes.func,
-  rightArrowButtonText: PropTypes.string,
-  shouldDisableDate: PropTypes.func,
-  shouldDisableYear: PropTypes.func,
-  showDaysOutsideCurrentMonth: PropTypes.bool,
-  showTodayButton: PropTypes.bool,
-  showToolbar: PropTypes.bool,
-  startText: PropTypes.node, //	'Start'
-  todayText: PropTypes.node, // 'Today'
-  ToolbarComponent: PropTypes.elementType,
-  toolbarFormat: PropTypes.string,
-  toolbarPlaceholder: PropTypes.node, // '-'
-  toolbarTitle: PropTypes.node, // 'Select date range'
-  TransitionComponent: PropTypes.elementType,
 };
 
 export default DateRangePicker;
