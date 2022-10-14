@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types'
 import React from 'react';
 import { useControllableValue, useCreation, useLatest, useMemoizedFn } from 'ahooks';
 import { toJS } from '@formily/reactive';
@@ -7,9 +6,7 @@ import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@
 import { IconPlus } from '@tabler/icons';
 import { isMobile } from 'react-device-detect';
 
-import { FieldWrapper,
-  // , sx, fieldWrapperPropTypes,
-} from '../common';
+import { FieldWrapper } from '../common';
 import Row from './Row';
 
 const DocumentContent = observer((props) => {
@@ -23,7 +20,7 @@ const DocumentContent = observer((props) => {
     showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, showHideContent,
     tableRowProps, actionColumnWidth,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
-    isActive, hideHead, controllMode = isMobile ? 'speedDial' : 'buttons',
+    isActive, hideHead, controllMode = isMobile ? 'speedDial' : 'buttons', speedDialFabProps,
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
@@ -163,12 +160,13 @@ const DocumentContent = observer((props) => {
                   >
                 内容
                   </TableCell>
-                  { !disabled && !readOnly && (
+                  { !disabled && !readOnly && isActive && (
                     <TableCell
                       align='center'
-                      width={actionColumnWidth}
+                      width={actionColumnWidth ?? (controllMode === 'speedDial' ? 50 : 135)}
                       sx={{
                         px: 0,
+                        minWidth: controllMode === 'speedDial' ? 50 : undefined,
                         borderTop: '1px solid rgba(224,224,224,1)',
                         ...cellBorderSx,
                         ...(headerCellSx || {}),
@@ -204,6 +202,7 @@ const DocumentContent = observer((props) => {
                   imageShowMaxWidth={imageShowMaxWidth}
                   cellBorderSx={cellBorderSx}
                   controllMode={controllMode}
+                  speedDialFabProps={speedDialFabProps}
                 />
               ))}
             </TableBody>
@@ -242,84 +241,9 @@ DocumentContent.defaultProps = {
   tableBoxSx: { overflow: 'auto' },
   addRowText: <><IconPlus />&emsp;添加一行</>,
   allowDragSort: true,
-  actionColumnWidth: 135,
   showHideContent: true,
   showClickSort: isMobile,
   isActive: true,
 };
-
-// DocumentContent.propTypes = {
-//   value: PropTypes.array,
-//   onChange: PropTypes.func,
-//   defaultValue: PropTypes.array,
-//   disabled: PropTypes.bool,
-//   readOnly: PropTypes.bool,
-//   showDelete: PropTypes.bool,
-//   showSwitchType: PropTypes.bool,
-//   allowDragSort: PropTypes.bool,
-//   showClickSort: PropTypes.bool,
-//   showAddRow: PropTypes.bool,
-//   /**
-//    * 显示切换内容显隐的按钮
-//    * @default true
-//    */
-//   showHideContent: PropTypes.bool,
-//   /**
-//    * 操作列中那些弹窗是否全屏
-//    */
-//   modalFullScreen: PropTypes.bool,
-//   /**
-//    *  包裹表格的Box的sx
-//    */
-//   tableBoxSx: sx,
-//   /**
-//    * 操作列的宽度
-//    */
-//   actionColumnWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-
-//   /**
-//    * 是否显示表格竖线
-//    */
-//   bordered: PropTypes.bool,
-//   headerCellSx: PropTypes.object,
-//   /**
-//    * 内容列表头单元格的sx，可以用来控制列宽等参数（如minWidth等）
-//    */
-//   contentHeaderCellSx: PropTypes.object,
-//   imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-//   imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-
-//   /**
-//    *  新增一行时调用，用来生成新的一行的初始数据，入参是当前的rows数据
-//    */
-//   onNewRow: PropTypes.func,
-//   /**
-//    *  传递给新增一行按钮props
-//    */
-//   addRowProps: PropTypes.object,
-//   addRowText: PropTypes.node,
-
-//   ...fieldWrapperPropTypes,
-
-//   component: PropTypes.elementType,
-//   classes: PropTypes.object,
-//   size: PropTypes.oneOfType([
-//     PropTypes.oneOf([ 'medium', 'small' ]),
-//     PropTypes.string,
-//   ]),
-//   stickyHeader: PropTypes.bool,
-
-//   /**
-//    *  传递给表格TableRow的props
-//    */
-//   tableRowProps: PropTypes.shape({
-//     classes: PropTypes.object,
-//     component: PropTypes.elementType,
-//     hover: PropTypes.bool,
-//     selected: PropTypes.bool,
-//     sx,
-//   }),
-//   sx,
-// };
 
 export default DocumentContent;

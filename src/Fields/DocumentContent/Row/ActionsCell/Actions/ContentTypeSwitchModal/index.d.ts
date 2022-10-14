@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-14 13:01:50
- * @LastEditTime: 2022-10-14 14:21:24
+ * @LastEditTime: 2022-10-14 15:12:22
  */
 import React from 'react';
 import { IHandleChangeFn, IType } from '../../../..';
-import { ModalFormProps } from '../../../../../../../es/Formily/ModalForm';
+import { ModalFormProps } from '../../../../../../Formily/ModalForm';
 
 interface ContentTypeSwitchModalProps extends ModalFormProps {
   type: IType,

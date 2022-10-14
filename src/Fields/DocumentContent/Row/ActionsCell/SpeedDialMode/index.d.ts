@@ -2,14 +2,13 @@
  * @Description:
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-10-14 13:50:13
- * @LastEditTime: 2022-10-14 17:05:58
+ * @Date: 2022-10-14 16:45:23
+ * @LastEditTime: 2022-10-14 17:06:54
  */
-import React from 'react';
 import { FabProps } from '@mui/material';
-import { IHandleChangeFn, IType } from '../..';
+import React from 'react';
 
-interface ActionsCellProps {
+interface SpeedDialModeProps {
   editing?: boolean,
   setEditing: (editing: boolean) => void,
   type: IType,
@@ -26,10 +25,9 @@ interface ActionsCellProps {
   setShowDetail?: (showDetail: boolean) => void,
   showHideContent?: boolean,
   modalFullScreen?: boolean,
-  controllMode?: IControlMode,
-  speedDialFabProps?: FabProps
+  speedDialFabProps?: FabProps,
 }
 
-declare const ActionsCell: React.FC<ActionsCellProps>;
+declare const SpeedDialMode: React.FC<SpeedDialModeProps>;
 
-export default ActionsCell;
+export default SpeedDialMode;

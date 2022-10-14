@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-14 13:14:20
- * @LastEditTime: 2022-10-14 13:36:44
+ * @LastEditTime: 2022-10-14 17:06:42
  */
 import React from 'react';
-import { SxProps, TableRowProps } from '@mui/material';
+import { FabProps, SxProps, TableRowProps } from '@mui/material';
 import { IControlMode, IHandleChangeFn, IHandleClickSortFn, IHandleDragSortFn } from '..';
 
 export interface IRowProps {
@@ -27,7 +27,8 @@ export interface IRowProps {
   tableRowProps?: TableRowProps,
   imageShowMaxHeight?: number | string,
   cellBorderSx?: SxProps,
-  controllMode?: IControlMode
+  controllMode?: IControlMode,
+  speedDialFabProps?: FabProps,
 }
 
 declare const Row: React.FC<IRowProps>;

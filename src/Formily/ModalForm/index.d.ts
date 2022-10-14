@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 19:36:59
- * @LastEditTime: 2022-10-11 16:17:47
+ * @LastEditTime: 2022-10-14 15:10:11
  */
 import React from 'react';
 import { DialogActionsProps, DialogContentProps, DialogProps, DialogTitleProps, LinkProps } from '@mui/material';
@@ -33,6 +33,7 @@ export interface ModalFormProps {
   contentProps?: DialogContentProps,
   actionsProps?: DialogActionsProps,
   dialogProps?: DialogProps,
+  open?: boolean,
   onClose?: (e?: object, reason?: IReason) => void,
   fullScreen?: boolean,
   fullWidth?: boolean,

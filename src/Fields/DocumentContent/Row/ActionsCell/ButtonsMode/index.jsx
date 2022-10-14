@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-10-14 14:55:56
+ * @LastEditTime: 2022-10-14 14:59:27
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,6 +25,7 @@ const ButtonsMode = (props) => {
           paddingLeft: 0,
           paddingRight: 0,
         }}
+        onClick={(e) => e.stopPropagation()}
       >
         <Tooltip title='停止编辑' arrow placement='top'>
           <IconButton

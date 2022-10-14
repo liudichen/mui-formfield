@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-10-14 14:54:26
+ * @LastEditTime: 2022-10-14 17:06:13
  */
 import React from 'react';
-import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
+import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps, FabProps } from '@mui/material';
 
 import { FieldWrapperRelateProps } from '../types';
 
@@ -58,6 +58,8 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   showClickSort?: boolean,
   allowDragSort?: boolean,
 
+  /** controllMode=speedDial时的组件颜色 */
+  speedDialFabProps?: FabProps,
   /** 操作列模式： buttons-按钮组，speedDial-快速拨号 */
   controllMode?: IControlMode,
   /** 是否隐藏表头 */
