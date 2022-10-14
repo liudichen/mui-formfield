@@ -1,6 +1,5 @@
 import React from 'react';
-import { useControllableValue, useCreation, useLatest, useMemoizedFn } from 'ahooks';
-import { toJS } from '@formily/reactive';
+import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
 import { observer } from '@formily/react';
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { IconPlus } from '@tabler/icons';
@@ -25,33 +24,32 @@ const DocumentContent = observer((props) => {
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
-  const rowsRef = useLatest(toJS(rows));
   const handleDragSort = useMemoizedFn((dragId, dropId) => {
     if (readOnly || disabled) { return; }
-    const dragIndex = (rowsRef.current || []).findIndex((item) => item.id === dragId);
-    const dropIndex = (rowsRef.current || []).findIndex((item) => item.id === dropId);
+    const dragIndex = (rows || []).findIndex((item) => item.id === dragId);
+    const dropIndex = (rows || []).findIndex((item) => item.id === dropId);
     if (dragIndex === -1 || dropIndex === -1) { return; }
-    const dragRow = { ...rowsRef.current[dragIndex] };
-    const newRows = [ ...rowsRef.current ];
+    const dragRow = { ...rows[dragIndex] };
+    const newRows = [ ...rows ];
     newRows.splice(dragIndex, 1);
     newRows.splice(dropIndex, 0, dragRow);
     setRows(newRows);
   });
   const handleChange = useMemoizedFn((id, newRow) => {
     if (readOnly || disabled || id === undefined || id === null) { return; }
-    const index = (rowsRef.current || []).findIndex((item) => item.id === id);
+    const index = (rows || []).findIndex((item) => item.id === id);
     if (index === -1) { return; }
     let newRows;
     if (!newRow) {
-      newRows = rowsRef.current.filter((item) => item.id !== id);
+      newRows = rows.filter((item) => item.id !== id);
     } else {
-      newRows = rowsRef.current.map((item, i) => (i === index ? { ...item, ...newRow } : item));
+      newRows = rows.map((item, i) => (i === index ? { ...item, ...newRow } : item));
     }
     setRows(newRows);
   });
   const handleAddRow = useMemoizedFn(() => {
-    const newRows = [ ...(rowsRef.current || []) ];
-    const newRow = onNewRow?.(rowsRef.current) ?? {
+    const newRows = [ ...(rows || []) ];
+    const newRow = onNewRow?.(rows) ?? {
       id: Date.now(),
       type: '文本',
       text: {
@@ -70,9 +68,9 @@ const DocumentContent = observer((props) => {
   });
   const handleClickSort = useMemoizedFn((id, up) => {
     if (readOnly || disabled || !id) { return; }
-    const index = (rowsRef.current || []).findIndex((item) => item.id === id);
-    if (index === -1 || (index === 0 && up) || (!up && (index + 1 === rowsRef.current.length))) { return; }
-    const newRows = [ ...rowsRef.current ];
+    const index = (rows || []).findIndex((item) => item.id === id);
+    if (index === -1 || (index === 0 && up) || (!up && (index + 1 === rows.length))) { return; }
+    const newRows = [ ...rows ];
     const thisRow = { ...newRows[index] };
     let thatIndex;
     if (up) {
@@ -180,11 +178,11 @@ const DocumentContent = observer((props) => {
               </TableHead>
             )}
             <TableBody>
-              {rowsRef.current?.map((item, index) => (
+              {rows?.map((item, index) => (
                 <Row
                   isActive={isActive}
                   first={index === 0}
-                  last={index + 1 === rowsRef.current?.length}
+                  last={index + 1 === rows?.length}
                   key={item.id ?? `${index}-${item?.id || ''}`}
                   index={index}
                   row={item}
