@@ -3,16 +3,18 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-05-20 23:15:53
+ * @LastEditTime: 2022-10-14 13:51:52
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps } from '@mui/material';
 
 import { FieldWrapperRelateProps } from '../types';
 
-interface rowType {
+export type IType = '文本' | '图片' | '表格';
+
+export interface IRowItem {
   id?: number,
-  type: '文本' | '图片' | '表格',
+  type: IType,
   text?: {
     text?: string,
     font?: string,
@@ -37,11 +39,16 @@ interface rowType {
     tableData?: {[key: string | number]: number | string | null | undefined, id:number}[] | (string | number | null | undefined)[][],
   }
 }
+export type IControlMode = 'buttons' | 'speedDial';
+export type IHandleDragSortFn = ((dragId: string | number, dropId: string | number) => void);
+export type IHandleChangeFn = ((id: number, newRow:IRowItem) => void);
+export type IHandleAddRowFn = (() => void);
+export type IHandleClickSortFn = ((id: number, up?: boolean) => void);
 
 export interface DocumentContentProps extends TableProps, FieldWrapperRelateProps {
-  value?: rowType[],
-  defaultValue?: rowType[],
-  onChange?: (rows?: rowType[]) => void,
+  value?: IRowItem[],
+  defaultValue?: IRowItem[],
+  onChange?: (rows?: IRowItem[]) => void,
   disabled?: boolean,
   readOnly?: boolean,
 
@@ -50,6 +57,13 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   showAddRow?: boolean,
   showClickSort?: boolean,
   allowDragSort?: boolean,
+
+  /** 操作列模式： buttons-按钮组，speedDial-快速拨号 */
+  controllMode?: IControlMode,
+  /** 是否隐藏表头 */
+  hideHead?: boolean,
+  /** 组件是否被激活，非激活状态下不会有操作列 */
+  isActive?: boolean,
   /**
    * 显示切换内容显隐的按钮
    * @default true
@@ -85,7 +99,7 @@ export interface DocumentContentProps extends TableProps, FieldWrapperRelateProp
   /**
    *  新增一行时调用，用来生成新的一行的初始数据，入参是当前的rows数据
    */
-  onNewRow?: (rows?: rowType[]) => rowType,
+  onNewRow?: (rows?: IRowItem[]) => IRowItem,
   /**
    *  传递给新增一行按钮props
    */

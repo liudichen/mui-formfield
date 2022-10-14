@@ -23,6 +23,7 @@ const DocumentContent = observer((props) => {
     showDelete, showSwitchType, showAddRow, allowDragSort, showClickSort, modalFullScreen, tableBoxSx, onNewRow, addRowProps, addRowText, showHideContent,
     tableRowProps, actionColumnWidth,
     imageShowMaxHeight, imageShowMaxWidth, bordered, headerCellSx, contentHeaderCellSx,
+    isActive, hideHead, controllMode = isMobile ? 'speedDial' : 'buttons',
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
@@ -123,48 +124,12 @@ const DocumentContent = observer((props) => {
           <Table
             {...restProps}
           >
-            <TableHead>
-              <TableRow>
-                <TableCell
-                  align='center'
-                  width={40}
-                  sx={{
-                    px: 0,
-                    borderTop: '1px solid rgba(224,224,224,1)',
-                    ...cellBorderSx,
-                    ...(headerCellSx || {}),
-                  }}
-                >
-                序号
-                </TableCell>
-                <TableCell
-                  align='center'
-                  width={40}
-                  sx={{
-                    px: 0,
-                    borderTop: '1px solid rgba(224,224,224,1)',
-                    ...cellBorderSx,
-                    ...(headerCellSx || {}),
-                  }}
-                >
-                类型
-                </TableCell>
-                <TableCell
-                  align='center'
-                  sx={{
-                    minWidth: 200,
-                    borderTop: '1px solid rgba(224,224,224,1)',
-                    ...cellBorderSx,
-                    ...(headerCellSx || {}),
-                    ...(contentHeaderCellSx || {}),
-                  }}
-                >
-                内容
-                </TableCell>
-                { !disabled && !readOnly && (
+            { !hideHead && (
+              <TableHead>
+                <TableRow>
                   <TableCell
                     align='center'
-                    width={actionColumnWidth}
+                    width={40}
                     sx={{
                       px: 0,
                       borderTop: '1px solid rgba(224,224,224,1)',
@@ -172,14 +137,53 @@ const DocumentContent = observer((props) => {
                       ...(headerCellSx || {}),
                     }}
                   >
-                  操作
+                序号
                   </TableCell>
-                )}
-              </TableRow>
-            </TableHead>
+                  <TableCell
+                    align='center'
+                    width={40}
+                    sx={{
+                      px: 0,
+                      borderTop: '1px solid rgba(224,224,224,1)',
+                      ...cellBorderSx,
+                      ...(headerCellSx || {}),
+                    }}
+                  >
+                类型
+                  </TableCell>
+                  <TableCell
+                    align='center'
+                    sx={{
+                      minWidth: 200,
+                      borderTop: '1px solid rgba(224,224,224,1)',
+                      ...cellBorderSx,
+                      ...(headerCellSx || {}),
+                      ...(contentHeaderCellSx || {}),
+                    }}
+                  >
+                内容
+                  </TableCell>
+                  { !disabled && !readOnly && (
+                    <TableCell
+                      align='center'
+                      width={actionColumnWidth}
+                      sx={{
+                        px: 0,
+                        borderTop: '1px solid rgba(224,224,224,1)',
+                        ...cellBorderSx,
+                        ...(headerCellSx || {}),
+                      }}
+                    >
+                  操作
+                    </TableCell>
+                  )}
+                </TableRow>
+              </TableHead>
+            )}
             <TableBody>
               {rowsRef.current?.map((item, index) => (
                 <Row
+                  isActive={isActive}
                   first={index === 0}
                   last={index + 1 === rowsRef.current?.length}
                   key={item.id ?? `${index}-${item?.id || ''}`}
@@ -200,6 +204,7 @@ const DocumentContent = observer((props) => {
                   imageShowMaxHeight={imageShowMaxHeight}
                   imageShowMaxWidth={imageShowMaxWidth}
                   cellBorderSx={cellBorderSx}
+                  controllMode={controllMode}
                 />
               ))}
             </TableBody>
@@ -241,6 +246,7 @@ DocumentContent.defaultProps = {
   actionColumnWidth: 135,
   showHideContent: true,
   showClickSort: isMobile,
+  isActive: true,
 };
 
 // DocumentContent.propTypes = {
