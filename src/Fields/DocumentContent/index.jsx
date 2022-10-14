@@ -1,6 +1,7 @@
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import useId from '@mui/material/utils/useId';
 import { IconPlus } from '@tabler/icons';
 import { isMobile } from 'react-device-detect';
 
@@ -23,6 +24,7 @@ const DocumentContent = (props) => {
     ...restProps
   } = props;
   const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
+  const rootId = useId();
   const handleDragSort = useMemoizedFn((dragId, dropId) => {
     if (readOnly || disabled) { return; }
     const dragIndex = (rows || []).findIndex((item) => item.id === dragId);
@@ -206,6 +208,7 @@ const DocumentContent = (props) => {
                   speedDialFabProps={speedDialFabProps}
                   hideHead={hideHead}
                   actionColumnWidth={actionColumnWidth}
+                  rootId={rootId}
                 />
               ))}
             </TableBody>

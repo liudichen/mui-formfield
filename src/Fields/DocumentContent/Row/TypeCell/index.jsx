@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import { useDrop, useDrag, useCreation, useSafeState } from 'ahooks';
 import { Box, Tooltip } from '@mui/material';
@@ -6,8 +5,8 @@ import TextFieldsTwoToneIcon from '@mui/icons-material/TextFieldsTwoTone';
 import PhotoSizeSelectActualTwoToneIcon from '@mui/icons-material/PhotoSizeSelectActualTwoTone';
 import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
 
-const TypeCellContent = (props) => {
-  const { type, id, handleDragSort, disabled, editing, allowDragSort } = props;
+const TypeCell = (props) => {
+  const { type, id, handleDragSort, disabled, editing, allowDragSort, rootId } = props;
   const dragRef = useRef();
   const dropRef = useRef();
   const [ dragging, setDragging ] = useSafeState(false);
@@ -20,13 +19,14 @@ const TypeCellContent = (props) => {
     return sx;
   }, [ disabled, dragging ]);
 
-  useDrag(id, dragRef, {
+  useDrag({ rootId, id }, dragRef, {
     onDragStart: () => setDragging(true),
     onDragEnd: () => setDragging(false),
   });
   useDrop(dropRef, {
-    onDom: (dragId, e) => {
-      if (dragId === id) { return; }
+    onDom: (dragData, e) => {
+      const { rootId: dragRootId, id: dragId } = dragData || {};
+      if (dragId === id || dragRootId !== rootId) { return; }
       handleDragSort?.(dragId, id);
     },
     // onDragEnter: () => setIsHovering(true),
@@ -101,13 +101,4 @@ const TypeCellContent = (props) => {
   );
 };
 
-TypeCellContent.propTypes = {
-  disabled: PropTypes.bool,
-  id: PropTypes.number,
-  type: PropTypes.oneOf([ '文本', '图片', '表格' ]),
-  handleDragSort: PropTypes.func,
-  editing: PropTypes.bool,
-  allowDragSort: PropTypes.bool,
-};
-
-export default TypeCellContent;
+export default TypeCell;

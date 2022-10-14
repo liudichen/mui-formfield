@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-07-19 16:53:50
- * @LastEditTime: 2022-10-14 17:45:29
+ * @LastEditTime: 2022-10-14 19:55:56
  */
 import React from 'react';
 import { useSafeState } from 'ahooks';
@@ -14,7 +14,7 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showHideContent, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx, isActive, controllMode, speedDialFabProps, hideHead, actionColumnWidth } = props;
+  const { index, row, handleDragSort, handleChange, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showHideContent, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx, isActive, controllMode, speedDialFabProps, hideHead, actionColumnWidth, rootId } = props;
   const [ editing, setEditing ] = useSafeState(false);
   const [ showDetail, setShowDetail ] = useSafeState(true);
   return (
@@ -38,12 +38,13 @@ const Row = (props) => {
         }}
       >
         <TypeCell
-          disabled={readOnly}
+          disabled={readOnly || !isActive}
           type={row?.type}
           id={row?.id}
           allowDragSort={allowDragSort}
           handleDragSort={handleDragSort}
           editing={editing}
+          rootId={rootId}
         />
       </TableCell>
       <TableCell
