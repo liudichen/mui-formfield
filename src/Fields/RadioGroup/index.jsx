@@ -3,14 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 16:29:23
- * @LastEditTime: 2022-10-14 20:10:06
+ * @LastEditTime: 2022-10-14 21:37:22
  */
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '@mui/material';
 
-import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx, useId } from '../common';
+import { FieldWrapper, useMergedState, fetchFieldOptions, useId } from '../common';
 import ToggleButtonGroup from '../ToggleButtonGroup';
 
 const RadioGroup = (props) => {
@@ -106,39 +105,12 @@ RadioGroup.defaultProps = {
   layout: 'horizontal',
 };
 
-RadioGroup.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  name: PropTypes.string,
-  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
-  request: PropTypes.func,
-  value: PropTypes.any,
-  defaultValue: PropTypes.any,
-  onChange: PropTypes.func,
-  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-
-  readOnly: PropTypes.bool,
-  layout: PropTypes.oneOf([ 'horizontal', 'vertical' ]),
-  disabled: PropTypes.bool,
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning' ]),
-    PropTypes.string,
-  ]),
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small', 'large' ]),
-    PropTypes.string,
-  ]),
-  sx,
-  itemProps: PropTypes.shape({
-    checkedIcon: PropTypes.node,
-    classes: PropTypes.object,
-    disableRipple: PropTypes.bool,
-    icon: PropTypes.node,
-    inputProps: PropTypes.object,
-    sx,
-  }),
-};
-
-RadioGroup.Button = (props) => <ToggleButtonGroup {...{ minCount: 1, ...(props || {}), exclusive: true }} />;
+RadioGroup.Button = (props) => (
+  <ToggleButtonGroup
+    minCount={1}
+    {...props}
+    exclusive
+  />
+);
 
 export default RadioGroup;

@@ -3,16 +3,15 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-08-05 18:58:15
- * @LastEditTime: 2022-08-07 09:11:05
+ * @LastEditTime: 2022-10-14 21:34:30
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState, useKeyPress } from 'ahooks';
 import { Chip, Divider, IconButton, InputBase, Paper, Stack } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
-import { FieldWrapper, fieldWrapperPropTypes } from '../common';
+import { FieldWrapper } from '../common';
 
 
 const KeyWords = (props) => {
@@ -149,27 +148,6 @@ KeyWords.defaultProps = {
   showClear: true,
   autoClear: true,
   AddIcon: <TelegramIcon />,
-};
-
-KeyWords.propTypes = {
-  ...fieldWrapperPropTypes,
-  showClear: PropTypes.bool,
-  autoClear: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  disabled: PropTypes.bool,
-  value: PropTypes.arrayOf(PropTypes.string),
-  defaultValue: PropTypes.arrayOf(PropTypes.string),
-  onChange: PropTypes.func,
-
-  textConvert: PropTypes.func,
-  inputStackProps: PropTypes.object,
-  InputBasePaperProps: PropTypes.object,
-  InputBaseProps: PropTypes.object,
-  AddIcon: PropTypes.node,
-  AddButtonProps: PropTypes.object,
-  chipProps: PropTypes.object,
-  renderChip: PropTypes.func,
-  chipStackProps: PropTypes.object,
 };
 
 export default KeyWords;
