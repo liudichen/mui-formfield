@@ -8,6 +8,7 @@ import { isMobile } from 'react-device-detect';
 
 import { FieldWrapper } from '../common';
 import Row from './Row';
+import NoRowsOverlay from '../EditableTable/NoRowsOverlay';
 
 const DocumentContent = observer((props) => {
   const {
@@ -208,6 +209,13 @@ const DocumentContent = observer((props) => {
             </TableBody>
           </Table>
         </Box>
+        { (readOnly || disabled || !isActive) && !rows?.length && (
+          <Box>
+            <NoRowsOverlay
+              text='空空如也'
+            />
+          </Box>
+        )}
         { showAddRow && !readOnly && !disabled && (
           <Box sx={{ px: '4px' }} >
             <Button
