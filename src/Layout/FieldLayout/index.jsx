@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 15:12:38
- * @LastEditTime: 2022-05-18 20:06:23
+ * @LastEditTime: 2022-10-14 20:20:51
  */
-import PropTypes from 'prop-types';
 import React, { Children, cloneElement } from 'react';
 import { useCreation } from 'ahooks';
 import { Grid } from '@mui/material';
@@ -59,49 +58,6 @@ FieldLayout.defaultProps = {
   columns: 12,
   spacing: 1,
   alignItems: 'center',
-};
-
-FieldLayout.propTypes = {
-  fullWidth: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  columns: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]), // 12
-  spacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  columnSpacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  rowSpacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  direction: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'row', 'row-reverse', 'column', 'column-reverse' ]),
-    PropTypes.object,
-    PropTypes.arrayOf(PropTypes.oneOf([ 'row', 'row-reverse', 'column', 'column-reverse' ])),
-  ]), // 'row'
-  wrap: PropTypes.oneOf([ 'wrap', 'wrap-reverse', 'nowrap' ]), // 'wrap'
-  zeroMinWidth: PropTypes.bool, // false
-  xs: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  sm: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  md: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  lg: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  xl: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
 };
 
 FieldLayout.displayName = 'FieldLayout';

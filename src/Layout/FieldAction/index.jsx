@@ -4,9 +4,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 19:05:13
- * @LastEditTime: 2022-05-18 20:05:55
+ * @LastEditTime: 2022-10-14 20:20:35
  */
-import PropTypes from 'prop-types';
 import React, { Children } from 'react';
 import { Grid } from '@mui/material';
 
@@ -39,49 +38,6 @@ FieldAction.defaultProps = {
   alignItems: 'center',
   direction: 'row',
   textAlign: 'center',
-};
-
-FieldAction.propTypes = {
-  isFieldAction: PropTypes.bool, // 额外的一个用来指示组件类型的props，不会向下传递
-  children: PropTypes.node.isRequired,
-  columns: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.number,
-    PropTypes.object,
-  ]), // 12
-  spacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  columnSpacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  rowSpacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  direction: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'row', 'row-reverse', 'column', 'column-reverse' ]),
-    PropTypes.object,
-    PropTypes.arrayOf(PropTypes.oneOf([ 'row', 'row-reverse', 'column', 'column-reverse' ])),
-  ]), // 'row'
-  wrap: PropTypes.oneOf([ 'wrap', 'wrap-reverse', 'nowrap' ]), // 'wrap'
-  zeroMinWidth: PropTypes.bool, // false
-  xs: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  sm: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  md: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  lg: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
-  xl: PropTypes.oneOfType([ PropTypes.number, PropTypes.bool, PropTypes.oneOf([ 'auto' ]) ]), // false
 };
 
 FieldAction.displayName = 'FieldAction';
