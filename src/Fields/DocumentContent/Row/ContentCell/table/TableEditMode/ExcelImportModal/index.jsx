@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { Alert, Button, Grid } from '@mui/material';
 import { DataGridTable, Modal } from 'mui-component';
-import { Autocomplete, UploadButton } from 'mui-formfield';
 
+import Autocomplete from '../../../../../../Autocomplete';
+import UploadButton from '../../../../../../UploadButton';
 import { getColumnsFromTableData, excelReaderAsArray, fileToArrayBuffer } from '../../../../../utils';
 
 const ExcelImportModal = (props) => {
@@ -124,18 +124,6 @@ const ExcelImportModal = (props) => {
 
     </Modal>
   );
-};
-
-ExcelImportModal.propTypes = {
-  id: PropTypes.number,
-  handleChange: PropTypes.func,
-  table: PropTypes.shape({
-    text: PropTypes.string,
-    number: PropTypes.number,
-    tableData: PropTypes.array,
-    tableCols: PropTypes.number,
-  }),
-  fullScreen: PropTypes.bool,
 };
 
 export default ExcelImportModal;

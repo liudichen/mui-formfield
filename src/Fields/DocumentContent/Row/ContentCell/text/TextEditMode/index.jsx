@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:35:09
- * @LastEditTime: 2022-05-20 22:30:29
+ * @LastEditTime: 2022-10-14 20:28:42
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
@@ -38,19 +37,6 @@ const TextEditMode = (props) => {
       }}
     />
   );
-};
-
-
-TextEditMode.propTypes = {
-  id: PropTypes.number,
-  text: PropTypes.shape({
-    text: PropTypes.string,
-    font: PropTypes.string,
-    indent: PropTypes.number,
-    align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-    fontSize: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  }),
-  handleChange: PropTypes.func,
 };
 
 export default TextEditMode;

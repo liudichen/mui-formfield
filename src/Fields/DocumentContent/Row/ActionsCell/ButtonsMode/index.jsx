@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-10-14 14:59:27
+ * @LastEditTime: 2022-10-14 20:23:53
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, IconButton, Tooltip } from '@mui/material';
 import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown, IconPalette, IconReplace } from '@tabler/icons';
@@ -151,32 +150,6 @@ const ButtonsMode = (props) => {
       )}
     </Container>
   );
-};
-
-ButtonsMode.propTypes = {
-  first: PropTypes.bool,
-  last: PropTypes.bool,
-  editing: PropTypes.bool,
-  setEditing: PropTypes.func,
-  type: PropTypes.oneOf([ '文本', '图片', '表格' ]),
-  text: PropTypes.shape({
-    text: PropTypes.string,
-    font: PropTypes.string,
-    indent: PropTypes.number,
-    align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-    fontSize: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-    type: PropTypes.oneOf([ '文本' ]),
-  }),
-  id: PropTypes.number.isRequired,
-  handleChange: PropTypes.func,
-  showDelete: PropTypes.bool,
-  showSwitchType: PropTypes.bool,
-  showClickSort: PropTypes.bool,
-  handleClickSort: PropTypes.func,
-  showHideContent: PropTypes.bool,
-  open: PropTypes.bool,
-  setOpen: PropTypes.func,
-  modalFullScreen: PropTypes.bool,
 };
 
 export default ButtonsMode;

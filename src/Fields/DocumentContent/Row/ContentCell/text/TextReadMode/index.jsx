@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:35:23
- * @LastEditTime: 2022-05-18 20:01:51
+ * @LastEditTime: 2022-10-14 20:31:22
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Box } from '@mui/material';
 
@@ -52,14 +51,6 @@ TextReadMode.defaultProps = {
   align: 'left',
   fontSize: '小四',
   font: '宋体',
-};
-
-TextReadMode.propTypes = {
-  text: PropTypes.string,
-  font: PropTypes.string,
-  indent: PropTypes.number,
-  align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-  fontSize: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 
 export default TextReadMode;

@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:28:27
- * @LastEditTime: 2022-05-20 17:49:18
+ * @LastEditTime: 2022-10-14 20:39:15
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation } from 'ahooks';
 import { Box } from '@mui/material';
@@ -51,14 +50,6 @@ const ImageReadMode = (props) => {
       </Box>
     </Box>
   );
-};
-
-ImageReadMode.propTypes = {
-  url: PropTypes.string,
-  text: PropTypes.string,
-  number: PropTypes.number,
-  imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 
 export default ImageReadMode;

@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-08-08 16:16:46
- * @LastEditTime: 2022-10-14 14:28:05
+ * @LastEditTime: 2022-10-14 20:22:43
  */
 /*
  * @Description:
@@ -12,7 +12,6 @@
  * @Date: 2022-05-16 16:04:57
  * @LastEditTime: 2022-08-08 16:49:40
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
 import { Field } from '@formily/react';
@@ -58,15 +57,6 @@ const ContentTypeSwitchModal = (props) => {
       </Grid>
     </ModalForm>
   );
-};
-
-ContentTypeSwitchModal.propTypes = {
-  type: PropTypes.oneOf([ '文本', '图片', '表格' ]),
-  id: PropTypes.number,
-  handleChange: PropTypes.func,
-  fullScreen: PropTypes.bool,
-  setOpen: PropTypes.func,
-  open: PropTypes.bool,
 };
 
 export default ContentTypeSwitchModal;

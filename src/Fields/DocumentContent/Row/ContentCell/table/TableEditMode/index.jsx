@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import {
@@ -15,14 +14,14 @@ import {
   Divider,
 } from '@mui/material';
 import { IconX } from '@tabler/icons';
-import { EditableTable } from 'mui-formfield';
 
+import EditableTable from '../../../../../EditableTable';
 import ExcelImportModal from './ExcelImportModal';
 import { getColmnsFromTableCols } from '../../../../utils';
 
 const TableEditMode = (props) => {
   const { table, id, handleChange, fullScreen } = props;
-  const [inputType, setInputType] = useSafeState('input');
+  const [ inputType, setInputType ] = useSafeState('input');
   const onNumberChange = useMemoizedFn((e) => {
     const newTable = { ...table, number: +e.target.value };
     handleChange(id, { table: newTable });
@@ -37,7 +36,7 @@ const TableEditMode = (props) => {
   });
   const columns = useCreation(() => {
     return getColmnsFromTableCols(table?.tableCols, true);
-  }, [table?.tableCols]);
+  }, [ table?.tableCols ]);
   const onTableChange = useMemoizedFn((tb) => {
     const newTable = { ...table, tableData: tb || [] };
     handleChange(id, { table: newTable });
@@ -138,18 +137,6 @@ const TableEditMode = (props) => {
       )}
     </Box>
   );
-};
-
-TableEditMode.propTypes = {
-  id: PropTypes.number,
-  handleChange: PropTypes.func,
-  table: PropTypes.shape({
-    text: PropTypes.string,
-    number: PropTypes.number,
-    tableData: PropTypes.array,
-    tableCols: PropTypes.number,
-  }),
-  fullScreen: PropTypes.bool,
 };
 
 export default TableEditMode;

@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:18:41
- * @LastEditTime: 2022-05-20 17:22:54
+ * @LastEditTime: 2022-10-14 20:26:50
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { TextEditMode, TextReadMode } from './text';
@@ -60,21 +59,6 @@ const ContentCell = (props) => {
       tableData={table?.tableData}
     />
   );
-};
-
-ContentCell.propTypes = {
-  editing: PropTypes.bool,
-  row: PropTypes.shape({
-    id: PropTypes.number,
-    type: PropTypes.oneOf([ '文本', '图片', '表格' ]),
-    text: PropTypes.object,
-    image: PropTypes.object,
-    table: PropTypes.object,
-  }),
-  handleChange: PropTypes.func,
-  modalFullScreen: PropTypes.bool,
-  imageShowMaxHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  imageShowMaxWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 
 export default ContentCell;

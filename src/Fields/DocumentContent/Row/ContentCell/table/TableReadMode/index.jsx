@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-16 16:33:54
- * @LastEditTime: 2022-05-18 23:14:47
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation } from 'ahooks';
 import { Box } from '@mui/material';
@@ -45,13 +37,6 @@ const TableReadMode = (props) => {
       )}
     </Box>
   );
-};
-
-TableReadMode.propTypes = {
-  text: PropTypes.string,
-  number: PropTypes.number,
-  tableData: PropTypes.array,
-  tableCols: PropTypes.number,
 };
 
 export default TableReadMode;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
@@ -93,21 +92,6 @@ const ImageEditMode = (props) => {
       </Box>
     </Box>
   );
-};
-
-ImageEditMode.propTypes = {
-  id: PropTypes.number,
-  handleChange: PropTypes.func,
-  image: PropTypes.shape({
-    text: PropTypes.string,
-    number: PropTypes.number,
-    aspect: PropTypes.number,
-    width: PropTypes.number,
-    url: PropTypes.string,
-    name: PropTypes.string,
-    size: PropTypes.number,
-    type: PropTypes.string,
-  }),
 };
 
 export default ImageEditMode;

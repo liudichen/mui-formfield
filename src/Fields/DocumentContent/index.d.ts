@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 15:51:29
- * @LastEditTime: 2022-10-14 17:06:13
+ * @LastEditTime: 2022-10-14 20:52:46
  */
 import React from 'react';
 import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps, FabProps } from '@mui/material';
@@ -11,33 +11,47 @@ import { TableProps, TableRowProps, SxProps, ButtonProps, TableCellProps, FabPro
 import { FieldWrapperRelateProps } from '../types';
 
 export type IType = '文本' | '图片' | '表格';
+export type IAlign = 'left' | 'center' | 'right';
+
+export interface ITextContent {
+  text?: string,
+  font?: string,
+  fontSize?: number | string,
+  indent?: number,
+  align?: IAlign,
+}
+
+export interface IImageContent {
+  text?: string,
+  number?: number,
+  url?: string,
+  size?: number,
+  name?: number,
+  type?: string,
+  width?: number,
+  aspect?: number,
+}
+
+export interface ITableDataObjectItem {
+  id: number,
+  [key: string | number]: number | string,
+}
+
+export type ITableDataArrayItem = string | number | null | undefined;
+
+export interface ITableContent {
+  text?: string,
+  number?: number,
+  tableCols?: number,
+  tableData?: ITableDataArrayItem[] | ITableDataArrayItem[],
+}
 
 export interface IRowItem {
   id?: number,
   type: IType,
-  text?: {
-    text?: string,
-    font?: string,
-    fontSize?: number | string,
-    indent?: number,
-    align?: 'left' | 'center' | 'right',
-  },
-  image?: {
-    text?: string,
-    number?: number,
-    url?: string,
-    size?: number,
-    name?: number,
-    type?: string,
-    width?: number,
-    aspect?: number,
-  },
-  table?: {
-    text?: string,
-    number?: number,
-    tableCols?: number,
-    tableData?: {[key: string | number]: number | string | null | undefined, id:number}[] | (string | number | null | undefined)[][],
-  }
+  text?: ITextContent,
+  image?: IImageContent,
+  table?: ITableContent,
 }
 export type IControlMode = 'buttons' | 'speedDial';
 export type IHandleDragSortFn = ((dragId: string | number, dropId: string | number) => void);

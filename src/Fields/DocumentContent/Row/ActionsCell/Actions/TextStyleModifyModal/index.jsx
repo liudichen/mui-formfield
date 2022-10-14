@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { onFieldValueChange } from '@formily/core';
@@ -133,20 +132,6 @@ const TextStyleModifyModal = (props) => {
       </Grid>
     </ModalForm>
   );
-};
-
-TextStyleModifyModal.propTypes = {
-  id: PropTypes.number,
-  text: PropTypes.shape({
-    text: PropTypes.string,
-    font: PropTypes.string,
-    indent: PropTypes.number,
-    align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
-    fontSize: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-    type: PropTypes.oneOf([ '文本' ]),
-  }),
-  handleChange: PropTypes.func,
-  fullScreen: PropTypes.bool,
 };
 
 export default TextStyleModifyModal;
