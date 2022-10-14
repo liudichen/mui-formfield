@@ -3,14 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:32:58
- * @LastEditTime: 2022-05-10 21:24:57
+ * @LastEditTime: 2022-10-14 20:03:40
  */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, FormControl, FormHelperText } from '@mui/material';
 
 import LabelRender from '../LabelRender';
-import { fieldWrapperPropTypes } from '../propTypes';
 
 const FieldWrapper = (props) => {
   const {
@@ -95,12 +93,6 @@ const FieldWrapper = (props) => {
 FieldWrapper.defaultProps = {
   labelPosition: 'top',
   showHelperText: false,
-};
-
-FieldWrapper.propTypes = {
-  ...fieldWrapperPropTypes,
-  children: PropTypes.node.isRequired,
-  noFormControl: PropTypes.bool,
 };
 
 export default FieldWrapper;

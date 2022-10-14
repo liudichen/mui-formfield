@@ -3,15 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 08:57:36
- * @LastEditTime: 2022-06-24 16:51:37
+ * @LastEditTime: 2022-10-14 20:14:06
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Button } from '@mui/material';
 
 import { removeFileItem, updateFileList } from './utils';
-import { FieldWrapper, useMergedState, isImage, fileToBase64, fieldWrapperPropTypes } from '../common';
+import { FieldWrapper, useMergedState, isImage, fileToBase64 } from '../common';
 import UploadZone from './UploadZone';
 import UploadList from './UploadList';
 
@@ -168,54 +167,6 @@ UploadButton.defaultProps = {
   showDownloadIcon: false,
   showPreviewIcon: true,
   showRemoveIcon: true,
-};
-
-UploadButton.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  value: PropTypes.any,
-  onChange: PropTypes.func,
-
-  isImage: PropTypes.func,
-  previewFile: PropTypes.func, // interface: (file) => void
-  transformFile: PropTypes.func,
-  uploadButtonProps: PropTypes.object,
-  uploadButtonText: PropTypes.node,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  validator: PropTypes.func, // interface: （file) => '' || errorMsg
-  showUploadList: PropTypes.bool,
-  showPreviewIcon: PropTypes.bool,
-  showRemoveIcon: PropTypes.bool,
-  showDownloadIcon: PropTypes.bool,
-  previewIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-  downloadIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-  removeIcon: PropTypes.oneOfType([ PropTypes.node, PropTypes.func ]),
-  listType: PropTypes.oneOf([ 'text', 'picture-card' ]),
-  maxCount: PropTypes.number,
-  onRemove: PropTypes.func,
-  onPreview: PropTypes.func,
-  onDownload: PropTypes.func,
-  accept: PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string) ]),
-  multiple: PropTypes.bool,
-  preventDropOnDocument: PropTypes.bool, // If false, allow dropped items to take over the current browser window
-  noClick: PropTypes.bool, // If true, disables click to open the native file selection dialog
-  noKeyboard: PropTypes.bool, // If true, disables SPACE/ENTER to open the native file selection dialog. * Note that it also stops tracking the focus state
-  noDrag: PropTypes.bool, // If true, disables drag 'n' drop
-  noDragEventsBubbling: PropTypes.bool, // If true, stops drag event propagation to parents
-  minSize: PropTypes.number, // Minimum file size (in bytes)
-  maxSize: PropTypes.number, // Maximum file size (in bytes)
-  maxFiles: PropTypes.number, // Maximum accepted number of files * The default value is 0 which means there is no limitation to how many files are accepted.
-  getFilesFromEvent: PropTypes.func, // Use this to provide a custom file aggregator  @param {(DragEvent|Event)} event A drag event or input change event (if files were selected via the file dialog)
-  onFileDialogCancel: PropTypes.func, // Cb for when closing the file dialog with no selection
-  onFileDialogOpen: PropTypes.func, // Cb for when opening the file dialog
-  useFsAccessApi: PropTypes.bool, // Set to true to use the https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API  to open the file picker instead of using an `<input type="file">` click event.
-  onDragEnter: PropTypes.func, // Cb for when the `dragenter` event occurs. @param {DragEvent} event
-  onDragLeave: PropTypes.func, // Cb for when the `dragleave` event occurs  @param {DragEvent} event
-  onDragOver: PropTypes.func, // Cb for when the `dragover` event occurs  @param {DragEvent} event
-  onDrop: PropTypes.func, // Cb for when the `drop` event occurs.   * Note that this callback is invoked after the `getFilesFromEvent` callback is done. Files are accepted or rejected based on the `accept`, `multiple`, `minSize` and `maxSize` props. Note that the `onDrop` callback will always be invoked regardless if the dropped files were accepted or rejected. If you'd like to react to a specific scenario, use the `onDropAccepted`/`onDropRejected` props. @param {File[]} acceptedFiles;  @param {FileRejection[]} fileRejections; @param {(DragEvent|Event)} event A drag event or input change event (if files were selected via the file dialog)
-  onDropAccepted: PropTypes.func, // Cb for when the `drop` event occurs.   * Note that if no files are accepted, this callback is not invoked. @param {File[]} files  @param {(DragEvent|Event)} event
-  onDropRejected: PropTypes.func, // Cb for when the `drop` event occurs.   * Note that if no files are rejected, this callback is not invoked. @param {FileRejection[]} fileRejections ;@param {(DragEvent|Event)} event
 };
 
 export default UploadButton;

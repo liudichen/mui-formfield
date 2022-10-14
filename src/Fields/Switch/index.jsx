@@ -3,13 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-23 13:19:27
- * @LastEditTime: 2022-05-18 20:07:20
+ * @LastEditTime: 2022-10-14 20:11:33
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Switch as MuiSwith, Stack } from '@mui/material';
 
-import { FieldWrapper, useMergedState, fieldWrapperPropTypes, sx } from '../common';
+import { FieldWrapper, useMergedState } from '../common';
 
 const Switch = (props) => {
   const {
@@ -96,38 +95,6 @@ const Switch = (props) => {
 
 Switch.defaultProps = {
   spacing: 0.5,
-};
-
-Switch.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  unCheckedChildren: PropTypes.node,
-  checkedChildren: PropTypes.node,
-  switchLabel: PropTypes.node,
-  value: PropTypes.any,
-  defaultValue: PropTypes.any,
-  onChange: PropTypes.func,
-  readOnly: PropTypes.bool,
-  spacing: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-
-  checkedIcon: PropTypes.node,
-  unCheckedIcon: PropTypes.node,
-  classes: PropTypes.object,
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'primary', 'default', 'secondary', 'error', 'info', 'success', 'warning' ]),
-    PropTypes.string,
-  ]), // 'primary'
-  disabled: PropTypes.bool,
-  disableRipple: PropTypes.bool,
-  edge: PropTypes.oneOf([ 'end', 'start', false ]), // false
-  id: PropTypes.string,
-  inputProps: PropTypes.object,
-  inputRef: PropTypes.object,
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small' ]),
-    PropTypes.string,
-  ]), // 'medium'
-  sx,
 };
 
 export default Switch;

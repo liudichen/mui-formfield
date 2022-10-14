@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:47
- * @LastEditTime: 2022-06-24 16:52:49
+ * @LastEditTime: 2022-10-14 20:15:09
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { IconButton, Tooltip } from '@mui/material';
@@ -150,25 +149,6 @@ const ListItem = (props) => {
       </span>
     </span>
   );
-};
-
-ListItem.propTypes = {
-  isImage: PropTypes.func,
-  imageIndex: PropTypes.number,
-  showPreviewIcon: PropTypes.bool,
-  showRemoveIcon: PropTypes.bool,
-  showDownloadIcon: PropTypes.bool,
-  onPreview: PropTypes.func,
-  onDownload: PropTypes.func,
-  onRemove: PropTypes.func,
-  images: PropTypes.array,
-  file: PropTypes.object.isRequired,
-  previewIcon: PropTypes.node,
-  removeIcon: PropTypes.node,
-  downloadIcon: PropTypes.node,
-  listType: PropTypes.oneOf([ 'text', 'picture-card' ]),
-  iconRender: PropTypes.func,
-  onClickThumb: PropTypes.func,
 };
 
 export default ListItem;

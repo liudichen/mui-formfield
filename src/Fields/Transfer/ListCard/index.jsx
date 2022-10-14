@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-18 16:06:50
- * @LastEditTime: 2022-06-17 11:13:56
+ * @LastEditTime: 2022-10-14 20:13:44
  */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useSafeState } from 'ahooks';
 import { Card, CardHeader, Checkbox, Divider, FormControlLabel, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
@@ -112,33 +111,6 @@ const ListCard = (props) => {
       </List>
     </Card>
   );
-};
-
-ListCard.propTypes = {
-  showSelectAll: PropTypes.bool,
-  showSearch: PropTypes.bool,
-  disabled: PropTypes.bool,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-    label: PropTypes.node,
-    disabled: PropTypes.bool,
-  })),
-  title: PropTypes.node,
-  items: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])),
-  checked: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])),
-  setChecked: PropTypes.func,
-  handleToggle: PropTypes.func,
-  handleToggleAll: PropTypes.func,
-  listSx: PropTypes.object,
-  listProps: PropTypes.object,
-  listCardWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  listCardHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  cardHeaderSx: PropTypes.object,
-  cardSx: PropTypes.object,
-  listItemProps: PropTypes.object,
-  itemCheckboxProps: PropTypes.object,
-  listItemTextProps: PropTypes.object,
-  searchProps: PropTypes.object,
 };
 
 export default ListCard;

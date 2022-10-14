@@ -3,14 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 15:11:12
- * @LastEditTime: 2022-06-17 09:16:44
+ * @LastEditTime: 2022-10-14 20:12:08
  */
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Checkbox, Skeleton, ToggleButtonGroup as MuiToggleButtonGroup, ToggleButton as MuiToggleButton } from '@mui/material';
 
-import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx, isEqual, isInArray } from '../common';
+import { FieldWrapper, useMergedState, fetchFieldOptions, isEqual, isInArray } from '../common';
 
 const ToggleButtonGroup = (props) => {
   const {
@@ -117,42 +116,6 @@ ToggleButtonGroup.defaultProps = {
   layout: 'horizontal',
   labelPosition: 'top',
   color: 'primary',
-};
-
-ToggleButtonGroup.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  value: PropTypes.any,
-  defaultValue: PropTypes.any,
-  onChange: PropTypes.func,
-  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
-  request: PropTypes.func,
-  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-
-  minCount: PropTypes.number,
-  maxCount: PropTypes.number,
-  exclusive: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  layout: PropTypes.oneOf([ 'horizontal', 'vertical' ]),
-  disabled: PropTypes.bool,
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning' ]),
-    PropTypes.string,
-  ]),
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small', 'large' ]),
-    PropTypes.string,
-  ]),
-  sx,
-  buttonFullWidth: PropTypes.bool,
-  itemProps: PropTypes.shape({
-    classes: PropTypes.object,
-    disableFocusRipple: PropTypes.bool,
-    disableRipple: PropTypes.bool,
-    onClick: PropTypes.func, // (e,v)=>void
-    sx,
-  }),
 };
 
 export default ToggleButtonGroup;

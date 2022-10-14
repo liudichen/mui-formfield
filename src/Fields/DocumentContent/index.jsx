@@ -1,11 +1,10 @@
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-import useId from '@mui/material/utils/useId';
 import { IconPlus } from '@tabler/icons';
 import { isMobile } from 'react-device-detect';
 
-import { FieldWrapper } from '../common';
+import { FieldWrapper, useId } from '../common';
 import Row from './Row';
 import NoRowsOverlay from '../EditableTable/NoRowsOverlay';
 

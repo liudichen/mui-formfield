@@ -3,14 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 20:54:19
- * @LastEditTime: 2022-07-01 17:20:12
+ * @LastEditTime: 2022-10-14 20:04:48
  */
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete as MuiAutocomplete, TextField } from '@mui/material';
 
-import { fetchFieldOptions, FieldWrapper, fieldWrapperPropTypes, LabelRender, sx, useMergedState, isEqual } from '../common';
+import { fetchFieldOptions, FieldWrapper, LabelRender, useMergedState, isEqual } from '../common';
 
 const Autocomplete = (props) => {
   const {
@@ -90,78 +89,6 @@ Autocomplete.defaultProps = {
   size: 'small',
   labelPosition: 'top',
   variant: 'outlined',
-};
-
-Autocomplete.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  placeholder: PropTypes.string,
-  request: PropTypes.func,
-  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
-  onChange: PropTypes.func,
-  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-  variant: PropTypes.oneOf([ 'outlined', 'filled', 'standard' ]),
-
-  renderInput: PropTypes.func,
-  autoComplete: PropTypes.bool,
-  autoHighlight: PropTypes.bool,
-  autoSelect: PropTypes.bool,
-  blurOnSelect: PropTypes.oneOf([ false, 'mouse', 'touch', true ]),
-  ChipProps: PropTypes.object,
-  classes: PropTypes.object,
-  clearIcon: PropTypes.node, //	<ClearIcon fontSize="small" />
-  clearOnEscape: PropTypes.bool,
-  clearText: PropTypes.string, // Clear
-  closeText: PropTypes.string, // Close
-  componentsProps: PropTypes.shape({
-    clearIndicator: PropTypes.object,
-    paper: PropTypes.object,
-  }), // {}
-  defaultValue: PropTypes.any, // props.multiple ? [] : null
-  disableClearable: PropTypes.bool,
-  disableCloseOnSelect: PropTypes.bool,
-  disabled: PropTypes.bool,
-  disabledItemsFocusable: PropTypes.bool,
-  disableListWrap: PropTypes.bool,
-  disablePortal: PropTypes.bool,
-  filterOptions: PropTypes.func,
-  filterSelectedOptions: PropTypes.bool,
-  forcePopupIcon: PropTypes.oneOf([ 'auto', false, true ]),
-  freeSolo: PropTypes.bool,
-  getLimitTagsText: PropTypes.func, //	(more) => `+${more}`
-  getOptionDisabled: PropTypes.func,
-  getOptionLabel: PropTypes.func, // (option) => option.label ?? option
-  groupBy: PropTypes.func, // interface: (options) => string
-  handleHomeEndKeys: PropTypes.bool, // !props.freeSolo
-  id: PropTypes.string,
-  includeInputInList: PropTypes.bool,
-  inputValue: PropTypes.string,
-  isOptionEqualToValue: PropTypes.func, // interface: (option,value) => boolen
-  limitTags: PropTypes.number, // -1
-  ListboxComponent: PropTypes.elementType, // 'ul'
-  ListboxProps: PropTypes.object,
-  loading: PropTypes.bool,
-  loadingText: PropTypes.node, // 'Loading…'
-  multiple: PropTypes.bool,
-  noOptionsText: PropTypes.node, // 'No options'
-  onClose: PropTypes.func, // interface: (event,reason:"toggleInput" | "escape", "selectOption" | "removeOption" | "blur") => void
-  onHighlightChange: PropTypes.func, // interface:(event,option,reason: 'keyboard' | 'auto' | 'mouse') => void
-  onInputChange: PropTypes.func, // interface: (event,value,reason:'input' | 'reset' | 'clear') => void
-  onOpen: PropTypes.func, // interface: (event) => void
-  open: PropTypes.bool,
-  openOnFocus: PropTypes.bool,
-  openText: PropTypes.string, // 'Open'
-  PaperComponent: PropTypes.elementType, // Paper
-  PopperComponent: PropTypes.elementType, // Popper
-  popupIcon: PropTypes.node, //	<ArrowDropDownIcon />
-  readOnly: PropTypes.bool,
-  renderGroup: PropTypes.func, // interface: (option) => ReactNode
-  renderOption: PropTypes.func, // interface: (props, option, state) => ReactNode
-  renderTags: PropTypes.func, // interface: (value,getTagProps:func) => ReactNode
-  selectOnFocus: PropTypes.bool, // !props.freeSolo
-  size: PropTypes.oneOfType([ PropTypes.oneOf([ 'medium', 'small' ]), PropTypes.string ]), // 'medium'
-  sx,
-  value: PropTypes.any,
 };
 
 export default Autocomplete;

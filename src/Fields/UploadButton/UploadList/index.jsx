@@ -3,9 +3,8 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 10:40:18
- * @LastEditTime: 2022-06-13 11:28:38
+ * @LastEditTime: 2022-10-14 20:14:42
  */
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useMemoizedFn, useSafeState, useUpdate } from 'ahooks';
 import { IconPaperclip, IconPhoto, IconFileInfo } from '@tabler/icons';
@@ -131,25 +130,6 @@ const UploadList = (props) => {
       ))}
     </div>
   );
-};
-
-UploadList.propTypes = {
-  previewFile: PropTypes.func,
-  iconRender: PropTypes.func,
-  isImage: PropTypes.func,
-  onRemove: PropTypes.func,
-  onDownload: PropTypes.func,
-  onPreview: PropTypes.func,
-  items: PropTypes.array.isRequired,
-  listType: PropTypes.oneOf([ 'text', 'picture-card' ]),
-  showPreviewIcon: PropTypes.bool,
-  showRemoveIcon: PropTypes.bool,
-  showDownloadIcon: PropTypes.bool,
-  previewIcon: PropTypes.node,
-  removeIcon: PropTypes.node,
-  downloadIcon: PropTypes.node,
-  onClickThumb: PropTypes.func,
-  style: PropTypes.object,
 };
 
 export default UploadList;

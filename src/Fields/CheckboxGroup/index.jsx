@@ -3,14 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-12 14:06:50
- * @LastEditTime: 2022-08-19 17:46:26
+ * @LastEditTime: 2022-10-14 20:05:19
  */
-import PropTypes from 'prop-types';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import React, { useEffect } from 'react';
 import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
 
-import { FieldWrapper, useMergedState, fetchFieldOptions, fieldWrapperPropTypes, sx, isInArray, isEqual } from '../common';
+import { FieldWrapper, useMergedState, fetchFieldOptions, isInArray, isEqual } from '../common';
 import ToggleButtonGroup from '../ToggleButtonGroup';
 
 const CheckboxGroup = (props) => {
@@ -124,39 +123,5 @@ CheckboxGroup.defaultProps = {
   labelPosition: 'top',
 };
 
-CheckboxGroup.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  value: PropTypes.array,
-  defaultValue: PropTypes.array,
-  options: PropTypes.oneOfType([ PropTypes.array, PropTypes.func ]),
-  request: PropTypes.func,
-  onChange: PropTypes.func,
-  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-
-  minCount: PropTypes.number,
-  maxCount: PropTypes.number,
-  readOnly: PropTypes.bool,
-  layout: PropTypes.oneOf([ 'horizontal', 'vertical' ]),
-  disabled: PropTypes.bool,
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning' ]),
-    PropTypes.string,
-  ]),
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small', 'large' ]),
-    PropTypes.string,
-  ]),
-  sx,
-  itemProps: PropTypes.shape({
-    checkedIcon: PropTypes.node,
-    classes: PropTypes.object,
-    disableRipple: PropTypes.bool,
-    icon: PropTypes.node,
-    indeterminate: PropTypes.bool,
-    indeterminateIcon: PropTypes.node,
-    inputProps: PropTypes.object,
-  }),
-};
 CheckboxGroup.Button = ToggleButtonGroup;
 export default CheckboxGroup;

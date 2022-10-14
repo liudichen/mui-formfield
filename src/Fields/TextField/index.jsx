@@ -3,15 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-21 22:52:24
- * @LastEditTime: 2022-09-29 22:50:22
+ * @LastEditTime: 2022-10-14 20:11:46
  */
-import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import { useMemoizedFn, useControllableValue, useCreation } from 'ahooks';
 import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { FieldWrapper, LabelRender, fieldWrapperPropTypes, sx } from '../common';
+import { FieldWrapper, LabelRender } from '../common';
 
 const TextField = forwardRef((props, ref) => {
   const {
@@ -118,46 +117,6 @@ const TextField = forwardRef((props, ref) => {
 TextField.defaultProps = {
   size: 'small',
   labelPosition: 'top',
-};
-
-TextField.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  ref: PropTypes.object,
-  showClear: PropTypes.bool,
-  readOnly: PropTypes.bool,
-  value: PropTypes.any,
-  defaultValue: PropTypes.any,
-  onChange: PropTypes.func,
-
-  autoComplete: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  classes: PropTypes.bool,
-  color: PropTypes.oneOfType([ PropTypes.oneOf([ 'primary', 'secondary', 'error', 'info', 'success', 'warning' ]), PropTypes.string ]),
-  disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  FormHelperTextProps: PropTypes.object,
-  id: PropTypes.string,
-  InputLabelProps: PropTypes.object,
-  inputProps: PropTypes.object,
-  InputProps: PropTypes.object,
-  inputRef: PropTypes.object,
-  margin: PropTypes.oneOf([ 'none', 'dense', 'normal' ]),
-  maxRows: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  multiline: PropTypes.bool,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  rows: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  select: PropTypes.bool,
-  SelectProps: PropTypes.object,
-  size: PropTypes.oneOfType([ PropTypes.oneOf([ 'medium', 'small' ]), PropTypes.string ]),
-  sx,
-  type: PropTypes.oneOf([ 'text', 'password', 'date', 'color', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week', 'datetime' ]),
-  variant: PropTypes.oneOf([ 'outlined', 'filled', 'standard' ]),
-  hiddenLabel: PropTypes.bool,
-  focused: PropTypes.bool,
-  component: PropTypes.oneOfType([ PropTypes.element, PropTypes.elementType ]),
-  endAdornmentItem: PropTypes.node,
 };
 
 export default TextField;

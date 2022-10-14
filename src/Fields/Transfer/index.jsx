@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useCreation, useLatest, useMemoizedFn, useSafeState } from 'ahooks';
 import { Grid, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons';
 
-import { FieldWrapper, fetchFieldOptions, fieldWrapperPropTypes, useMergedState, isInArray, isEqual } from '../common';
+import { FieldWrapper, fetchFieldOptions, useMergedState, isInArray, isEqual } from '../common';
 
 import ListCard from './ListCard';
 
@@ -234,47 +233,6 @@ Transfer.defaultProps = {
   listCardHeight: 230,
   gridSpacing: 1,
   titles: [ '可选项', '已选项' ],
-};
-
-Transfer.propTypes = {
-  ...fieldWrapperPropTypes,
-  keepExtraItems: PropTypes.bool, // 是否保留不在options里的选项,，默认不保留
-  showSelectAll: PropTypes.bool,
-  showSearch: PropTypes.bool,
-  disabled: PropTypes.bool,
-  options: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.shape({
-        value: PropTypes.any,
-        label: PropTypes.node,
-        disabled: PropTypes.bool,
-      }),
-      PropTypes.number,
-      PropTypes.string,
-    ])),
-    PropTypes.func,
-  ]),
-  refreshOptionsFlag: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-  request: PropTypes.func,
-  value: PropTypes.array,
-  defaultValue: PropTypes.array,
-  onChange: PropTypes.func,
-  readOnly: PropTypes.bool,
-  titles: PropTypes.arrayOf(PropTypes.node),
-  listSx: PropTypes.object,
-  listProps: PropTypes.object,
-  listCardWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  listCardHeight: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  cardHeaderSx: PropTypes.object,
-  cardSx: PropTypes.object,
-  listItemProps: PropTypes.object,
-  itemCheckboxProps: PropTypes.object,
-  listItemTextProps: PropTypes.object,
-  gridSpacing: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  rootGridProps: PropTypes.object,
-  cardGridProps: PropTypes.object,
-  buttonProps: PropTypes.object,
-  searchProps: PropTypes.object,
 };
 
 export default Transfer;

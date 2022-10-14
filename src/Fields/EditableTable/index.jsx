@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useLatest } from 'ahooks';
 import { toJS } from '@formily/reactive';
@@ -13,7 +12,7 @@ import { initColumn } from 'mui-component';
 
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
-import { dataGridPropTypes, dialogPropTypes, FieldWrapper, fieldWrapperPropTypes, paginationPropTypes } from '../common';
+import { FieldWrapper } from '../common';
 import DeleteActionItem from './DeleteActionItem';
 
 const EditableTable = (props) => {
@@ -386,59 +385,5 @@ EditableTable.defaultProps = {
   editingRowBorderColor: '#f759ab',
 };
 
-EditableTable.propTypes = {
-  ...fieldWrapperPropTypes,
-
-  extraData: PropTypes.any,
-
-  editable: PropTypes.bool,
-  editingRowBorderColor: PropTypes.string, // 正在编辑的行的颜色,仅editMode='row'时有用实际
-
-  readOnly: PropTypes.bool,
-  disabled: PropTypes.bool,
-  defaultValue: PropTypes.array,
-  value: PropTypes.array,
-  onChange: PropTypes.func,
-  refreshRowsFlag: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-
-  width: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  height: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  initialPageSize: PropTypes.number,
-  paginationProps: PropTypes.shape(paginationPropTypes),
-
-  rootClassName: PropTypes.string,
-  rowKey: PropTypes.string,
-  showEdit: PropTypes.bool,
-  editInMenu: PropTypes.bool,
-  editIcon: PropTypes.node,
-  editLabel: PropTypes.node,
-  EditModal: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]),
-  showAddRow: PropTypes.bool,
-  getNewRow: PropTypes.func,
-  addRowInMenu: PropTypes.bool,
-  addRowIcon: PropTypes.node,
-  addRowLabel: PropTypes.node,
-  showDelete: PropTypes.bool,
-  deleteInMenu: PropTypes.bool,
-  deleteIcon: PropTypes.node,
-  deleteLabel: PropTypes.node,
-  showSorter: PropTypes.bool,
-  sorterInMenu: PropTypes.bool,
-  moveUpIcon: PropTypes.node,
-  moveUpLabel: PropTypes.node,
-  moveDownIcon: PropTypes.node,
-  moveDownLabel: PropTypes.node,
-  actionsColWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  actionsColumnTitle: PropTypes.node,
-  actionsIconColor: PropTypes.string,
-  actionsItemProps: PropTypes.object,
-  deleteConfirmDialogProps: PropTypes.shape(dialogPropTypes),
-
-  ...{
-    ...dataGridPropTypes,
-    editMode: PropTypes.oneOf([ 'cell', 'row', 'modal' ]),
-  },
-
-};
 
 export default EditableTable;
