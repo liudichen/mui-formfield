@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-20 14:57:56
- * @LastEditTime: 2022-10-14 21:31:24
+ * @LastEditTime: 2022-10-14 21:32:56
  */
 import React from 'react';
 import { GridActionsCellItemProps } from '@mui/x-data-grid';
@@ -95,7 +95,6 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
 
   /**
    * Modal to edit the row
-   * @param {EditModalProps} props props
    */
   EditModal?: React.FunctionComponent<EditModalProps> | React.Component<EditModalProps>,
 
