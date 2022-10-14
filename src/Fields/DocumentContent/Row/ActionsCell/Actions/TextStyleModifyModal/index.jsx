@@ -39,7 +39,7 @@ const TextStyleModifyModal = (props) => {
             state.disabled = true;
           });
           form.setFieldState('align', (state) => {
-            state.value = { value: field.value.style.fontSize.align, label: field.value.style.fontSize.align === 'left' ? '左' : field.value.style.fontSize.align === 'center' ? '中' : '右' };
+            state.value = { value: field.value.style.align, label: field.value.style.align === 'left' ? '左' : (field.value.style.align === 'center' ? '中' : '右') };
             state.disabled = true;
           });
           form.setFieldState('indent', (state) => {
