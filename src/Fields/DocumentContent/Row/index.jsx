@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-07-19 16:53:50
- * @LastEditTime: 2022-10-14 16:51:43
+ * @LastEditTime: 2022-10-14 17:45:29
  */
 import React from 'react';
 import { useSafeState } from 'ahooks';
@@ -14,7 +14,7 @@ import ContentCell from './ContentCell';
 import ActionsCell from './ActionsCell';
 
 const Row = (props) => {
-  const { index, row, handleDragSort, handleChange, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showHideContent, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx, isActive, controllMode, speedDialFabProps } = props;
+  const { index, row, handleDragSort, handleChange, readOnly, showDelete, showSwitchType, allowDragSort, showClickSort, handleClickSort, first, last, showHideContent, modalFullScreen, tableRowProps, imageShowMaxHeight, imageShowMaxWidth, cellBorderSx, isActive, controllMode, speedDialFabProps, hideHead, actionColumnWidth } = props;
   const [ editing, setEditing ] = useSafeState(false);
   const [ showDetail, setShowDetail ] = useSafeState(true);
   return (
@@ -70,9 +70,10 @@ const Row = (props) => {
       { !readOnly && !!isActive && (
         <TableCell
           align='center'
-          width={controllMode === 'speedDial' ? 40 : undefined}
+          width={hideHead ? (actionColumnWidth ?? (controllMode === 'speedDial' ? 50 : 135)) : undefined}
           sx={{
             p: 0,
+            minWidth: hideHead && controllMode === 'speedDial' ? (50) : undefined,
             ...cellBorderSx,
           }}
         >

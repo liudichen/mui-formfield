@@ -29,6 +29,8 @@ export interface IRowProps {
   cellBorderSx?: SxProps,
   controllMode?: IControlMode,
   speedDialFabProps?: FabProps,
+  hideHead?: boolean,
+  actionColumnWidth?: number | string,
 }
 
 declare const Row: React.FC<IRowProps>;

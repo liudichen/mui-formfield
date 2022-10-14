@@ -202,6 +202,8 @@ const DocumentContent = observer((props) => {
                   cellBorderSx={cellBorderSx}
                   controllMode={controllMode}
                   speedDialFabProps={speedDialFabProps}
+                  hideHead={hideHead}
+                  actionColumnWidth={actionColumnWidth}
                 />
               ))}
             </TableBody>
