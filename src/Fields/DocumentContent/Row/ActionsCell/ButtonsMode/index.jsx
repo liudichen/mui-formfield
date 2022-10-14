@@ -3,13 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-16 16:04:49
- * @LastEditTime: 2022-10-14 13:08:17
+ * @LastEditTime: 2022-10-14 14:03:59
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Container, IconButton, Tooltip } from '@mui/material';
-import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown } from '@tabler/icons';
+import { IconTrash, IconEdit, IconEye, IconEyeOff, IconDeviceFloppy, IconChevronsUp, IconChevronsDown, IconPalette } from '@tabler/icons';
 import { PopConfirm } from 'mui-component';
 
 import TextStyleModifyModal from '../TextStyleModifyModal';
@@ -48,6 +48,18 @@ const ButtonsMode = (props) => {
             id={id}
             handleChange={handleChange}
             fullScreen={modalFullScreen}
+            trigger={
+              <Tooltip title='文本格式编辑' arrow placement='top'>
+                <IconButton
+                  color='primary'
+                  tabIndex={-1}
+                >
+                  <IconPalette
+                    size='1.25rem'
+                  />
+                </IconButton>
+              </Tooltip>
+            }
           />
         )}
         { showDelete && (

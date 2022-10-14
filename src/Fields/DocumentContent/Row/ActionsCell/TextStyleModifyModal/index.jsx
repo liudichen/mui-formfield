@@ -3,15 +3,14 @@ import React, { useMemo } from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { onFieldValueChange } from '@formily/core';
 import { Field } from '@formily/react';
-import { IconButton, Tooltip, Grid } from '@mui/material';
-import { IconPalette } from '@tabler/icons';
+import { Grid } from '@mui/material';
 
 import ModalForm from '../../../../../Formily/ModalForm';
 import Select from '../../../../../Formily/Select';
 import { AlignOptions, PresetFormatOptions, FontOptions, FontSizeOptions, IndentOptions } from '../../../utils';
 
 const TextStyleModifyModal = (props) => {
-  const { text, id, handleChange, fullScreen } = props;
+  const { text, id, handleChange, fullScreen, ...restProps } = props;
   const onFinish = useMemoizedFn(async (values) => {
     const { font, fontSize, indent, align } = values;
     const newText = {
@@ -77,18 +76,7 @@ const TextStyleModifyModal = (props) => {
       onFinish={onFinish}
       createFormOptions={createFormOptions}
       memo={false}
-      trigger={
-        <Tooltip title='文本格式编辑' arrow placement='top'>
-          <IconButton
-            color='primary'
-            tabIndex={-1}
-          >
-            <IconPalette
-              size='1.25rem'
-            />
-          </IconButton>
-        </Tooltip>
-      }
+      {...restProps}
     >
       <Grid container>
         <Grid item xs={6}>
