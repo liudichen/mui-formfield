@@ -1,6 +1,5 @@
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
-import { observer } from '@formily/react';
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { IconPlus } from '@tabler/icons';
 import { isMobile } from 'react-device-detect';
@@ -9,7 +8,7 @@ import { FieldWrapper } from '../common';
 import Row from './Row';
 import NoRowsOverlay from '../EditableTable/NoRowsOverlay';
 
-const DocumentContent = observer((props) => {
+const DocumentContent = (props) => {
   const {
     label, labelPosition, tooltip, required, error, fullWidth,
     helperText, showHelperText, helperTextSx, helperTextProps,
@@ -49,20 +48,23 @@ const DocumentContent = observer((props) => {
   });
   const handleAddRow = useMemoizedFn(() => {
     const newRows = [ ...(rows || []) ];
-    const newRow = onNewRow?.(rows) ?? {
-      id: Date.now(),
-      type: '文本',
-      text: {
-        text: '',
-        fontSize: '小四',
-        indent: 2,
-        align: 'left',
-        font: '宋体',
+    let newRow = onNewRow?.(rows);
+    if (!newRow) {
+      newRow = {
         type: '文本',
-      },
-      image: { },
-      table: { },
-    };
+        text: {
+          text: '',
+          fontSize: '小四',
+          indent: 2,
+          align: 'left',
+          font: '宋体',
+          type: '文本',
+        },
+        image: { },
+        table: { },
+      };
+    }
+    if (!newRow.id) newRow.id = (newRows.length ? Math.max(...newRows.map((ele) => +ele?.id || 0)) : 0) + 1;
     newRows.push(newRow);
     setRows(newRows);
   });
@@ -237,7 +239,7 @@ const DocumentContent = observer((props) => {
       </Box>
     </FieldWrapper>
   );
-});
+};
 
 DocumentContent.defaultProps = {
   readOnly: false,
