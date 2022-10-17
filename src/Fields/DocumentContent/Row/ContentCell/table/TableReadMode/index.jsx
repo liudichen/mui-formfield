@@ -23,7 +23,7 @@ const TableReadMode = (props) => {
         <DataGridTable
           rowKey='id'
           columns={columns}
-          rows={tableData || []}
+          rows={(tableData || []).slice(1)}
           initialPageSize={20}
           hideFooter={!tableData?.length || tableData.length < 21}
         />
