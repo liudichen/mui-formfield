@@ -51,7 +51,8 @@ const ModalForm = forwardRef((props, ref) => {
             sx: { cursor: 'pointer' },
             ...(triggerProps || {}),
             onClick: (e) => {
-              !disabled && setOpen(true);
+              if (disabled) return;
+              setOpen(true);
               triggerProps?.onClick?.(e);
             },
           }}
