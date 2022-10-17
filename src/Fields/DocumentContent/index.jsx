@@ -1,5 +1,6 @@
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
+import { toJS } from '@formily/reactive';
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { IconPlus } from '@tabler/icons';
 import { isMobile } from 'react-device-detect';
@@ -22,7 +23,8 @@ const DocumentContent = (props) => {
     isActive, hideHead, controllMode = isMobile ? 'speedDial' : 'buttons', speedDialFabProps,
     ...restProps
   } = props;
-  const [ rows, setRows ] = useControllableValue(props, { defaultValue: [] });
+  const [ rowsProxy, setRows ] = useControllableValue(props, { defaultValue: [] });
+  const rows = useCreation(() => toJS(rowsProxy), [ rowsProxy ]);
   const rootId = useId();
   const handleDragSort = useMemoizedFn((dragId, dropId) => {
     if (readOnly || disabled) { return; }
