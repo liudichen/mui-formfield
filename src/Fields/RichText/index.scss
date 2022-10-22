@@ -1,0 +1,19 @@
+.editor-content-bordered {
+  // :global {
+  .ck-editor__editable {
+    // min-height: 200px;
+    border: 1px solid rgb(204,206,209);
+  }
+}
+
+.hide-editor-toolbar {
+  .ck-toolbar {
+    display: none;
+  }
+}
+
+.show-editor-toolbar {
+  .ck-toolbar {
+    display: flex;
+  }
+}

@@ -80,10 +80,13 @@
     "gh-pages": "^3.2.3",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
     "typescript": "^4.6.3",
     "yorkie": "^2.0.0"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@formily/core": "^2.1.11",
@@ -97,8 +100,8 @@
     "@mui/x-data-grid": "^5.15.0",
     "@tabler/icons": "^1.78.1",
     "ahooks": "^3.6.2",
-    "classnames": "^2.3.1",
     "ckeditor5-custom-build": "file:ckeditor5-custom-build",
+    "classnames": "^2.3.1",
     "dayjs": "^1.11.4",
     "mui-component": "^0.1.42",
     "mui-image-crop": "^0.1.6",

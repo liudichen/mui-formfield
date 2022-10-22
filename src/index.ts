@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-10-14 22:05:12
+ * @LastEditTime: 2022-10-23 00:01:05
  */
 
 // contextProvider
@@ -32,6 +32,7 @@ export { default as EditableTable, EditableTableProps, EditModalProps,
 export { default as DocumentContent, DocumentContentProps, IRowItem as DocumentCOntentRowItem } from './Fields/DocumentContent';
 export { documentContentDataPurify } from './Fields/DocumentContent/utils';
 export { default as KeyWords, KeyWordsProps } from './Fields/KeyWords';
+export { default as RichText, RichTextProps } from './Fields/RichText';
 
 // Formily组件
 
