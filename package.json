@@ -98,6 +98,7 @@
     "@tabler/icons": "^1.78.1",
     "ahooks": "^3.6.2",
     "classnames": "^2.3.1",
+    "ckeditor5-custom-build": "file:ckeditor5-custom-build",
     "dayjs": "^1.11.4",
     "mui-component": "^0.1.42",
     "mui-image-crop": "^0.1.6",
