@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -29,6 +29,7 @@
     "material-ui",
     "form",
     "form field",
+    "rich text",
     "fieldWrapper",
     "iimm",
     "www.iimm.ink",
