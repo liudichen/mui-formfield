@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -93,6 +93,7 @@
     "@formily/core": "^2.1.11",
     "@formily/react": "^2.1.11",
     "@formily/reactive": "^2.1.11",
+    "@iimm/ckeditor5-editor-decoupled": "^0.0.1",
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "5.0.0-alpha.74",
     "@mui/material": "^5.9.2",
@@ -101,7 +102,6 @@
     "@mui/x-data-grid": "^5.15.0",
     "@tabler/icons": "^1.78.1",
     "ahooks": "^3.6.2",
-    "ckeditor5-custom-build": "file:ckeditor5-custom-build",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.4",
     "mui-component": "^0.1.42",

@@ -3,13 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-22 20:56:23
- * @LastEditTime: 2022-10-23 12:25:23
+ * @LastEditTime: 2022-10-23 17:20:09
  */
 import { useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import classNames from 'classnames';
-import Editor from 'ckeditor5-custom-build';
+// import Editor from 'ckeditor5-custom-build';
+import Editor from '@iimm/ckeditor5-editor-decoupled';
 
 import { FieldWrapper } from '../common';
 import './index.scss';
