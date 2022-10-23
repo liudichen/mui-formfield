@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-22 20:56:23
- * @LastEditTime: 2022-10-23 09:33:40
+ * @LastEditTime: 2022-10-23 10:15:19
  */
 import { useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
@@ -42,7 +42,7 @@ const RichText = forwardRef((props, ref) => {
     onReadyProp?.(editor);
   });
   const forceSyncValueFn = useMemoizedFn(() => {
-    if (forceSyncValue) {
+    if (forceSyncValue || readOnly) {
       if (editor && value !== editor?.getData()) editor?.setData(value);
     }
   });
