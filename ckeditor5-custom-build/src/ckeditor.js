@@ -24,7 +24,8 @@ import GeneralHtmlSupport from '@ckeditor/ckeditor5-html-support/src/generalhtml
 // import Heading from '@ckeditor/ckeditor5-heading/src/heading.js';
 // import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight.js';
 import Image from '@ckeditor/ckeditor5-image/src/image.js';
-// import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption.js';
+import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption.js';
+import ImageTextAlternative from '@ckeditor/ckeditor5-image/src/imagetextalternative';
 import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert.js';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize.js';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle.js';
@@ -41,11 +42,11 @@ import ListProperties from '@ckeditor/ckeditor5-list/src/listproperties.js';
 // import PageBreak from '@ckeditor/ckeditor5-page-break/src/pagebreak.js';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js';
-// import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat.js';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat.js';
 import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough.js';
 // import Style from '@ckeditor/ckeditor5-style/src/style.js';
 import Table from '@ckeditor/ckeditor5-table/src/table.js';
-// import TableCaption from '@ckeditor/ckeditor5-table/src/tablecaption.js';
+import TableCaption from '@ckeditor/ckeditor5-table/src/tablecaption.js';
 import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 // import TableColumnResize from '@ckeditor/ckeditor5-table/src/tablecolumnresize.js';
 import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
@@ -82,7 +83,8 @@ Editor.builtinPlugins = [
   // Heading,
   // Highlight,
   Image,
-  // ImageCaption,
+  ImageCaption,
+  ImageTextAlternative,
   ImageInsert,
   ImageResize,
   ImageStyle,
@@ -99,11 +101,11 @@ Editor.builtinPlugins = [
   // PageBreak,
   Paragraph,
   PasteFromOffice,
-  // RemoveFormat,
+  RemoveFormat,
   Strikethrough,
   // Style,
   Table,
-  // TableCaption,
+  TableCaption,
   TableCellProperties,
   // TableColumnResize,
   TableProperties,
@@ -142,10 +144,11 @@ Editor.defaultConfig = {
       '|',
       // 'heading',
       // '|',
+      'removeFormat',
       'findAndReplace',
       'undo',
       'redo',
-      '|',
+      // '|',
       // 'code',
       // 'blockQuote',
       // 'codeBlock',
@@ -195,11 +198,33 @@ Editor.defaultConfig = {
     ],
   },
   image: {
+    resizeUnit: '%',
+    resizeOptions: [{
+      name: 'resizeImage:original',
+      value: null,
+      icon: 'original',
+    },
+    {
+      name: 'resizeImage:25',
+      value: '25',
+      icon: 'small',
+    },
+    {
+      name: 'resizeImage:50',
+      value: '50',
+      icon: 'medium',
+    },
+    {
+      name: 'resizeImage:75',
+      value: '75',
+      icon: 'large',
+    }],
     toolbar: [
-      'imageTextAlternative',
       'imageStyle:inline',
       'imageStyle:block',
       'imageStyle:side',
+      '|',
+      'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original',
     ],
   },
   table: {
@@ -207,8 +232,10 @@ Editor.defaultConfig = {
       'tableColumn',
       'tableRow',
       'mergeTableCells',
-      'tableCellProperties',
-      'tableProperties',
+      // 'tableCellProperties',
+      // 'tableProperties',
+      // '|',
+      // 'toggleTableCaption',
     ],
   },
 };

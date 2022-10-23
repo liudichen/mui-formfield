@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-22 21:55:37
- * @LastEditTime: 2022-10-23 09:32:41
+ * @LastEditTime: 2022-10-23 12:21:26
  */
 import React from 'react';
 import { FieldWrapperRelateProps, fieldCommonProps } from '../types';
@@ -30,6 +30,7 @@ export interface Editor {
 
 
 export interface EditorConfig {
+  language?: string,
   toolbar?: ToolbarConfig,
   fontSize?: FontSizeConfig,
   fontFamily?: FontFamilyConfig,
@@ -71,6 +72,7 @@ interface DomEventData {
 
 export interface RichTextProps extends FieldWrapperRelateProps, fieldCommonProps<string> {
   className?: string,
+  /** value更新时强制更新editor的Data值 */
   forceSyncValue?: boolean,
   bordered?: boolean,
   showToolbar?: boolean,
