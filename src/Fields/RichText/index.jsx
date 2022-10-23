@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-22 20:56:23
- * @LastEditTime: 2022-10-22 23:43:14
+ * @LastEditTime: 2022-10-23 09:33:40
  */
 import { useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
@@ -21,8 +21,8 @@ const RichText = forwardRef((props, ref) => {
     fieldSx, fieldProps, labelSx, labelProps,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    readOnly, disabled, autoSyncValue, bordered = true, showToolbar = true,
-    className,
+    readOnly, disabled, forceSyncValue, bordered = true, showToolbar = true,
+    className, minHeight,
     onReady: onReadyProp, onError, onBlur, onFocus, onEditorChange,
     config,
   } = props;
@@ -41,12 +41,12 @@ const RichText = forwardRef((props, ref) => {
     setEditor(editor);
     onReadyProp?.(editor);
   });
-  const autoSyncValueFn = useMemoizedFn(() => {
-    if (autoSyncValue) {
+  const forceSyncValueFn = useMemoizedFn(() => {
+    if (forceSyncValue) {
       if (editor && value !== editor?.getData()) editor?.setData(value);
     }
   });
-  useEffect(() => { autoSyncValueFn(); }, [ value ]);
+  useEffect(() => { forceSyncValueFn(); }, [ value ]);
   useImperativeHandle(ref, () => editor, [ editor ]);
   return (
     <FieldWrapper
@@ -65,11 +65,17 @@ const RichText = forwardRef((props, ref) => {
       helperTextSx={helperTextSx}
       helperTextProps={helperTextProps}
     >
-      <div className={classNames([
-        showToolbar ? 'show-editor-toolbar' : 'hide-editor-toolbar',
-        bordered ? 'editor-content-bordered' : '',
-        className || '',
-      ])}>
+      <div
+        className={classNames([
+          showToolbar ? 'show-editor-toolbar' : 'hide-editor-toolbar',
+          bordered ? 'editor-content-bordered' : '',
+          minHeight ? 'editor-content-minHeight' : '',
+          className || '',
+        ])}
+        style={minHeight ? {
+          '--editableContentMinHeight': typeof minHeight === 'number' ? `${minHeight}px` : minHeight,
+        } : undefined}
+      >
         <CKEditor
           data={value}
           editor={Editor}

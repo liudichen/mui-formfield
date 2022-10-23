@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-22 21:55:37
- * @LastEditTime: 2022-10-22 23:58:54
+ * @LastEditTime: 2022-10-23 09:32:41
  */
 import React from 'react';
 import { FieldWrapperRelateProps, fieldCommonProps } from '../types';
@@ -19,7 +19,7 @@ import {
 } from './types';
 
 // https://ckeditor.com/docs/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html
-interface Editor {
+export interface Editor {
   isReadOnly: boolean,
   getData: (options?: {rootName?: string, trim?: 'empty' | 'none'}) => string,
   setData: (data: string) => void,
@@ -29,7 +29,7 @@ interface Editor {
 }
 
 
-interface EditorConfig {
+export interface EditorConfig {
   toolbar?: ToolbarConfig,
   fontSize?: FontSizeConfig,
   fontFamily?: FontFamilyConfig,
@@ -71,7 +71,7 @@ interface DomEventData {
 
 export interface RichTextProps extends FieldWrapperRelateProps, fieldCommonProps<string> {
   className?: string,
-  autoSyncValue?: boolean,
+  forceSyncValue?: boolean,
   bordered?: boolean,
   showToolbar?: boolean,
   onReady?: (editor: Editor) => void,
@@ -80,6 +80,8 @@ export interface RichTextProps extends FieldWrapperRelateProps, fieldCommonProps
   onBlur?: (event: EventInfo, editor: Editor) => void,
   onFocus?: (event: EventInfo, editor: Editor) => void,
   config?: EditorConfig,
+  /** 编辑区的最小高度,需要带长度/高度单位，不带单位时按px处理，不支持百分比 */
+  minHeight?: string | number,
 }
 
 declare const RichText: React.ForwardRefRenderFunction<Editor, RichTextProps>;
