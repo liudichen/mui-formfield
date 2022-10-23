@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-10-23 17:33:21
+ * @LastEditTime: 2022-10-23 17:42:07
  */
 
 // contextProvider
@@ -32,7 +32,6 @@ export { default as EditableTable, EditableTableProps, EditModalProps,
 export { default as DocumentContent, DocumentContentProps, IRowItem as DocumentCOntentRowItem } from './Fields/DocumentContent';
 export { documentContentDataPurify } from './Fields/DocumentContent/utils';
 export { default as KeyWords, KeyWordsProps } from './Fields/KeyWords';
-// export { default as RichText, RichTextProps } from './Fields/RichText';
 
 // Formily组件
 
@@ -40,3 +39,5 @@ export { default as FormilySelect, SelectProps as FormilySelectProps } from './F
 export { default as FormilyModalForm, ModalFormProps as FormilyModalFormProps } from './Formily/ModalForm';
 export { default as FormilyReset, ResetProps as FormilyResetProps } from './Formily/Reset';
 export { default as FormilySubmit, SubmitProps as FormilySubmitProps } from './Formily/Submit';
+
+export { FieldWrapperRelateProps, fieldCommonProps } from './Fields/types';
