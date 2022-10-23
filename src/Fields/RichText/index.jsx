@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-10-22 20:56:23
- * @LastEditTime: 2022-10-23 10:15:19
+ * @LastEditTime: 2022-10-23 12:25:23
  */
 import { useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
@@ -16,7 +16,7 @@ import './index.scss';
 
 const RichText = forwardRef((props, ref) => {
   const {
-    label, labelPosition, tooltip, required, error, fullWidth,
+    label, labelPosition, tooltip, required, error, fullWidth = true,
     helperText, showHelperText, helperTextSx, helperTextProps,
     fieldSx, fieldProps, labelSx, labelProps,
     // eslint-disable-next-line no-unused-vars
