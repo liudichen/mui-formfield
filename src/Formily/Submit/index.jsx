@@ -30,8 +30,8 @@ const Submit = observer(({
     if (onClick) {
       if (onClick?.() === false) return;
     }
-    if (onSubmit) {
-      form.submit(onSubmit).then((res) => {
+    if (onSubmit && form) {
+      form?.submit(onSubmit).then((res) => {
         onSubmitSuccess?.(res);
         if (resetOnSuccess && res === true) {
           form?.reset('*');
@@ -58,13 +58,13 @@ const Submit = observer(({
         variant: 'contained',
         ...props,
       }}
-      loading={loading ?? form.submitting}
+      loading={loading ?? form?.submitting}
       onClick={(e) => {
         if (onClick) {
           if (onClick?.(e) === false) return;
         }
-        if (onSubmit) {
-          form.submit(onSubmit).then((res) => {
+        if (onSubmit && form) {
+          form?.submit(onSubmit).then((res) => {
             onSubmitSuccess?.(res);
             if (resetOnSuccess && res === true) {
               form?.reset('*');
