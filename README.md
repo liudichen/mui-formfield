@@ -7,6 +7,9 @@
 -->
 # mui-formfield
 
+[![NPM version](https://img.shields.io/npm/v/mui-formfield.svg?style=flat)](https://npmjs.org/package/mui-formfield)
+[![NPM downloads](http://img.shields.io/npm/dm/mui-formfield.svg?style=flat)](https://npmjs.org/package/mui-formfield)
+
 用来准备用于formily的form项组件。
 
 ## Getting Started

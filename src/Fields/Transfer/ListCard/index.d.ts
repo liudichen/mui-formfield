@@ -6,8 +6,7 @@
  * @LastEditTime: 2022-06-17 09:48:28
  */
 import React from 'react';
-import { SystemStyleObject } from '@mui/system';
-import { ListProps, ListItemProps, CheckboxProps, ListItemTextProps } from '@Mui/material';
+import { ListProps, ListItemProps, CheckboxProps, ListItemTextProps, SxProps } from '@mui/material';
 type Item = number | string | object;
 
 import { TextFieldProps } from '../../TextField';
@@ -17,12 +16,12 @@ export interface ListCardCommonProps {
   showSearch?: boolean,
   disabled?: boolean,
   options?: {value: Item, label: React.ReactNode}[],
-  listSx?: SystemStyleObject,
+  listSx?: SxProps,
   listProps?: Omit<ListProps, 'children'>,
   listCardWidth?: number | string,
   listCardHeight?: number | string,
-  cardHeaderSx?: SystemStyleObject,
-  cardSx?: SystemStyleObject,
+  cardHeaderSx?: SxProps,
+  cardSx?: SxProps,
   listItemProps?: ListItemProps,
   itemCheckboxProps?: CheckboxProps,
   listItemTextProps?: ListItemTextProps,

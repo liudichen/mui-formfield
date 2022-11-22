@@ -7,8 +7,7 @@
  */
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
-import { IconButton, Tooltip } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { IconButton, Tooltip, makeStyles } from '@mui/material';
 import { IconTrash, IconCloudDownload } from '@tabler/icons';
 
 const useStyles = makeStyles({
