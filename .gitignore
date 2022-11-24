@@ -29,3 +29,4 @@ lib
 es
 
 /ckeditor5-custom-build/node_modules
+package-lock.json

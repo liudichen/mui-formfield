@@ -1,6 +1,6 @@
 {
   "name": "mui-formfield",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -107,8 +107,8 @@
     "ahooks": "^3.6.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.4",
-    "mui-component": "^0.1.45",
-    "mui-image-crop": "^0.1.7",
+    "mui-component": ">=1.0.0",
+    "mui-image-crop": ">=0.1.5",
     "react-device-detect": "^2.2.2",
     "react-dropzone": "^12.1.0",
     "react-responsive-carousel": "^3.2.23",
