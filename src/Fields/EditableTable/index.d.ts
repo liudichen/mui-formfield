@@ -208,12 +208,6 @@ export interface EditableTableProps extends FieldWrapperRelateProps, fieldCommon
 
 }
 
-export {
-  DragSortColumnItemProps,
-  ActionsColumnItemProps,
-  RenderAddRowProps,
-};
-
 declare const EditableTable: React.FunctionComponent<EditableTableProps>;
 
 export default EditableTable;
